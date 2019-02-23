@@ -3,12 +3,26 @@
 
 std::vector<Card> createCards() {
 	std::vector<Card> cards;
-	for (int i = 0; i < 40; i++) {
+	/*for (int i = 0; i < 40; i++) {
 		UsefullCard card(i);
 		cards.push_back(card);
 	}
-	cards[0].setPrice(60000);
-	//Для каждой карты нужно прописать setPrice, setPriceRent, setColor и setPrizeShop
+	cards[0].setPrice(60000);*/
+	int k = 1000;
+	RoflanCard start(0, 0); // Первая ячейка (Старт)
+	cards.push_back(start);
+	UsefullCard cabSeti(1, 60*k, 2 * k, 0); // Кабельные сети
+	cards.push_back(cabSeti);
+	RoflanCard caraganda(2, 1); // CARAGANDA
+	cards.push_back(caraganda);
+	UsefullCard magSeti(3, 60 * k, 4 * k, 0); // Магис сети
+	cards.push_back(magSeti);
+	RoflanCard fas(4, 2); // FAS
+	cards.push_back(fas);
+	UsefullCard autoTrans(3, 200 * k, 25 * k, 1); // TRANSPORT 1
+	cards.push_back(autoTrans);
+	//5 cards
+
 	return cards;
 }
 

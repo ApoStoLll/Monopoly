@@ -34,6 +34,11 @@ private:
 	int owner; // Номер игрока, которому пренадлежит
 public:
 	UsefullCard(int num) : Card(num) { owner = 0; }
+	UsefullCard(int num, int price, int priceRent, int color) : Card(num) {
+		this->price = price;
+		this->priceRent = priceRent;
+		this->color = color;
+	}
 	void buy(int owner) { this->owner = owner; }
 	void buyShop(int number);
 
@@ -47,6 +52,13 @@ public:
 	int getPrizeShop() const { return prizeShop; }
 	int getNumberOfShops() const { return numberOfShops; }
 	int getOwner() const { return owner; }
+};
+
+class RoflanCard : public Card {
+private:
+	int type;
+public:
+	RoflanCard(int num, int type) : Card(num) { this->type = type;  }
 };
 
 class Player {
