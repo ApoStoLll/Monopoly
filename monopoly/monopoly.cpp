@@ -1,21 +1,58 @@
-﻿// monopoly.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
+﻿#include "pch.h"
+#include "controller.h"
 
-#include "pch.h"
-#include <iostream>
-
-int main()
-{
-    std::cout << "Hello World!\n"; 
+std::vector<Card> createCards() {
+	std::vector<Card> cards;
+	for (int i = 0; i < 40; i++) {
+		UsefullCard card(i);
+		cards.push_back(card);
+	}
+	cards[0].setPrice(60000);
+	//Для каждой карты нужно прописать setPrice, setPriceRent, setColor и setPrizeShop
+	return cards;
 }
 
-// Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
-// Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
+std::vector<Player> createPlayers() {
+	std::vector<Player> players;
+	Player player1(1500000, 0);
+	Player player2(1500000, 1);
+	players.push_back(player1);
+	players.push_back(player2);
+	return players;
+}
 
-// Советы по началу работы 
-//   1. В окне обозревателя решений можно добавлять файлы и управлять ими.
-//   2. В окне Team Explorer можно подключиться к системе управления версиями.
-//   3. В окне "Выходные данные" можно просматривать выходные данные сборки и другие сообщения.
-//   4. В окне "Список ошибок" можно просматривать ошибки.
-//   5. Последовательно выберите пункты меню "Проект" > "Добавить новый элемент", чтобы создать файлы кода, или "Проект" > "Добавить существующий элемент", чтобы добавить в проект существующие файлы кода.
-//   6. Чтобы снова открыть этот проект позже, выберите пункты меню "Файл" > "Открыть" > "Проект" и выберите SLN-файл.
+void menu(Player &player) {
+	//Меню после хода
+}
+
+void gameCycle(std::vector<Player> &players, std::vector<Card> &cards) {
+	while (players.size() > 1) {
+		for (int i = 0; i < players.size(); i++) {
+			Player &player = players[i]; //Пока ходит первый игрок 
+			player.setPosition(player.getPosition() + player.random()); // изменение позиции
+			printMap(players);//изменить карту
+			if (cards[player.getPosition()].getOwner() == 0 //Если карту никто не купил
+				&& player.getMoney() >= cards[player.getPosition()].getPrice()) {//Если хватает дене
+				if (skipOrBuy()) player.buyCard(cards[player.getPosition()]); // Если решил
+				// купить, то покупает
+			}
+			else {
+				if (cards[player.getPosition()].getOwner() > 0) { // если куплено то плоти налоги
+					player.payRent(players[cards[player.getPosition()].getOwner()]);
+				}
+			}
+			//printMap(players);//изменить карту
+			menu(player); //Вызвать меню для игрока
+		}
+	}
+}
+
+int main() {
+	std::vector<Card> cards;
+	cards = createCards();
+	std::vector<Player> players;
+	players = createPlayers();
+	//printMap(players);//изменить карту
+	gameCycle(players, cards);
+	return 0;
+}
