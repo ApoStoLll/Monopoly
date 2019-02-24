@@ -17,7 +17,7 @@ bool skipOrBuy() {
 		if (in == 'Y' || in == 'y') return true;
 		else {
 			if (in == 'N' || in == 'n') return false;
-			else std::cout << "Only Y or N, dolbaeb (Try again)\n";
+			else std::cout << "Only Y or N, Genius (Try again)\n";
 		}
 	}
 }
