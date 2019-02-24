@@ -1,7 +1,6 @@
 ﻿#include "pch.h"
 #include "controller.h"
 #include <iostream>
-using namespace std;
 
 
 std::vector<Card*> createCards() {
@@ -63,19 +62,16 @@ void gameCycle(std::vector<Player> &players, std::vector<Card*> cards) {
 		Player &player = players[i]; //Пока ходит первый игрок 
 		player.setPosition((player.getPosition() + player.random()) % 40); // изменение позиции
 		printMap(players,cards);	//изменить карту
-		cout << "POHOdil " << player.getNumber();
 		if (cards[player.getPosition()]->getType() == -1) { //If UsefullCard
 			okCard(players, cards, player);
 		}
 		if (cards[player.getPosition()]->getType() == 1) {
 			//cards[player.getPosition()].caraganda(player);
-			player.setPosition(player.random(20));
+			//player.setPosition(player.random(20));
 		}
 		//printMap(players,cards); //изменить карту
 		//menu(player); //Вызвать меню для игрока
-		i++;//следующий игрок
-		cout << "NEXT IGRoK";
-		
+		i++;//следующий игрок	
 	}
 }
 int main() {
