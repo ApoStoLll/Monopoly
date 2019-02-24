@@ -18,7 +18,7 @@ public:
 		players = createPlayers();
 	}
 	void gameCycle();
-	bool win();
+	int menu();
 	//void addPlayer(std::vector<Player> &players);
 	void okCard(Player &player);
 	bool choose(Player &player);
