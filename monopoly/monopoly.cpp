@@ -22,7 +22,6 @@ std::vector<Card> createCards() {
 	UsefullCard autoTrans(3, 200 * k, 25 * k, 1); // TRANSPORT 1
 	cards.push_back(autoTrans);
 	//5 cards
-
 	return cards;
 }
 
