@@ -23,7 +23,7 @@
     <ProjectGuid>{79BEAD29-00C4-4211-BD37-4A60B46EE4F4}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>monopoly</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
