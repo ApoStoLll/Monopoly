@@ -7,10 +7,9 @@ bool Controler::choose(Player &player) {
 	else return false;
 }
 
-/*void menu(Player &player) {
-	//Меню после хода
-	if (input == 0) return;
-}*/
+void menu(Player &player) {
+	std::cout<<
+}
 
 void Controler::okCard(Player &player) {
 	if (choose(player)) {	//Если хватает денег и текущая карточка не куплена
@@ -38,9 +37,8 @@ void Controler::gameCycle() {
 			//cards[player.getPosition()].caraganda(player);
 			//player.setPosition(player.random(20));
 		}
-		Sleep(2000);
-		//menu(player); //Вызвать меню для игрока
-		i++;//следующий игрок	
+		menu(player); //Вызвать меню для игрока
+		if(a!=b) i++;//следующий игрок	
 	}
 }
 
