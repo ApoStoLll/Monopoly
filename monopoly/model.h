@@ -24,7 +24,7 @@ public:
 	int getPriceShop() const { return -1; }
 	int getNumberOfShops() const { return -1; }
 	int getOwner() const { return -1; }
-	int getType() const { return -1; }
+	int getType() const { return -10; }
 };
 
 class UsefullCard : public Card {
@@ -55,7 +55,7 @@ public:
 	int getPriceShop() const { return priceShop; }
 	int getNumberOfShops() const { return numberOfShops; }
 	int getOwner() const { return owner; }
-	int getType() const { return -10; }
+	int getType()  { return -10; }
 };
 
 class RoflanCard : public Card {

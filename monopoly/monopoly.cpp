@@ -41,10 +41,10 @@ bool choose(std::vector<Card> &cards, Player &player) {
 	else return false;
 }
 
-void menu(Player &player) {
+/*void menu(Player &player) {
 	//Меню после хода
 	if (input == 0) return;
-}
+}*/
 
 void okCard(std::vector<Player> &players, std::vector<Card> &cards, Player &player) {
 	if (choose(cards, player))	//Если хватает денег и текущая карточка не куплена
@@ -57,17 +57,17 @@ void okCard(std::vector<Player> &players, std::vector<Card> &cards, Player &play
 void gameCycle(std::vector<Player> &players, std::vector<Card> &cards) {
 	int i = 0;
 	while (players.size() > 1) {
-		if (i == cards.size()) i = 0;
+		if (i == players.size()) i = 0;
 		Player &player = players[i]; //Пока ходит первый игрок 
 		player.setPosition(player.getPosition() + player.random()); // изменение позиции
-		printMap(players);	//изменить карту
+		printMap(players,cards);	//изменить карту
 		if (cards[player.getPosition()].getType() == -10) okCard(players, cards, player);
 		if (cards[player.getPosition()].getType() == 1) {
 			//cards[player.getPosition()].caraganda(player);
 			player.setPosition(player.random(20));
 		}
-		//printMap(players); //изменить карту
-		menu(player); //Вызвать меню для игрока
+		printMap(players,cards); //изменить карту
+		//menu(player); //Вызвать меню для игрока
 		i++;//следующий игрок
 	}
 }
