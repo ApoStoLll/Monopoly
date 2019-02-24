@@ -10,8 +10,8 @@ int Player::random(int num) {
 
 Card& Player::findCard(int pos) {
 	for (int i = 0; i < getCards().size(); i++)
-		if (getCards()[i].getPosition() == pos) 
-			return getCards()[i];
+		if (getCards()[i]->getPosition() == pos) 
+			return *getCards()[i];
 }
 
 void Player::payRent(Player &player) {
@@ -22,7 +22,7 @@ void Player::payRent(Player &player) {
 void Player::buyCard(Card &card) {
 	card.buy(number);
 	money = money - card.getPrice();
-	cards.push_back(card);
+	cards.push_back(&card);
 }
 
 void Player::createShop(int number) {
@@ -36,7 +36,7 @@ void Player::buyShop(int number) {
 	int color = findCard(number).getColor();
 	int count = 0;
 	for (int i = 0; i < getCards().size(); i++)
-		if (getCards()[i].getColor() == color) count++;
+		if (getCards()[i]->getColor() == color) count++;
 	if (count < 3) return; // FUU
 	if (count == 3) if (number == 1 || number == 3 || number == 40 || number == 38) createShop(number); // OK
 	if (count == 4) if (number != 5 && number != 15) createShop(number);

@@ -55,7 +55,7 @@ public:
 	virtual int getPriceShop()  { return priceShop; }
 	virtual int getNumberOfShops()  { return numberOfShops; }
 	virtual int getOwner()  { return owner; }
-	int getType () override { return -10; }
+	virtual int getType()  { return -10; }
 };
 
 class RoflanCard : public Card {
@@ -64,7 +64,7 @@ private:
 public:
 	RoflanCard(int num, int type) : Card(num) { this->type = type;  }
 	//void caraganda(Player &player);
-	int getType() const { return type; }
+	virtual int getType() { return type; }
 };
 
 class Player {
@@ -72,7 +72,7 @@ private:
 	int number;
 	int money;
 	int position;
-	std::vector<Card> cards;
+	std::vector<Card*> cards;
 public:
 	Player(int m_money, int num) : number(num), money(m_money), position(0) {}
 	Card& findCard(int pos);
@@ -88,6 +88,6 @@ public:
 	int getNumber()  { return number; }
 	int getMoney()  { return money; }
 	int getPosition()  { return position; }
-	std::vector<Card>& getCards() { return cards; }
+	std::vector<Card*>& getCards() { return cards; }
 };
 #endif //MONOPOLY_MODEL_H
