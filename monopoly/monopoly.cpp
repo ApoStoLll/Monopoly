@@ -59,7 +59,7 @@ void gameCycle(std::vector<Player> &players, std::vector<Card*> &cards) {
 	while (players.size() > 1) {
 		if (i == players.size()) i = 0;
 		Player &player = players[i]; //Пока ходит первый игрок 
-		player.setPosition(player.getPosition() + player.random()); // изменение позиции
+		player.setPosition((player.getPosition() + player.random())%40); // изменение позиции
 		printMap(players,cards);	//изменить карту
 		if (cards[player.getPosition()]->getType() == -10) okCard(players, cards, player);
 		if (cards[player.getPosition()]->getType() == 1) {
@@ -69,6 +69,7 @@ void gameCycle(std::vector<Player> &players, std::vector<Card*> &cards) {
 		printMap(players,cards); //изменить карту
 		//menu(player); //Вызвать меню для игрока
 		i++;//следующий игрок
+		
 	}
 }
 
