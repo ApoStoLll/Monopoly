@@ -30,7 +30,7 @@ char findOwner(int number, std::vector<Card*> cards) {
 	}
 }
 
-void printMap(std::vector<Player> &players, std::vector<Card*> cards,int a,int b)
+void printMap(std::vector<Player> &players, std::vector<Card*> cards,int a,int b,int num)
 {
 	system("cls");
 	const int n = 44;
@@ -163,4 +163,5 @@ void printMap(std::vector<Player> &players, std::vector<Card*> cards,int a,int b
 		std::cout << "Player " << i << ": " << players[i].getMoney() << "   |   Position: " << players[i].getPosition() << std::endl;
 	}
 	std::cout << a << '+' << b << "\n";
+	std::cout << "Go player: "<< num << "\n";
 }
