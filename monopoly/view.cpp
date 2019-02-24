@@ -11,7 +11,7 @@ bool skipOrBuy() {
 		if (in == 'Y' || in == 'y') return true;
 		else {
 			if (in == 'N' || in == 'n') return false;
-			else std::cout << "Only Y or N, dolbaeb (Try again)";
+			else std::cout << "Only Y or N, dolbaeb (Try again) ";
 		}
 	}
 }
@@ -26,7 +26,7 @@ char findOwner(int number, std::vector<Card*> cards) {
 
 void printMap(std::vector<Player> &players,std::vector<Card*> cards)
 {
-	//system("cls");
+	system("cls");
 	const int n = 44;
 	char screen[n][n];
 	for (int i = 0; i < n; i++) {
@@ -47,23 +47,23 @@ void printMap(std::vector<Player> &players,std::vector<Card*> cards)
 	screen[43][34] = 'K'; 
 	screen[43][31] = 'S';
 	screen[43][30] = 'M';
-	//screen[43][29] = findOwner(3, cards);
+	screen[43][29] = findOwner(3, cards);
 	screen[43][27] = 'a';
 	screen[43][26] = 'F';
 	screen[43][23] = 'T';
 	screen[43][22] = 'A';
-	//screen[43][21] = findOwner(5, cards);
+	screen[43][21] = findOwner(5, cards);
 	screen[43][19] = 't';
 	screen[43][18] = 'A';
-	//screen[43][17] = findOwner(6, cards);
+	screen[43][17] = findOwner(6, cards);
 	screen[43][15] = 'o';
 	screen[43][14] = 'S';
-	//screen[43][13] = findOwner(7, cards);
+	screen[43][13] = findOwner(7, cards);
 	screen[43][11] = 'a';
 	screen[43][10] = 'K';
 	screen[43][7] = 'p';
 	screen[43][6] = 'S';
-	//screen[43][5] = findOwner(9, cards);
+	screen[43][5] = findOwner(9, cards);
 	screen[43][0] = 'B';
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < n; j++) {
