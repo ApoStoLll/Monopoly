@@ -19,10 +19,10 @@ void Player::payRent(Player &player) {
 	money = money - rentPrice;
 	player.setMoney(player.getMoney() - rentPrice);
 }
-void Player::buyCard(Card card) {
-	card.buy(number);
-	money = money - card.getPrice();
-	cards.push_back(&card);
+void Player::buyCard(Card *card) {
+	card->buy(number);
+	money = money - card->getPrice();
+	cards.push_back(card);
 }
 
 void Player::createShop(int number) {

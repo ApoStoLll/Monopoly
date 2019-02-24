@@ -15,7 +15,6 @@ std::vector<Card*> createCards() {
 	RoflanCard *start = new RoflanCard(0, 0); // Первая ячейка (Старт)
 	cards.push_back(start);
 	UsefullCard *cabSeti = new UsefullCard(1, 60*k, 2 * k, 0); // Кабельные сети
-	//Card &card2 = cabSeti;
 	cards.push_back(cabSeti);
 	RoflanCard caraganda(2, 1); // CARAGANDA
 	//cards.push_back(caraganda);
@@ -51,7 +50,7 @@ bool choose(std::vector<Card*> cards, Player &player) {
 
 void okCard(std::vector<Player> &players, std::vector<Card*> cards, Player &player) {
 	if (choose(cards, player))	//Если хватает денег и текущая карточка не куплена
-		if (skipOrBuy()) player.buyCard(*cards[player.getPosition()]); // Если тру купить
+		if (skipOrBuy()) player.buyCard(cards[player.getPosition()]); // Если тру купить
 	else 
 		if (cards[player.getPosition()]->getOwner() > -1) player.payRent(players[cards[player.getPosition()]->getOwner()]);
 		//Плоти нологи

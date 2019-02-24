@@ -17,9 +17,9 @@ bool skipOrBuy() {
 }
 
 char findOwner(int number, std::vector<Card*> cards) {
-	if (cards[number]->getOwner() == 0) return 'F';
+	if (cards[number]->getOwner() == 0) return '0';
 	else {
-		if (cards[number]->getOwner() == 1) return 'S';
+		if (cards[number]->getOwner() == 1) return '1';
 		else return 'o';
 	}
 }
@@ -47,12 +47,12 @@ void printMap(std::vector<Player> &players,std::vector<Card*> cards)
 	screen[39][30] = 'K'; 
 	screen[39][27] = 'S';
 	screen[39][26] = 'M';
-	screen[39][25] = findOwner(3, cards);
+	//screen[39][25] = findOwner(3, cards);
 	screen[39][23] = 'a';
 	screen[39][22] = 'F';
 	screen[39][19] = 'T';
 	screen[39][18] = 'A';
-	screen[39][17] = findOwner(5, cards);;
+	//screen[39][17] = findOwner(5, cards);;
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < n; j++) {
 			std::cout << screen[i][j];
