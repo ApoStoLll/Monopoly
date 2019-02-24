@@ -3,7 +3,7 @@
 #include <iostream>
 #include <random>
 
-void cube(int a, int b);
+
 #ifndef MONOPOLY_MODEL_H
 #define MONOPOLY_MODEL_H
 class Card {
@@ -81,8 +81,8 @@ public:
 	void buyCard(Card *card);
 	int random(int num = 6); // Âîçâðàùàåò ñóììó êóáèêîâ ðàíäîìíûõ
 	void payRent(Player &player);
-	void sell();
-	void change();
+	//void sell();
+	//void change();
 	void buyShop(int number);
 	void createShop(int number);
 	void setMoney(int money) { this->money = money; }
