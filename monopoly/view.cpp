@@ -6,7 +6,12 @@ int textMenu() {
 	std::cout << "What do u want to do? " << std::endl;
 	std::cin >> what;
 	if (what == 'e') return 0;
-	else return -1;
+	if (what == 's') {
+		int num;
+		std::cin >> num;
+		return num;
+	}
+	else return -100;
 }
 
 bool skipOrBuy() {

@@ -6,7 +6,9 @@ bool Controler::choose(Player &player) {
 	else return false;
 }
 void Controler::menu(Player &player) {
-	if (textMenu() == 0) return;
+	int n = textMenu();
+	if (n == 0) return;
+	if (n > 0) player.buyShop(n);
 }
 void Controler::okCard(Player &player) {
 	if (choose(player)) {	//≈сли хватает денег и текуща€ карточка не куплена

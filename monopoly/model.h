@@ -68,7 +68,6 @@ public:
 	//void caraganda(Player &player);
 	virtual int getType() { return type; }
 };
-
 class Player {
 private:
 	int number;
