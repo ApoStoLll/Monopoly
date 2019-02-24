@@ -1,5 +1,8 @@
 ﻿#include "pch.h"
 #include "controller.h"
+#include <iostream>
+using namespace std;
+
 
 std::vector<Card*> createCards() {
 	std::vector<Card*> cards;
@@ -12,7 +15,6 @@ std::vector<Card*> createCards() {
 	RoflanCard *start = new RoflanCard(0, 0); // Первая ячейка (Старт)
 	cards.push_back(start);
 	UsefullCard *cabSeti = new UsefullCard(1, 60*k, 2 * k, 0); // Кабельные сети
-	//Card &card2 = cabSeti;
 	cards.push_back(cabSeti);
 	RoflanCard caraganda(2, 1); // CARAGANDA
 	//cards.push_back(caraganda);
@@ -35,8 +37,8 @@ std::vector<Player> createPlayers() {
 	return players;
 }
 
-bool choose(std::vector<Card*> &cards, Player &player) {
-	if (cards[player.getPosition()]->getOwner() == 0 
+bool choose(std::vector<Card*> cards, Player &player) {
+	if (cards[player.getPosition()]->getOwner() == -1 
 		&& player.getMoney() > cards[player.getPosition()]->getPrice()) return true;
 	else return false;
 }
@@ -46,34 +48,36 @@ bool choose(std::vector<Card*> &cards, Player &player) {
 	if (input == 0) return;
 }*/
 
-void okCard(std::vector<Player> &players, std::vector<Card*> &cards, Player &player) {
+void okCard(std::vector<Player> &players, std::vector<Card*> cards, Player &player) {
 	if (choose(cards, player))	//Если хватает денег и текущая карточка не куплена
-		if (skipOrBuy()) player.buyCard(*cards[player.getPosition()]); // Если тру купить
+		if (skipOrBuy()) player.buyCard(cards[player.getPosition()]); // Если тру купить
 	else 
-		if (cards[player.getPosition()]->getOwner() == 0) player.payRent(players[cards[player.getPosition()]->getOwner()]);
+		if (cards[player.getPosition()]->getOwner() > -1) player.payRent(players[cards[player.getPosition()]->getOwner()]);
 		//Плоти нологи
 }
 
-void gameCycle(std::vector<Player> &players, std::vector<Card*> &cards) {
+void gameCycle(std::vector<Player> &players, std::vector<Card*> cards) {
 	int i = 0;
 	while (players.size() > 1) {
 		if (i == players.size()) i = 0;
 		Player &player = players[i]; //Пока ходит первый игрок 
-		player.setPosition((player.getPosition() + player.random())%40); // изменение позиции
+		player.setPosition((player.getPosition() + player.random()) % 40); // изменение позиции
 		printMap(players,cards);	//изменить карту
-		if (cards[player.getPosition()]->getType() == -10) okCard(players, cards, player);
+		cout << "POHOdil " << player.getNumber();
+		if (cards[player.getPosition()]->getType() == -1) { //If UsefullCard
+			okCard(players, cards, player);
+		}
 		if (cards[player.getPosition()]->getType() == 1) {
 			//cards[player.getPosition()].caraganda(player);
 			player.setPosition(player.random(20));
 		}
-		printMap(players,cards); //изменить карту
+		//printMap(players,cards); //изменить карту
 		//menu(player); //Вызвать меню для игрока
 		i++;//следующий игрок
+		cout << "NEXT IGRoK";
 		
 	}
 }
-
-
 int main() {
 	std::vector<Card*> cards;
 	cards = createCards();

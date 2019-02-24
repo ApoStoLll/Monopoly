@@ -16,17 +16,17 @@ bool skipOrBuy() {
 	}
 }
 
-char findOwner(int number, std::vector<Card*> &cards) {
+char findOwner(int number, std::vector<Card*> cards) {
 	if (cards[number]->getOwner() == 0) return '0';
 	else {
 		if (cards[number]->getOwner() == 1) return '1';
-		else return '*';
+		else return 'o';
 	}
 }
 
-void printMap(std::vector<Player> &players,std::vector<Card*> &cards)
+void printMap(std::vector<Player> &players,std::vector<Card*> cards)
 {
-	system("cls");
+	//system("cls");
 	const int n = 40;
 	char screen[n][n];
 	for (int i = 0; i < n; i++) {
