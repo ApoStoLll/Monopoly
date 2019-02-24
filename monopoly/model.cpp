@@ -2,9 +2,10 @@
 #include "model.h"
 
 int Player::random(int num) {
-	srand(time(0));
-	int a = rand()%num+1;
-	return a;
+	std::random_device rd;
+	std::mt19937 mt(rd());
+	std::uniform_real_distribution<double> dist(1, 6);
+	return dist(mt);
 }
 
 Card& Player::findCard(int pos) {
