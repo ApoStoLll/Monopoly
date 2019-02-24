@@ -8,4 +8,5 @@ void print(std::string str);
 bool skipOrBuy();
 int input();
 void printMap(std::vector<Player> &players,std::vector<Card*> cards);
+char findOwner(int number, std::vector<Card*> cards);
 #endif //MONOPOLY_VIEW_H
