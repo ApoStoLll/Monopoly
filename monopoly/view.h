@@ -6,6 +6,6 @@
 #define MONOPOLY_VIEW_H
 void print(std::string str);
 bool skipOrBuy();
-std::string input();
+int input();
 void printMap(std::vector<Player> &players);
 #endif //MONOPOLY_VIEW_H

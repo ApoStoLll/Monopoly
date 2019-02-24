@@ -35,31 +35,43 @@ std::vector<Player> createPlayers() {
 	return players;
 }
 
+bool choose(std::vector<Card> &cards, Player &player) {
+	if (cards[player.getPosition()].getOwner() == 0 
+		&& player.getMoney() > cards[player.getPosition()].getPrice()) return true;
+	else return false;
+}
+
 void menu(Player &player) {
 	//Меню после хода
+	if (input == 0) return;
+}
+
+void okCard(std::vector<Player> &players, std::vector<Card> &cards, Player &player) {
+	if (choose(cards, player))	//Если хватает денег и текущая карточка не куплена
+		if (skipOrBuy()) player.buyCard(cards[player.getPosition()]); // Если тру купить
+	else 
+		if (cards[player.getPosition()].getOwner() == 0) player.payRent(players[cards[player.getPosition()].getOwner()]);
+		//Плоти нологи
 }
 
 void gameCycle(std::vector<Player> &players, std::vector<Card> &cards) {
+	int i = 0;
 	while (players.size() > 1) {
-		for (int i = 0; i < players.size(); i++) {
-			Player &player = players[i]; //Пока ходит первый игрок 
-			player.setPosition(player.getPosition() + player.random()); // изменение позиции
-			printMap(players);//изменить карту
-			if (cards[player.getPosition()].getOwner() == 0 //Если карту никто не купил
-				&& player.getMoney() >= cards[player.getPosition()].getPrice()) {//Если хватает дене
-				if (skipOrBuy()) player.buyCard(cards[player.getPosition()]); // Если решил
-				// купить, то покупает
-			}
-			else {
-				if (cards[player.getPosition()].getOwner() > 0) { // если куплено то плоти налоги
-					player.payRent(players[cards[player.getPosition()].getOwner()]);
-				}
-			}
-			//printMap(players);//изменить карту
-			menu(player); //Вызвать меню для игрока
+		if (i == cards.size()) i = 0;
+		Player &player = players[i]; //Пока ходит первый игрок 
+		player.setPosition(player.getPosition() + player.random()); // изменение позиции
+		printMap(players);	//изменить карту
+		if (cards[player.getPosition()].getType() == -10) okCard(players, cards, player);
+		if (cards[player.getPosition()].getType() == 1) {
+			//cards[player.getPosition()].caraganda(player);
+			player.setPosition(player.random(20));
 		}
+		//printMap(players); //изменить карту
+		menu(player); //Вызвать меню для игрока
+		i++;//следующий игрок
 	}
 }
+
 
 int main() {
 	std::vector<Card> cards;
