@@ -23,8 +23,9 @@ void Controler::gameCycle() {
 		Player &player = players[i]; //ѕока ходит первый игрок 
 		int a = player.random();
 		int b = player.random();
+		if ((player.getPosition() + a + b) / 40 > 0) player.setMoney(player.getMoney()+200000);
 		player.setPosition((player.getPosition() + a + b) % 40); // изменение позиции
-		printMap(players, cards,a,b);	//изменить карту
+		printMap(players, cards,a,b,player.getNumber());	//изменить карту
 		if (cards[player.getPosition()]->getType() == -1) { //If UsefullCard
 			okCard(player);
 		}
@@ -33,7 +34,7 @@ void Controler::gameCycle() {
 			//player.setPosition(player.random(20));
 		}
 		menu(player); //¬ызвать меню дл€ игрока
-		i++;//следующий игрок	
+		if (a!=b) i++;//следующий игрок	
 	}
 }
 
