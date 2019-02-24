@@ -1,15 +1,27 @@
 #pragma once
 #include "model.h"
 #include "view.h"
+#include <vector>
 #ifndef MONOPOLY_CONTROLLER_H
 #define MONOPOLY_CONTROLLER_H
-void gameCycle(std::vector<Player> &players, std::vector<Card*> cards);
-bool win(std::vector<Player> &players);
-std::vector<Card*> createCards();
-std::vector<Player> createPlayers();
-//void addPlayer(std::vector<Player> &players);
-void okCard(std::vector<Player> &players, std::vector<Card*> &cards, Player &player);
-bool choose(std::vector<Card> &cards, Player &player);
-void cycleBody(Player &player);
-void menu(Player &player); //Меню после хода
+class Controler {
+private:
+	std::vector<Card*> cards;
+	std::vector<Player> players;
+	std::vector<Card*> createCards();
+	std::vector<Player> createPlayers();
+public:
+	Controler() {
+		cards = createCards();
+		players = createPlayers();
+	}
+	void gameCycle();
+	bool win();
+	//void addPlayer(std::vector<Player> &players);
+	void okCard(Player &player);
+	bool choose(Player &player);
+	void cycleBody(Player &player);
+	void menu(Player &player);
+};
+ //Меню после хода
 #endif //MONOPOLY_CONTROLLER_H
