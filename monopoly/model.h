@@ -24,7 +24,7 @@ public:
 	virtual int getPriceShop()  { return -1; }
 	virtual int getNumberOfShops()  { return -1; }
 	virtual int getOwner()  { return -1; }
-	virtual int getType()  {  }
+	virtual int getType() { return -1; }
 };
 
 class UsefullCard : public Card {
@@ -55,7 +55,7 @@ public:
 	virtual int getPriceShop()  { return priceShop; }
 	virtual int getNumberOfShops()  { return numberOfShops; }
 	virtual int getOwner()  { return owner; }
-	virtual int getType()  { return -10; }
+	int getType () override { return -10; }
 };
 
 class RoflanCard : public Card {
