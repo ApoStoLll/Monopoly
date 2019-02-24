@@ -1,17 +1,13 @@
 #include "pch.h"
 #include "controller.h"
-
 bool Controler::choose(Player &player) {
 	if ((cards[player.getPosition()]->getOwner() == -1)
 		&& (player.getMoney() > cards[player.getPosition()]->getPrice())) return true;
 	else return false;
 }
-
-/*void menu(Player &player) {
-	//Меню после хода
-	if (input == 0) return;
-}*/
-
+void Controler::menu(Player &player) {
+	if (textMenu() == 0) return;
+}
 void Controler::okCard(Player &player) {
 	if (choose(player)) {	//Если хватает денег и текущая карточка не куплена
 		if (skipOrBuy()) player.buyCard(cards[player.getPosition()]); // Если тру купить
@@ -20,14 +16,12 @@ void Controler::okCard(Player &player) {
 		if (cards[player.getPosition()]->getOwner() > -1) player.payRent(players[cards[player.getPosition()]->getOwner()]);
 	//Плоти нологи
 }
-
 void Controler::gameCycle() {
 	int i = 0;
 	while (players.size() > 1) {
 		if (i == players.size()) i = 0;
 		Player &player = players[i]; //Пока ходит первый игрок 
 		int a = player.random();
-		Sleep(500);
 		int b = player.random();
 		player.setPosition((player.getPosition() + a + b) % 40); // изменение позиции
 		printMap(players, cards,a,b);	//изменить карту
@@ -38,8 +32,7 @@ void Controler::gameCycle() {
 			//cards[player.getPosition()].caraganda(player);
 			//player.setPosition(player.random(20));
 		}
-		Sleep(2000);
-		//menu(player); //Вызвать меню для игрока
+		menu(player); //Вызвать меню для игрока
 		i++;//следующий игрок	
 	}
 }
