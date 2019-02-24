@@ -22,7 +22,6 @@ std::vector<Card> createCards() {
 	UsefullCard autoTrans(3, 200 * k, 25 * k, 1); // TRANSPORT 1
 	cards.push_back(autoTrans);
 	//5 cards
-
 	return cards;
 }
 
@@ -57,7 +56,7 @@ void okCard(std::vector<Player> &players, std::vector<Card> &cards, Player &play
 void gameCycle(std::vector<Player> &players, std::vector<Card> &cards) {
 	int i = 0;
 	while (players.size() > 1) {
-		if (i == cards.size()) i = 0;
+		if (i == players.size()) i = 0;
 		Player &player = players[i]; //Пока ходит первый игрок 
 		player.setPosition(player.getPosition() + player.random()); // изменение позиции
 		printMap(players);	//изменить карту

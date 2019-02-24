@@ -9,22 +9,20 @@ private:
 	int position; //Íîìåð ïî ñ÷åòó
 public:
 	Card(int pos) : position(pos) {}
-	void buyShop(int number) {}
-	void buy(int owner) {}
-	//void caraganda(Player &player) {}
-	int getPosition() { return position; }
-	void setPrice(int price) { }
-	void setPriceRent(int priceRent) { }
-	void setColor(int color) { }
-	void setPrizeShop(int prizeShop) { }
-	void setNumberOfShops(int numberOfShops) { }
-	int getPrice() const { return -1; }
-	int getPriceRent() const { return -1; }
-	int getColor() const { return -1; }
-	int getPriceShop() const { return -1; }
-	int getNumberOfShops() const { return -1; }
-	int getOwner() const { return -1; }
-	int getType() const { return -1; }
+	virtual void buy(int owner) {}
+	virtual void setPrice(int price) {}
+	virtual void setPriceRent(int priceRent) {}
+	virtual void setColor(int color) {}
+	virtual void setPrizeShop(int prizeShop) { }
+	virtual void setNumberOfShops(int numberOfShops) { }
+	virtual	int getPosition() { return -1; }
+	virtual int getPrice() const { return -1; }
+	virtual int getPriceRent() const { return -1; }
+	virtual int getColor() const { return -1; }
+	virtual int getPriceShop() const { return -1; }
+	virtual int getNumberOfShops() const { return -1; }
+	virtual int getOwner() const { return -1; }
+	virtual int getType() const { return -1; }
 };
 
 class UsefullCard : public Card {
@@ -44,7 +42,6 @@ public:
 		owner = 0;
 	}
 	void buy(int owner) { this->owner = owner; }
-	void buyShop(int number);
 	void setPrice(int price) { UsefullCard::price = price; }
 	void setPriceRent(int priceRent) { UsefullCard::priceRent = priceRent; }
 	void setColor(int color) { UsefullCard::color = color; }
