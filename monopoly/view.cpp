@@ -16,17 +16,17 @@ bool skipOrBuy() {
 	}
 }
 
-char findOwner(int number, std::vector<Card*> &cards) {
-	if (cards[number]->getOwner() == 1) return 'F';
+char findOwner(int number, std::vector<Card*> cards) {
+	if (cards[number]->getOwner() == 0) return 'F';
 	else {
-		if (cards[number]->getOwner() == 2) return 'S';
+		if (cards[number]->getOwner() == 1) return 'S';
 		else return 'o';
 	}
 }
 
-void printMap(std::vector<Player> &players,std::vector<Card*> &cards)
+void printMap(std::vector<Player> &players,std::vector<Card*> cards)
 {
-	system("cls");
+	//system("cls");
 	const int n = 40;
 	char screen[n][n];
 	for (int i = 0; i < n; i++) {
@@ -42,17 +42,17 @@ void printMap(std::vector<Player> &players,std::vector<Card*> &cards)
 	screen[39][38] = 'S';
 	screen[39][35] = 'S';
 	screen[39][34] = 'K';
-	//screen[39][33] = findOwner(1, cards);
+	screen[39][33] = findOwner(1, cards);
 	screen[39][31] = 'a';
 	screen[39][30] = 'K'; 
 	screen[39][27] = 'S';
 	screen[39][26] = 'M';
-	//screen[39][25] = findOwner(3, cards);
+	screen[39][25] = findOwner(3, cards);
 	screen[39][23] = 'a';
 	screen[39][22] = 'F';
 	screen[39][19] = 'T';
 	screen[39][18] = 'A';
-	//screen[39][17] = findOwner(5, cards);;
+	screen[39][17] = findOwner(5, cards);;
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < n; j++) {
 			std::cout << screen[i][j];

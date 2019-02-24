@@ -18,13 +18,13 @@ public:
 	virtual void setColor(int color) { }
 	virtual void setPrizeShop(int prizeShop) { }
 	virtual void setNumberOfShops(int numberOfShops) { }
-	virtual int getPrice()  { return -1; }
-	virtual int getPriceRent()  { return -1; }
-	virtual int getColor()  { return -1; }
-	virtual int getPriceShop()  { return -1; }
-	virtual int getNumberOfShops()  { return -1; }
-	virtual int getOwner()  { return -1; }
-	virtual int getType() { return -1; }
+	virtual int getPrice()  { return -10; }
+	virtual int getPriceRent()  { return -10; }
+	virtual int getColor()  { return -10; }
+	virtual int getPriceShop()  { return -10; }
+	virtual int getNumberOfShops()  { return -10; }
+	virtual int getOwner()  { return -10; }
+	virtual int getType() { return -10; }
 };
 
 class UsefullCard : public Card {
@@ -41,7 +41,7 @@ public:
 		this->price = price;
 		this->priceRent = priceRent;
 		this->color = color;
-		owner = 0;
+		owner = -1;
 	}
 	virtual void buy(int owner) override { this->owner = owner; }
 	virtual void setPrice(int price) override { UsefullCard::price = price; }
@@ -55,7 +55,7 @@ public:
 	virtual int getPriceShop()  override { return priceShop; }
 	virtual int getNumberOfShops()  override { return numberOfShops; }
 	virtual int getOwner()  override { return owner; }
-	virtual int getType() override { return -10; }
+	virtual int getType() override { return -1; }
 };
 
 class RoflanCard : public Card {
@@ -76,7 +76,7 @@ private:
 public:
 	Player(int m_money, int num) : number(num), money(m_money), position(0) {}
 	Card& findCard(int pos);
-	void buyCard(Card &card);
+	void buyCard(Card card);
 	int random(int num = 6); // Âîçâðàùàåò ñóììó êóáèêîâ ðàíäîìíûõ
 	void payRent(Player &player);
 	void sell();
@@ -88,6 +88,6 @@ public:
 	int getNumber()  { return number; }
 	int getMoney()  { return money; }
 	int getPosition()  { return position; }
-	std::vector<Card*>& getCards() { return cards; }
+	std::vector<Card*> getCards() { return cards; }
 };
 #endif //MONOPOLY_MODEL_H
