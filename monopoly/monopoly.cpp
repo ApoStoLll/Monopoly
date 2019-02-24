@@ -55,7 +55,7 @@ void okCard(std::vector<Player> &players, std::vector<Card> &cards, Player &play
 }
 
 void gameCycle(std::vector<Player> &players, std::vector<Card> &cards) {
-	int i = 0;
+	int i = 0,k=0;
 	while (players.size() > 1) {
 		if (i == players.size()) i = 0;
 		Player &player = players[i]; //Пока ходит первый игрок 
@@ -69,6 +69,8 @@ void gameCycle(std::vector<Player> &players, std::vector<Card> &cards) {
 		printMap(players,cards); //изменить карту
 		//menu(player); //Вызвать меню для игрока
 		i++;//следующий игрок
+		k++;
+		std::cout << k;
 	}
 }
 
