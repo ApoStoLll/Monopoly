@@ -140,8 +140,11 @@ void gameCycle(std::vector<Player> &players, std::vector<Card*> cards) {
 	while (players.size() > 1) {
 		if (i == players.size()) i = 0;
 		Player &player = players[i]; //Пока ходит первый игрок 
-		player.setPosition((player.getPosition() + player.random()) % 40); // изменение позиции
-		printMap(players,cards);	//изменить карту
+		int a = player.random();
+		Sleep(500);
+		int b = player.random();
+		player.setPosition((player.getPosition() + a + b) % 40); // изменение позиции
+		printMap(players, cards, a, b);	//изменить карту
 		if (cards[player.getPosition()]->getType() == -1) { //If UsefullCard
 			okCard(players, cards, player);
 		}
@@ -149,9 +152,10 @@ void gameCycle(std::vector<Player> &players, std::vector<Card*> cards) {
 			//cards[player.getPosition()].caraganda(player);
 			//player.setPosition(player.random(20));
 		}
-		//printMap(players,cards); //изменить карту
+		printMap(players, cards, a, b); //изменить карту
 		//menu(player); //Вызвать меню для игрока
 		i++;//следующий игрок	
+		Sleep(2000);
 	}
 }
 int main() {

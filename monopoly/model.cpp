@@ -4,8 +4,7 @@
 int Player::random(int num) {
 	srand(time(0));
 	int a = rand() % num + 1;
-	int b = rand() % num + 1;
-	return 1;
+	return a;
 }
 
 Card& Player::findCard(int pos) {

@@ -7,6 +7,7 @@
 void print(std::string str);
 bool skipOrBuy();
 int input();
-void printMap(std::vector<Player> &players,std::vector<Card*> cards);
+void printMap(std::vector<Player> &players,std::vector<Card*> cards,int a,int b);
 char findOwner(int number, std::vector<Card*> cards);
+
 #endif //MONOPOLY_VIEW_H

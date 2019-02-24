@@ -2,6 +2,7 @@
 #include <vector>
 #include <iostream>
 #include <ctime>
+void cube(int a, int b);
 #ifndef MONOPOLY_MODEL_H
 #define MONOPOLY_MODEL_H
 class Card {

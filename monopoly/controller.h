@@ -1,6 +1,7 @@
 #pragma once
 #include "model.h"
 #include "view.h"
+#include "windows.h"
 #ifndef MONOPOLY_CONTROLLER_H
 #define MONOPOLY_CONTROLLER_H
 void gameCycle(std::vector<Player> &players, std::vector<Card*> cards);
