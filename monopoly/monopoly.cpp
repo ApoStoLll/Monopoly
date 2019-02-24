@@ -10,17 +10,23 @@ std::vector<Card> createCards() {
 	cards[0].setPrice(60000);*/
 	int k = 1000;
 	RoflanCard start(0, 0); // Первая ячейка (Старт)
-	cards.push_back(start);
+	Card &cardStart = start;
+	cards.push_back(cardStart);
 	UsefullCard cabSeti(1, 60*k, 2 * k, 0); // Кабельные сети
-	cards.push_back(cabSeti);
+	Card &card2 = start;
+	cards.push_back(card2);
 	RoflanCard caraganda(2, 1); // CARAGANDA
-	cards.push_back(caraganda);
+	Card &card3 = caraganda;
+	cards.push_back(card3);
 	UsefullCard magSeti(3, 60 * k, 4 * k, 0); // Магис сети
-	cards.push_back(magSeti);
+	Card &card4 = magSeti;
+	cards.push_back(card4);
 	RoflanCard fas(4, 2); // FAS
-	cards.push_back(fas);
+	Card &card5 = fas;
+	cards.push_back(card5);
 	UsefullCard autoTrans(3, 200 * k, 25 * k, 1); // TRANSPORT 1
-	cards.push_back(autoTrans);
+	Card &card6 = autoTrans;
+	cards.push_back(card6);
 	//5 cards
 	return cards;
 }

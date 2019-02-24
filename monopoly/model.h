@@ -18,13 +18,13 @@ public:
 	virtual void setColor(int color) { }
 	virtual void setPrizeShop(int prizeShop) { }
 	virtual void setNumberOfShops(int numberOfShops) { }
-	virtual int getPrice() const { return -1; }
-	virtual int getPriceRent() const { return -1; }
-	virtual int getColor() const { return -1; }
-	virtual int getPriceShop() const { return -1; }
-	virtual int getNumberOfShops() const { return -1; }
-	virtual int getOwner() const { return -1; }
-	virtual int getType() const { return -1; }
+	virtual int getPrice()  { return -1; }
+	virtual int getPriceRent()  { return -1; }
+	virtual int getColor()  { return -1; }
+	virtual int getPriceShop()  { return -1; }
+	virtual int getNumberOfShops()  { return -1; }
+	virtual int getOwner()  { return -1; }
+	virtual int getType()  {  }
 };
 
 class UsefullCard : public Card {
@@ -43,19 +43,19 @@ public:
 		this->color = color;
 		owner = 0;
 	}
-	void buy(int owner) { this->owner = owner; }
-	void setPrice(int price) { UsefullCard::price = price; }
-	void setPriceRent(int priceRent) { UsefullCard::priceRent = priceRent; }
-	void setColor(int color) { UsefullCard::color = color; }
-	void setPrizeShop(int prizeShop) { UsefullCard::priceShop = prizeShop; }
-	void setNumberOfShops(int numberOfShops) { this->numberOfShops = numberOfShops; }
-	int getPrice() const { return price; }
-	int getPriceRent() const { return priceRent; }
-	int getColor() const { return color; }
-	int getPriceShop() const { return priceShop; }
-	int getNumberOfShops() const { return numberOfShops; }
-	int getOwner() const { return owner; }
-	int getType()  { return -10; }
+	virtual void buy(int owner) { this->owner = owner; }
+	virtual void setPrice(int price) { UsefullCard::price = price; }
+	virtual void setPriceRent(int priceRent) { UsefullCard::priceRent = priceRent; }
+	virtual void setColor(int color) { UsefullCard::color = color; }
+	virtual void setPrizeShop(int prizeShop) { UsefullCard::priceShop = prizeShop; }
+	virtual void setNumberOfShops(int numberOfShops) { this->numberOfShops = numberOfShops; }
+	virtual int getPrice()  { return price; }
+	virtual int getPriceRent()  { return priceRent; }
+	virtual int getColor()  { return color; }
+	virtual int getPriceShop()  { return priceShop; }
+	virtual int getNumberOfShops()  { return numberOfShops; }
+	virtual int getOwner()  { return owner; }
+	virtual int getType()  { return -10; }
 };
 
 class RoflanCard : public Card {
