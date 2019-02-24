@@ -6,7 +6,7 @@
 #define MONOPOLY_MODEL_H
 class Card {
 private:
-	int position; //Номер по счету
+	int position; //ГЌГ®Г¬ГҐГ° ГЇГ® Г±Г·ГҐГІГі
 public:
 	Card(int pos) : position(pos) {}
 	void buyShop(int number) {}
@@ -29,18 +29,19 @@ public:
 
 class UsefullCard : public Card {
 private:
-	int price;//Цена карточки
-	int priceRent; //Цена аренды
-	int color; // Цвет(тип) 8 шт
-	int priceShop; // Цена домика
-	int numberOfShops; // Количество домиков
-	int owner; // Номер игрока, которому пренадлежит
+	int price;//Г–ГҐГ­Г  ГЄГ Г°ГІГ®Г·ГЄГЁ
+	int priceRent; //Г–ГҐГ­Г  Г Г°ГҐГ­Г¤Г»
+	int color; // Г–ГўГҐГІ(ГІГЁГЇ) 8 ГёГІ
+	int priceShop; // Г–ГҐГ­Г  Г¤Г®Г¬ГЁГЄГ 
+	int numberOfShops; // ГЉГ®Г«ГЁГ·ГҐГ±ГІГўГ® Г¤Г®Г¬ГЁГЄГ®Гў
+	int owner; // ГЌГ®Г¬ГҐГ° ГЁГЈГ°Г®ГЄГ , ГЄГ®ГІГ®Г°Г®Г¬Гі ГЇГ°ГҐГ­Г Г¤Г«ГҐГ¦ГЁГІ
 public:
-	UsefullCard(int num) : Card(num) { owner = 0; }
+	UsefullCard(int num) : Card(num) { }
 	UsefullCard(int num, int price, int priceRent, int color) : Card(num) {
 		this->price = price;
 		this->priceRent = priceRent;
 		this->color = color;
+		owner = 0;
 	}
 	void buy(int owner) { this->owner = owner; }
 	void buyShop(int number);
@@ -77,7 +78,7 @@ public:
 	Player(int m_money, int num) : number(num), money(m_money), position(0) {}
 	Card& findCard(int pos);
 	void buyCard(Card &card);
-	int random(int num = 6); // Возвращает сумму кубиков рандомных
+	int random(int num = 6); // Г‚Г®Г§ГўГ°Г Г№Г ГҐГІ Г±ГіГ¬Г¬Гі ГЄГіГЎГЁГЄГ®Гў Г°Г Г­Г¤Г®Г¬Г­Г»Гµ
 	void payRent(Player &player);
 	void sell();
 	void change();
