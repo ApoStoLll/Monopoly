@@ -3,7 +3,7 @@
 
 int Player::random(int num) {
 	srand(time(0));
-	int a = rand() % num + 1;
+	int a = rand()%num+1;
 	return a;
 }
 

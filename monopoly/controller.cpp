@@ -26,8 +26,11 @@ void Controler::gameCycle() {
 	while (players.size() > 1) {
 		if (i == players.size()) i = 0;
 		Player &player = players[i]; //ѕока ходит первый игрок 
-		player.setPosition((player.getPosition() + player.random()) % 40); // изменение позиции
-		printMap(players, cards);	//изменить карту
+		int a = player.random();
+		Sleep(500);
+		int b = player.random();
+		player.setPosition((player.getPosition() + a + b) % 40); // изменение позиции
+		printMap(players, cards,a,b);	//изменить карту
 		if (cards[player.getPosition()]->getType() == -1) { //If UsefullCard
 			okCard(player);
 		}
@@ -35,6 +38,7 @@ void Controler::gameCycle() {
 			//cards[player.getPosition()].caraganda(player);
 			//player.setPosition(player.random(20));
 		}
+		Sleep(2000);
 		//menu(player); //¬ызвать меню дл€ игрока
 		i++;//следующий игрок	
 	}

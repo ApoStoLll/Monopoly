@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "view.h"
-#include <Windows.h>
 
 
 bool skipOrBuy() {

@@ -2,6 +2,8 @@
 #include "model.h"
 #include "view.h"
 #include <vector>
+#include <Windows.h>
+
 #ifndef MONOPOLY_CONTROLLER_H
 #define MONOPOLY_CONTROLLER_H
 class Controler {
