@@ -18,6 +18,7 @@ public:
 		players = createPlayers();
 	}
 	void gameCycle();
+	void step(Player &player);
 	int menu();
 	//void addPlayer(std::vector<Player> &players);
 	void okCard(Player &player);
