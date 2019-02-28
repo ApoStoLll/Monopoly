@@ -2,8 +2,6 @@
 #include <vector>
 #include <iostream>
 #include <random>
-
-
 #ifndef MONOPOLY_MODEL_H
 #define MONOPOLY_MODEL_H
 class Card {
@@ -43,7 +41,7 @@ public:
 		this->price = price;
 		this->priceRent = priceRent;
 		this->color = color;
-		owner = -1;
+		owner = -1; // Не куплено 
 	}
 	virtual void buy(int owner)  { this->owner = owner; }
 	virtual void setPrice(int price)  { UsefullCard::price = price; }
@@ -68,12 +66,13 @@ public:
 	//void caraganda(Player &player);
 	virtual int getType() { return type; }
 };
+
 class Player {
 private:
 	int number;
 	int money;
 	int position;
-	std::vector<Card*> cards;
+	std::vector<Card*> cards; // купленные карточки
 public:
 	Player(int m_money, int num) : number(num), money(m_money), position(0) {}
 	Card& findCard(int pos);

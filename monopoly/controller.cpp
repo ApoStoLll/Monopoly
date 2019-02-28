@@ -1,7 +1,8 @@
 #include "pch.h"
 #include "controller.h"
+
 bool Controler::choose(Player &player) {
-	if ((cards[player.getPosition()]->getOwner() == -1)
+	if ((cards[player.getPosition()]->getOwner() == -1) //Если не куплена
 		&& (player.getMoney() > cards[player.getPosition()]->getPrice())) return true;
 	else return false;
 }
@@ -33,19 +34,15 @@ void Controler::step(Player &player) {
 	}
 	if (a == b) step(player);
 }
-
 void Controler::gameCycle() {
 	int i = 0;
 	while (players.size() > 1) {
 		if (i == players.size()) i = 0;
-		Player &player = players[i]; //Пока ходит первый игрок 
-		step(player);	//Походить
-		menu(player);	//Вызвать меню
+		step(players[i]);	//Походить
+		menu(players[i]);	//Вызвать меню
 		i++;	//следующий игрок	
 	}
 }
-
-
 std::vector<Card*> Controler::createCards() {
 	std::vector<Card*> cards;
 	int k = 1000;

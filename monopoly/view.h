@@ -10,5 +10,4 @@ int input();
 int textMenu();
 void printMap(std::vector<Player> &players,std::vector<Card*> cards,int a,int b,int num);
 char findOwner(int number, std::vector<Card*> cards);
-
 #endif //MONOPOLY_VIEW_H

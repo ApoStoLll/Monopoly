@@ -13,7 +13,6 @@ int textMenu() {
 	}
 	else return -100;
 }
-
 bool skipOrBuy() {
 	std::cout << "Do you want to buy it?(Y or N)\n";
 	char in;
@@ -26,7 +25,6 @@ bool skipOrBuy() {
 		}
 	}
 }
-
 char findOwner(int number, std::vector<Card*> cards) {
 	if (cards[number]->getOwner() == 0) return '0';
 	else {
@@ -34,8 +32,7 @@ char findOwner(int number, std::vector<Card*> cards) {
 		else return '*';
 	}
 }
-
-void printMap(std::vector<Player> &players, std::vector<Card*> cards,int a,int b,int num)
+void printMap(std::vector<Player> &players, std::vector<Card*> cards, int a, int b, int num)
 {
 	system("cls");
 	const int n = 44;
@@ -167,6 +164,6 @@ void printMap(std::vector<Player> &players, std::vector<Card*> cards,int a,int b
 	for (int i = 0; i < players.size(); i++) {
 		std::cout << "Player " << i << ": " << players[i].getMoney() << "   |   Position: " << players[i].getPosition() << std::endl;
 	}
-	std::cout << a << '+' << b << "\n";
+	std::cout << a << ' + ' << b << "\n";
 	std::cout << "Go player: "<< num << "\n";
 }
