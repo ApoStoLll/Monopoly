@@ -173,7 +173,6 @@
     <ClCompile Include="GraphView.cpp" />
     <ClCompile Include="model.cpp" />
     <ClCompile Include="monopoly.cpp" />
-    <ClCompile Include="NewView.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
