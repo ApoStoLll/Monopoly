@@ -2,7 +2,8 @@
 #include <vector>
 #include <iostream>
 #include <random>
-
+#include <SFML/Graphics.hpp>
+#include <Windows.h>
 
 #ifndef MONOPOLY_MODEL_H
 #define MONOPOLY_MODEL_H

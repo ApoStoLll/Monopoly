@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "controller.h"
+
 bool Controler::choose(Player &player) {
 	if ((cards[player.getPosition()]->getOwner() == -1)
 		&& (player.getMoney() > cards[player.getPosition()]->getPrice())) return true;
@@ -10,34 +11,38 @@ void Controler::menu(Player &player) {
 }
 void Controler::okCard(Player &player) {
 	if (choose(player)) {	//Если хватает денег и текущая карточка не куплена
-		if (skipOrBuy()) player.buyCard(cards[player.getPosition()]); // Если тру купить
+		if (view.skipOr()) player.buyCard(cards[player.getPosition()]); // Если тру купить
 	}
 	else
 		if (cards[player.getPosition()]->getOwner() > -1) player.payRent(players[cards[player.getPosition()]->getOwner()]);
 	//Плоти нологи
 }
+void Controler::step(Player &player) {
+	int a = player.random();
+	int b = player.random();
+	if ((player.getPosition() + a + b) / 40 > 0) player.setMoney(player.getMoney() + 200000);
+	player.setPosition((player.getPosition() + a + b) % 40); // изменение позиции
+	printMap(players, cards, a, b, player.getNumber());	//изменить карту
+	view.pprintMap(players, cards, a, b, player.getNumber());
+	if (cards[player.getPosition()]->getType() == -1) { //If UsefullCard
+		okCard(player);
+	}
+	if (cards[player.getPosition()]->getType() == 1) {
+		//cards[player.getPosition()].caraganda(player);
+		//player.setPosition(player.random(20));
+	}
+	if (a == b) step(player);
+}
 void Controler::gameCycle() {
+	//sf::RenderWindow window(sf::VideoMode(900, 813), "Mono");
 	int i = 0;
 	while (players.size() > 1) {
 		if (i == players.size()) i = 0;
-		Player &player = players[i]; //Пока ходит первый игрок 
-		int a = player.random();
-		int b = player.random();
-		if ((player.getPosition() + a + b) / 40 > 0) player.setMoney(player.getMoney()+200000);
-		player.setPosition((player.getPosition() + a + b) % 40); // изменение позиции
-		printMap(players, cards,a,b,player.getNumber());	//изменить карту
-		if (cards[player.getPosition()]->getType() == -1) { //If UsefullCard
-			okCard(player);
-		}
-		if (cards[player.getPosition()]->getType() == 1) {
-			//cards[player.getPosition()].caraganda(player);
-			//player.setPosition(player.random(20));
-		}
-		menu(player); //Вызвать меню для игрока
-		if (a!=b) i++;//следующий игрок	
+		step(players[i]);	//Походить
+		view.MMenu();	//Вызвать меню
+		i++;	//следующий игрок	
 	}
 }
-
 
 std::vector<Card*> Controler::createCards() {
 	std::vector<Card*> cards;

@@ -2,6 +2,7 @@
 #include "view.h"
 
 int textMenu() {
+	//return 0;
 	char what;
 	std::cout << "What do u want to do? " << std::endl;
 	std::cin >> what;
