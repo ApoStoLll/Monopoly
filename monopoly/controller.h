@@ -12,10 +12,12 @@ private:
 	std::vector<Player> players;
 	std::vector<Card*> createCards();
 	std::vector<Player> createPlayers();
+	View view;
 public:
 	Controler() {
 		cards = createCards();
 		players = createPlayers();
+		view = View(players, cards);
 	}
 	void gameCycle();
 	void step(Player &player);

@@ -7,13 +7,13 @@ bool Controler::choose(Player &player) {
 	else return false;
 }
 void Controler::menu(Player &player) {
-	int n = textMenu();
+	int n = view.textMenu();
 	if (n == 0) return;
 	if (n > 0) player.buyShop(n);
 }
 void Controler::okCard(Player &player) {
 	if (choose(player)) {	//≈сли хватает денег и текуща€ карточка не куплена
-		if (skipOrBuy()) player.buyCard(cards[player.getPosition()]); // ≈сли тру купить
+		if (view.skipOrBuy()) player.buyCard(cards[player.getPosition()]); // ≈сли тру купить
 	}
 	else
 		if (cards[player.getPosition()]->getOwner() > -1) player.payRent(players[cards[player.getPosition()]->getOwner()]);
@@ -24,7 +24,7 @@ void Controler::step(Player &player) {
 	int b = player.random();
 	if ((player.getPosition() + a + b) / 40 > 0) player.setMoney(player.getMoney() + 200000);
 	player.setPosition((player.getPosition() + a + b) % 40); // изменение позиции
-	printMap(players, cards, a, b, player.getNumber());	//изменить карту
+	view.printMap( a, b, player.getNumber());	//изменить карту
 	if (cards[player.getPosition()]->getType() == -1) { //If UsefullCard
 		okCard(player);
 	}
