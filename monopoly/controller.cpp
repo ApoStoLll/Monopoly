@@ -1,6 +1,10 @@
 #include "pch.h"
 #include "controller.h"
 
+void caraganda(Player &player) {
+	player.setPosition(player.random(40));
+}
+
 bool Controler::choose(Player &player) {
 	if ((cards[player.getPosition()]->getOwner() == -1)
 		&& (player.getMoney() > cards[player.getPosition()]->getPrice())) return true;
@@ -29,7 +33,7 @@ void Controler::step(Player &player) {
 	}
 	if (cards[player.getPosition()]->getType() == 1) {
 		//cards[player.getPosition()].caraganda(player);
-		//player.setPosition(player.random(20));
+		caraganda(player);
 	}
 	if (a == b) step(player);
 }

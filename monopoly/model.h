@@ -4,7 +4,6 @@
 #include <random>
 #include <SFML/Graphics.hpp>
 #include <Windows.h>
-
 #ifndef MONOPOLY_MODEL_H
 #define MONOPOLY_MODEL_H
 class Card {
@@ -14,7 +13,7 @@ public:
 	Card(int pos) : position(pos) {}
 	virtual void buyShop(int number) {}
 	virtual void buy(int owner) {}
-	//void caraganda(Player &player) {}
+	int caraganda() {}
 	virtual int getPosition() { return position; }
 	virtual void setPrice(int price) { }
 	virtual void setPriceRent(int priceRent) { }
@@ -66,7 +65,7 @@ private:
 	int type;
 public:
 	RoflanCard(int num, int type) : Card(num) { this->type = type;  }
-	//void caraganda(Player &player);
+	int caraganda();
 	virtual int getType() { return type; }
 };
 

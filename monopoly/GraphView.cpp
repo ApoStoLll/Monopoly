@@ -77,13 +77,17 @@ void GraphView::pprintMap(std::vector<Player> &players, std::vector<Card*> cards
 	createMap();
 	if (num == 0) { going.setTexture(player1); going.setPosition(500, 350); }
 	else { going.setTexture(player2); going.setPosition(500, 350); }
-	player11.setPosition(pos1(players[0].getPosition()), pos2(players[0].getPosition()));
-	player22.setPosition(pos1(players[1].getPosition()) + 2, pos2(players[1].getPosition()) + 2);
+	for (int i = (a+b); i>=0; i--) {
+		if(num==0) player11.setPosition(pos1(players[0].getPosition()-i), pos2(players[0].getPosition()-i));
+		else player22.setPosition(pos1(players[1].getPosition()-i) + 2, pos2(players[1].getPosition()-i) + 2);
+		drawMap();
+		Sleep(500);
+	}
 	Event event;
 	while (window->pollEvent(event))
 	{
 		if (event.type == Event::Closed)
 			window->close();
 	}
-	drawMap();
+	
 }

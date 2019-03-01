@@ -9,10 +9,7 @@ bool skipOrBuy();
 int input();
 int textMenu();
 void printMap(std::vector<Player> &players,std::vector<Card*> cards,int a,int b,int num);
-//void pprintMap(sf::RenderWindow &window,std::vector<Player> &players, std::vector<Card*> cards, int a, int b, int num);
-//bool SkipOr(sf::RenderWindow &window);
 bool skipOrBuy();
-//int MMenu(sf::RenderWindow &window);
 char findOwner(int number, std::vector<Card*> cards);
 class GraphView {
 private:
