@@ -32,6 +32,7 @@ public:
 	//int MMenu();
 	int menu();
 	bool skipOrBuy();
+	void drawCard(int pos,int num);
 	void pprintMap(std::vector<Player> &players, std::vector<Card*> cards, int a, int b, int num);
 };
 class View {
