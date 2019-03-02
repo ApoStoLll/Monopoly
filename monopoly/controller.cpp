@@ -20,8 +20,9 @@ void Controler::naezd(Player &player) {
 	int j = ((10 + player.random(50)) * 1000);
 	int k = player.random(4);
 	if (i == 0) player.setMoney(player.getMoney() - j);
-	else
+	if (i == 1) {
 		if (k == 1 || k == 2 || k == 3) player.setMoney(player.getMoney() - j * 2);
+	}
 }
 void Controler::birga(Player &player) {
 	int k = viewConsole.birgaStavka();
