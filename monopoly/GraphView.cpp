@@ -1,5 +1,6 @@
 ﻿#include "pch.h"
 #include "view.h"
+#include <string>
 using namespace sf;
 int GraphView::pos1(int pos) {
 	if (pos > 10 && pos < 20) return 97;
@@ -13,7 +14,7 @@ int GraphView::pos2(int pos) {
 	if (pos <= 10) return 707;
 	if (pos >= 20 && pos <= 30) return 37;
 }
-int GraphView::MMenu() {
+int GraphView::menu() {
 	Texture menuTexture;
 	menuTexture.loadFromFile("images/m.png");
 	Sprite menu(menuTexture);
@@ -24,11 +25,27 @@ int GraphView::MMenu() {
 	window->display();
 	while (true) {
 		menuNum = 0;
-		if (IntRect(500, 500, 300, 50).contains(Mouse::getPosition(*window)))  menu.setColor(Color::Blue); menuNum = 1;
-		if (Mouse::isButtonPressed(Mouse::Left)) if (menuNum == 1) return 1;
+		if (IntRect(500, 500, 300, 50).contains(Mouse::getPosition(*window))) { menu.setColor(Color::Blue); menuNum = 1; }
+		if (Mouse::isButtonPressed(Mouse::Left)) {
+			if (menuNum == 1) return 1;
+		}
 	}
 }
-bool GraphView::skipOr() {
+void GraphView::drawMap() {
+	window->clear();
+	window->draw(mapa);
+	window->draw(player11);
+	window->draw(player22);
+	window->draw(going);
+	window->draw(text1);
+	window->draw(text2);
+	window->draw(text3);
+	window->draw(text4);
+	window->draw(text5);
+	window->draw(cop0);
+	window->display();
+}
+bool GraphView::skipOrBuy() {
 	Texture menuTexture1, menuTexture2;
 	menuTexture1.loadFromFile("images/111.png");
 	menuTexture2.loadFromFile("images/222.png");
@@ -53,29 +70,44 @@ bool GraphView::skipOr() {
 		}
 	}
 }
-void GraphView::createMap() {
+void GraphView::createMap(int a, int b, int c, int d) {
 	map.loadFromFile("images/1.png");
 	player1.loadFromFile("images/2.png");
 	player2.loadFromFile("images/3.png");
+	cp0.loadFromFile("images/22.png");
 	player11.setTexture(player1);
 	player22.setTexture(player2);
+	cop0.setTexture(cp0);
 	mapa.setTexture(map);
 	mapa.setPosition(0, 0);
+	font.loadFromFile("images/14.otf");//передаем нашему шрифту файл шрифта
+	text1.setFont(font);
+	text2.setFont(font);
+	text3.setFont(font);
+	text4.setFont(font);
+	text5.setFont(font);
+	text1.setString("Player 1:");
+	text2.setString(std::to_string(a));
+	text3.setString("Player 2:");
+	text4.setString(std::to_string(b));
+	text5.setString(std::to_string(c) + '+' + std::to_string(d));
+	text1.setPosition(175, 540);
+	text1.setFillColor(Color::Black);
+	text2.setPosition(175, 580);
+	text2.setFillColor(Color::Black);
+	text3.setPosition(285, 540);
+	text3.setFillColor(Color::Black);
+	text4.setPosition(285, 580);
+	text4.setFillColor(Color::Black);
+	text5.setPosition(200, 200);
+	text5.setFillColor(Color::Black);
 
 }
-void GraphView::drawMap() {
-	window->clear();
-	window->draw(mapa);
-	window->draw(player11);
-	window->draw(player22);
-	window->draw(going);
-	window->draw(text);
-	window->display();
-}
+
 void GraphView::pprintMap(std::vector<Player> &players, std::vector<Card*> cards, int a, int b, int num)
 {
-	createMap();
-
+	createMap(players[0].getMoney(), players[1].getMoney(), a, b);
+	if (cards[players[0].getPosition()]->getOwner() == 0)cop0.setPosition(pos1(players[0].getPosition()), pos2(players[0].getPosition()));
 	if (num == 0) { going.setTexture(player1); going.setPosition(500, 350); }
 	else { going.setTexture(player2); going.setPosition(500, 350); }
 	for (int i = (a + b); i >= 0; i--) {
@@ -87,9 +119,6 @@ void GraphView::pprintMap(std::vector<Player> &players, std::vector<Card*> cards
 			player11.setPosition(pos1(players[0].getPosition()), pos2(players[0].getPosition()));
 			player22.setPosition(pos1(players[1].getPosition() - i) + 2, pos2(players[1].getPosition() - i) + 2);
 		}
-
-		text.setString("efefefe");//çàäàåò ñòðîêó òåêñòó
-		text.setPosition(500, 500);//çàäàåì ïîçèöèþ òåêñòà, öåíòð êàìåðû
 		drawMap();
 		Sleep(500);
 	}

@@ -11,9 +11,10 @@ private:
 	sf::RenderWindow *window;
 	sf::Texture map;
 	sf::Sprite mapa;
-	sf::Texture player1, player2;
-	sf::Sprite player11, player22, going;
-	sf::Text text;
+	sf::Texture player1, player2, cp0;
+	sf::Sprite player11, player22, going, cop0;
+	sf::Font font;//רנטפע 
+	sf::Text text1, text2, text3, text4, text5;//סמחהאול מבתוךע 
 
 public:
 	GraphView(){}
@@ -21,10 +22,11 @@ public:
 		this->window = window;
 		//createMap();
 	}
-	void createMap();
+	void createMap(int a, int b, int c, int d);
 	void drawMap();
-	int MMenu();
-	bool skipOr();
+	//int MMenu();
+	int menu();
+	bool skipOrBuy();
 	void pprintMap(std::vector<Player> &players, std::vector<Card*> cards, int a, int b, int num);
 };
 class View {

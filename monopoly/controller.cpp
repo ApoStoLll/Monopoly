@@ -83,7 +83,7 @@ void Controler::svazi(Player &player) {
 				player.setPosition(k);
 			}
 		    else 
-				player.findCard(k).buy(player.getNumber());//ssulka na random card set owner nomer igroka
+				player.findCard(k).buy(player.getNumber());	//ssulka na random card set owner nomer igroka
 			player.setPosition(23);
 		}
 	}
@@ -164,7 +164,7 @@ void Controler::menu(Player &player) {
 }
 void Controler::okCard(Player &player) {
 	if (choose(player)) {	//Если хватает денег и текущая карточка не куплена
-		if (view.skipOr()) player.buyCard(cards[player.getPosition()]); // Если тру купить
+		if (view.skipOrBuy()) player.buyCard(cards[player.getPosition()]); // Если тру купить
 		//if (viewConsole.skipOrBuy()) player.buyCard(cards[player.getPosition()]); // Если тру купить
 	}
 	else
@@ -207,7 +207,7 @@ void Controler::gameCycle() {
 	while (players.size() > 1) {
 		if (i == players.size()) i = 0;
 		step(players[i]);	//Походить
-		view.MMenu();	//Вызвать меню
+		view.menu();	//Вызвать меню
 		//int a = player.random();
 		//int b = player.random();
 		//step(players[i], p);	//Походить
