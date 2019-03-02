@@ -76,12 +76,7 @@ void Controler::svazi(Player &player) {
 		}
 		if (i = 2) {
 			player.setPosition(k);
-			if (cards[player.getPosition()]->getOwner() == player.getNumber()) {
-				int k = player.random(40);
-				player.setPosition(k);
-			}
-		    else 
-				player.findCard(k).buy(player.getNumber());	//ssulka na random card set owner nomer igroka
+			player.buyCard(cards[player.getPosition()]);
 			player.setPosition(23);
 		}
 	}
@@ -102,14 +97,8 @@ void Controler::rusbiznes(Player &player) {
 		if (i = 2) 	player.setMoney(player.getMoney() + (player.random(50) + player.random(75) + player.random(325)) * 10000);
 		if (i = 3) {
 			player.setPosition(k);
-			if (cards[player.getPosition()]->getOwner() == player.getNumber()) {
-				int k = player.random(40);
-				player.setPosition(k);
-			}
-			else {
-				player.findCard(k).buy(player.getNumber());//ssulka na random card set owner nomer igroka
-				player.setPosition(27);
-			}
+			player.buyCard(cards[player.getPosition()]);
+			player.setPosition(27);
 		}
 		if (i = 4) player.setMoney(player.getMoney() - (player.random(50) + player.random(75) + player.random(325)) * 10000);
 	}
@@ -143,13 +132,6 @@ void Controler::jail(Player &player, bool p) {
 		step(player, p);
 	}
 }
-	/*int i = player.random(4);
-	if (i == 1)  present(player, player); 
-	if (i == 2)  inverse(player); 
-	if (i == 3)  player.setMoney(player.getMoney() + (25 + player.random(175) * 1000)); 
-	if (i == 4)  player.setMoney(player.getMoney() + (25 + player.random(175) * 1000)); */
-//}
-
 bool Controler::choose(Player &player) {
 	if ((cards[player.getPosition()]->getOwner() == -1) //Если не куплена
 		&& (player.getMoney() > cards[player.getPosition()]->getPrice())) return true;
