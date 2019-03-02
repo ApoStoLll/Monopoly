@@ -162,7 +162,10 @@ void Controler::menu(Player &player) {
 }
 void Controler::okCard(Player &player) {
 	if (choose(player)) {	//Если хватает денег и текущая карточка не куплена
-		if (view.skipOrBuy()) player.buyCard(cards[player.getPosition()]); // Если тру купить
+		if (view.skipOrBuy()) {
+			view.drawCard(player.getPosition(),player.getNumber());
+			player.buyCard(cards[player.getPosition()]);
+		}// Если тру купить
 		//if (viewConsole.skipOrBuy()) player.buyCard(cards[player.getPosition()]); // Если тру купить
 	}
 	else
