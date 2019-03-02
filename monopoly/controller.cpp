@@ -154,7 +154,8 @@ bool Controler::choose(Player &player) {
 void Controler::menu(Player &player) {
 	int n = viewConsole.textMenu();
 	if (n == 0) return;
-	if (n > 0) player.buyShop(n);
+	if (n > 0 && n < 100) player.buyShop(n);
+	if (n < 0 && n != -100) player.sellShop(n);
 }
 void Controler::okCard(Player &player) {
 	if (choose(player)) {	//≈сли хватает денег и текуща€ карточка не куплена

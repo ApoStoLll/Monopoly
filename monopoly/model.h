@@ -92,6 +92,7 @@ public:
 	bool checkMoney(int sum);
 	void change(Player &player1, Player &player2, int num1, int num2, int sum);
 	void buyShop(int number);
+	void sellShop(int number);
 	void createShop(int number);
 	void setMoney(int money) { this->money = money; }
 	void setPosition(int position) { Player::position = position; }
