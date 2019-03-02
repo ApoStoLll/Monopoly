@@ -42,6 +42,8 @@ public:
 	void rusbiznes(Player &player);
 	void jail(Player &player);
 	void reide(Player &player);
+	void love(Player &player);
+	void nalogi(Player &player);
 };
  //Меню после хода
 #endif //MONOPOLY_CONTROLLER_H

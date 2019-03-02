@@ -54,5 +54,6 @@ public:
 	bool skipOrBuy();
 	void printMap( int a, int b, int num);
 	char findOwner(int number);
+	int askReide();
 };
 #endif //MONOPOLY_VIEW_H

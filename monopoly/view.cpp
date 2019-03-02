@@ -61,6 +61,12 @@ int View::jailask() {
 		}
 	}
 }
+int View::askReide() {
+	int n;
+	std::cout << "Print the number of card to reid(1-40)\n";
+	std::cin >> n;
+	return n;
+}
 char View::findOwner(int number) {
 	if (cards->at(number)->getOwner() == 0) return '0';
 	else {
