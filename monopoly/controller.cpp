@@ -103,33 +103,31 @@ void Controler::rusbiznes(Player &player) {
 		if (i = 4) player.setMoney(player.getMoney() - (player.random(50) + player.random(75) + player.random(325)) * 10000);
 	}
 }
-void Controler::jail(Player &player, bool p) {
+void Controler::jail(Player &player) {
 	int i = viewConsole.jailask();
 	int a = player.random();
 	int b = player.random();
-	if (player.getCountjail() == 0) 
-		step(player, true);
-	if (player.getCountjail() != 3 && player.getCountjail() != 0){//sidit v turme ne bolshe 3 hodov
+	if (player.getCountjail() != 3 ){ //sidit v turme ne bolshe 3 hodov
 		if (i == 0) {//if igrok ostaetsa v jail
 			if ((a + b) % 2 == 0)//vupal dubl
 			{
 				player.setCountjail(0);
-				step(player, p);
+				step(player);
 			}
 			else {//dubl ne vupal, ne hodit, schetchik turmu +1
-				step(player, true);
 				player.setCountjail(player.getCountjail() + 1);
+				step(player);
 			}
 		}
 		if (i = 1) {//igrok platit dengi i uhodit s turmu
 			player.setMoney(player.getMoney() - 50000);
 			player.setCountjail(0);
-			step(player, p);
+			step(player);
 		}
 	}
 	if (player.getCountjail() == 3) {
 		player.setCountjail(0);
-		step(player, p);
+		step(player);
 	}
 }
 bool Controler::choose(Player &player) {
@@ -154,16 +152,14 @@ void Controler::okCard(Player &player) {
 		if (cards[player.getPosition()]->getOwner() > -1) player.payRent(players[cards[player.getPosition()]->getOwner()]);
 	//Плоти нологи
 }
-void Controler::step(Player &player, bool p) {
+void Controler::step(Player &player) {
 	int a = player.random();
 	int b = player.random();
-	if (!p)
-	{
+	if (player.getCountjail() == 0) {
 		if ((player.getPosition() + a + b) / 40 > 0) player.setMoney(player.getMoney() + 200000);
 		player.setPosition((player.getPosition() + a + b) % 40); // изменение позиции
 		viewConsole.printMap(a, b, player.getNumber());
-		view.pprintMap(players, cards, a, b, player.getNumber());
-		//изменить карту
+		view.pprintMap(players, cards, a, b, player.getNumber());//изменить карту
 		if (cards[player.getPosition()]->getType() == -1) okCard(player);
 		if (cards[player.getPosition()]->getType() == 1) caraganda(player);
 		if (cards[player.getPosition()]->getType() == 2) fas(player);
@@ -174,17 +170,16 @@ void Controler::step(Player &player, bool p) {
 		if (cards[player.getPosition()]->getType() == 7) kanikulu(player);
 		if (cards[player.getPosition()]->getType() == 8) svazi(player);
 		if (cards[player.getPosition()]->getType() == 9) rusbiznes(player);
-		if (cards[player.getPosition()]->getType() == 10) jail(player,p);
-		if (cards[player.getPosition()]->getType() == 11) {}
-		if (a == b) step(player, p);
-	}
-	//if (p)	player.setPosition(player.getPosition());
-	/*if ((player.getPosition() + a + b) / 40 > 0) player.setMoney(player.getMoney() + 200000);
-	player.setPosition((player.getPosition() + a + b) % 40); // изменение позиции
-	viewConsole.printMap(a, b, player.getNumber());	//изменить карту
-	*/
+		if (cards[player.getPosition()]->getType() == 10) jail(player);
+		if (cards[player.getPosition()]->getType() == 11);
 
+		if (a == b) step(player);
+	}
+	if (player.getCountjail()>0) {
+		player.setPosition(player.getPosition());
+	}
 }
+
 void Controler::gameCycle() {
 	int i = 0;
 	while (players.size() > 1) {
@@ -265,8 +260,8 @@ std::vector<Card*> Controler::createCards() {
 	cards.push_back(jail);
 	UsefullCard *neft = new UsefullCard(31, 300 * k, 36 * k, 7); // нефтяные скважины
 	cards.push_back(neft);
-	RoflanCard *raiders = new RoflanCard(32, 11); // рейдерский захват
-	cards.push_back(raiders);
+	RoflanCard *reide = new RoflanCard(32, 11); // рейдерский захват
+	cards.push_back(reide);
 	UsefullCard *neftvishki = new UsefullCard(33, 300 * k, 38 * k, 7); // буровые вышки
 	cards.push_back(neftvishki);
 	UsefullCard *neftzavod = new UsefullCard(34, 320 * k, 40 * k, 7); // нефтяной завод

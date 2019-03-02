@@ -15,7 +15,6 @@ private:
 	sf::RenderWindow *window = new sf::RenderWindow(sf::VideoMode(900, 813), "Mono");
 	GraphView view;
 	View viewConsole;
-	//bool p = false;
 public:
 	Controler() {
 		cards = createCards();
@@ -24,7 +23,7 @@ public:
 		view = GraphView(window);
 	}
 	void gameCycle();
-	void step(Player &player,bool p = false);
+	void step(Player &player);
 	//void addPlayer(std::vector<Player> &players);
 	void okCard(Player &player);
 	bool choose(Player &player);
@@ -41,7 +40,7 @@ public:
 	void kanikulu(Player &player);
 	void svazi(Player &player);
 	void rusbiznes(Player &player);
-	void jail(Player &player,bool p);
+	void jail(Player &player);
 };
  //Меню после хода
 #endif //MONOPOLY_CONTROLLER_H
