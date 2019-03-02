@@ -190,10 +190,6 @@ void Controler::gameCycle() {
 		if (i == players.size()) i = 0;
 		step(players[i]);	//Походить
 		view.menu();	//Вызвать меню
-		//int a = player.random();
-		//int b = player.random();
-		//step(players[i], p);	//Походить
-		//menu(players[i]);	//Вызвать меню
 		i++;	//следующий игрок	
 	}
 }
