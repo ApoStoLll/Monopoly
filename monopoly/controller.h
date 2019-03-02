@@ -15,17 +15,16 @@ private:
 	sf::RenderWindow *window = new sf::RenderWindow(sf::VideoMode(900, 813), "Mono");
 	GraphView view;
 	View viewConsole;
-	View view;
-	bool p = false;
+	//bool p = false;
 public:
 	Controler() {
 		cards = createCards();
 		players = createPlayers();
-		viewConsole = View(players, cards);
+		viewConsole = View(&players, &cards);
 		view = GraphView(window);
 	}
 	void gameCycle();
-	void step(Player &player,bool p);
+	void step(Player &player,bool p = false);
 	//void addPlayer(std::vector<Player> &players);
 	void okCard(Player &player);
 	bool choose(Player &player);

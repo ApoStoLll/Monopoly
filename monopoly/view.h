@@ -29,11 +29,11 @@ public:
 };
 class View {
 private:
-	std::vector<Player> players;
-	std::vector<Card*> cards;
+	std::vector<Player> *players;
+	std::vector<Card*> *cards;
 public:
 	View() {}
-	View(std::vector<Player> player, std::vector<Card*> card) {
+	View(std::vector<Player> *player, std::vector<Card*> *card) {
 		 players = player;
 		 cards = card;
 	}

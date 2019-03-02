@@ -62,9 +62,9 @@ int View::jailask() {
 	}
 }
 char View::findOwner(int number) {
-	if (cards[number]->getOwner() == 0) return '0';
+	if (cards->at(number)->getOwner() == 0) return '0';
 	else {
-		if (cards[number]->getOwner() == 1) return '1';
+		if (cards->at(number)->getOwner() == 1) return '1';
 		else return '*';
 	}
 }
@@ -197,8 +197,8 @@ void View::printMap( int a, int b, int num)
 		}
 		std::cout << std::endl;
 	}
-	for (int i = 0; i < players.size(); i++) {
-		std::cout << "Player " << i << ": " << players[i].getMoney() << "   |   Position: " << players[i].getPosition() << std::endl;
+	for (int i = 0; i < players->size(); i++) {
+		std::cout << "Player " << i << ": " << players->at(i).getMoney() << "   |   Position: " << players->at(i).getPosition() << std::endl;
 	}
 	std::cout << a << " + " << b << "\n";
 	std::cout << "Go player: "<< num << "\n";
