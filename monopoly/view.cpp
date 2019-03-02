@@ -28,15 +28,18 @@ bool View::skipOrBuy() {
 int View::naezdOrPolice() {
 	std::cout << "Do you want to call the police?(Y or N)\n";
 	char in;
-	std::cin >> in;
-	if (in == 'Y' || in == 'y') return 1;
-	else {
-		if (in == 'N' || in == 'n') return 0;
+	while (true) {
+		std::cin >> in;
+		if (in == 'Y' || in == 'y') return 1;
+		else {
+			if (in == 'N' || in == 'n') return 0;
+			else std::cout << "Only Y or N, Genius (Try again)\n";
+		}
 	}
 }
 int View::birgaStavka() {
 	int k = 0;
-	std::cout << "Print the amount of money you're willing to bet\n";
+	std::cout << "Print the amount of money you're willing to bet(only integer numbers)\n";
 	std::cin >> k;
 	return k;
 }
@@ -46,7 +49,18 @@ int View::birgaRisk() {
 	std::cin >> n;
 	return n;
 }
-
+int View::jailask() {
+	char in;
+	std::cout << "Do you want to leave jail?(Y or N)\n";
+	while (true) {
+		std::cin >> in;
+		if (in == 'Y' || in == 'y') return 1;
+		else {
+			if (in == 'N' || in == 'n') return 0;
+			else std::cout << "Only Y or N, (Try again)\n";
+		}
+	}
+}
 char View::findOwner(int number) {
 	if (cards[number]->getOwner() == 0) return '0';
 	else {

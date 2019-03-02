@@ -41,6 +41,7 @@ public:
 	int naezdOrPolice();
 	int birgaStavka();
 	int birgaRisk();
+	int jailask();
 	bool skipOrBuy();
 	void printMap( int a, int b, int num);
 	char findOwner(int number);

@@ -72,6 +72,9 @@ public:
 class Player {
 private:
 	int number;
+	int countchin;//dlya druzhbu s chinovnikom
+	int countrus;//dlya ruskogo biznessa
+	int countjail;
 	int money;
 	int position;
 	std::vector<Card*> cards; // купленные карточки
@@ -87,9 +90,15 @@ public:
 	void createShop(int number);
 	void setMoney(int money) { this->money = money; }
 	void setPosition(int position) { Player::position = position; }
+	void setCountchin(int countchin) { this->countchin = countchin; }
+	void setCountrus(int countrus) { this->countrus = countrus;}
+	void setCountjail(int countjail) { this->countjail = countjail; }
 	int getNumber()  { return number; }
 	int getMoney()  { return money; }
 	int getPosition()  { return position; }
 	std::vector<Card*> getCards() { return cards; }
+	int getCountchin() { return countchin; }
+	int getCountrus() { return countrus; }
+	int getCountjail() { return countjail; }
 };
 #endif //MONOPOLY_MODEL_H

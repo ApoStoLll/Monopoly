@@ -55,6 +55,106 @@ void Controler::present(Player &player1, Player &player2) {
 	//player.setPosition(
 }*/
 void Controler::avos(Player &player) {
+	int i = player.random(5);
+	if (i == 1) { present(player, player); }
+	if (i == 2) { inverse(player); }
+	if (i == 3) { player.setMoney(player.getMoney() + (25 + player.random(175) * 1000)); }
+	if (i == 4) { player.setMoney(player.getMoney() + (25 + player.random(175) * 1000)); }
+	if (i == 5) caraganda(player);
+}
+void Controler::kanikulu(Player &player) {
+	player.setMoney(player.getMoney() + (200 + player.random(200) * 10000));
+}
+void Controler::svazi(Player &player) {
+	if (player.getCountchin() == 0) {
+		player.setCountchin(1);
+	}
+	else {
+		player.setCountchin(0);
+		int i = player.random(2);
+		int k = player.random(40);
+		if (i = 1) {
+			player.setMoney(player.getMoney() + (50 + player.random(125) * 10000));
+		}
+		if (i = 2) {
+			player.setPosition(k);
+			if (cards[player.getPosition()]->getOwner() == player.getNumber()) {
+				int k = player.random(40);
+				player.setPosition(k);
+			}
+		    else 
+				player.findCard(k).buy(player.getNumber());//ssulka na random card set owner nomer igroka
+			player.setPosition(23);
+		}
+	}
+}
+void Controler::rusbiznes(Player &player) {
+	if (player.getCountrus() == 0) {
+		player.setCountrus(1);
+	}
+	else {
+		player.setCountrus(0);
+		int i = player.random(4);
+		int k = player.random(40);
+		if (i = 1) {
+			for (int i = 0; i < cards.size(); i++)
+			{
+				if (cards[i]->getNumberOfShops() == 0) {
+					cards[i]->buy(-1);//rusbiznes zabral karty
+				}
+			}
+			i = 4;//esli y igroka vezde est domiki,y nego zaberut dengi
+		}
+		if (i = 2) {
+			player.setMoney(player.getMoney() + (player.random(50) + player.random(75) + player.random(325)) * 10000);
+		}
+		if (i = 3) {
+			player.setPosition(k);
+			if (cards[player.getPosition()]->getOwner() == player.getNumber()) {
+				int k = player.random(40);
+				player.setPosition(k);
+			}
+			else
+				player.findCard(k).buy(player.getNumber());//ssulka na random card set owner nomer igroka
+			player.setPosition(27);
+		}
+		if (i = 4) {
+			player.setMoney(player.getMoney() - (player.random(50) + player.random(75) + player.random(325)) * 10000);
+		}
+	}
+}
+void Controler::jail(Player &player, bool p) {
+	int i = view.jailask();
+	int a = player.random();
+	int b = player.random();
+	if (player.getCountjail() == 0) {
+		p = true;
+		step(player, p);
+	}
+	if (player.getCountjail() != 3 && player.getCountjail() != 0){//sidit v turme ne bolshe 3 hodov
+		if (i == 0) {//if igrok ostaetsa v jail
+			if ((a + b) % 2 == 0)//vupal dubl
+			{
+				player.setCountjail(0);
+				step(player, p);
+			}
+			else {//dubl ne vupal, ne hodit, schetchik turmu +1
+				p = true;
+				step(player, p);
+				player.setCountjail(player.getCountjail() + 1);
+			}
+		}
+		if (i = 1) {//igrok platit dengi i uhodit s turmu
+			player.setMoney(player.getMoney() - 50000);
+			player.setCountjail(0);
+			step(player, p);
+		}
+	}
+	if (player.getCountjail() == 3) {
+		player.setCountjail(0);
+			step(player, p);
+	}
+}
 	int i = player.random(4);
 	if (i == 1)  present(player, player); 
 	if (i == 2)  inverse(player); 
@@ -81,9 +181,57 @@ void Controler::okCard(Player &player) {
 		if (cards[player.getPosition()]->getOwner() > -1) player.payRent(players[cards[player.getPosition()]->getOwner()]);
 	//Плоти нологи
 }
-void Controler::step(Player &player) {
+void Controler::step(Player &player, bool p) {
 	int a = player.random();
 	int b = player.random();
+	if (p == false)
+	{
+		if ((player.getPosition() + a + b) / 40 > 0) player.setMoney(player.getMoney() + 200000);
+		player.setPosition((player.getPosition() + a + b) % 40); // изменение позиции
+		view.printMap(a, b, player.getNumber());	//изменить карту
+		if (cards[player.getPosition()]->getType() == -1) { //If UsefullCard
+			okCard(player);
+		}
+		if (cards[player.getPosition()]->getType() == 1) {
+			caraganda(player);
+		}
+		if (cards[player.getPosition()]->getType() == 2) {
+			fas(player);
+		}
+		if (cards[player.getPosition()]->getType() == 3) {
+			kazna(player);
+		}
+		if (cards[player.getPosition()]->getType() == 4) {
+			naezd(player);
+		}
+		if (cards[player.getPosition()]->getType() == 5) {
+			birga(player);
+		}
+		if (cards[player.getPosition()]->getType() == 6) {
+			avos(player);
+		}
+		if (cards[player.getPosition()]->getType() == 7) {
+			kanikulu(player);
+		}
+		if (cards[player.getPosition()]->getType() == 8) {
+			svazi(player);
+		}
+		if (cards[player.getPosition()]->getType() == 9) {
+			rusbiznes(player);
+		}
+		if (cards[player.getPosition()]->getType() == 10) {
+			jail(player,p);
+		}
+		if (cards[player.getPosition()]->getType() == 11) {
+
+		}
+
+		if (a == b) step(player, p);
+	}
+	if (p == true)
+	{
+		player.setPosition(player.getPosition());
+	}
 	if ((player.getPosition() + a + b) / 40 > 0) player.setMoney(player.getMoney() + 200000);
 	player.setPosition((player.getPosition() + a + b) % 40); // изменение позиции
 	viewConsole.printMap(a, b, player.getNumber());	//изменить карту
@@ -114,6 +262,10 @@ void Controler::gameCycle() {
 		if (i == players.size()) i = 0;
 		step(players[i]);	//Походить
 		view.MMenu();	//Вызвать меню
+		//int a = player.random();
+		//int b = player.random();
+		step(players[i],p);	//Походить
+		menu(players[i]);	//Вызвать меню
 		i++;	//следующий игрок	
 	}
 }
@@ -160,8 +312,8 @@ std::vector<Card*> Controler::createCards() {
 	cards.push_back(radio);
 	UsefullCard *televishka = new UsefullCard(19, 200 * k, 22 * k, 3); // телевышка
 	cards.push_back(televishka);
-	RoflanCard *naloh = new RoflanCard(20, 7); // плати налох
-	cards.push_back(naloh);
+	RoflanCard *kanikulu = new RoflanCard(20, 7); // плати налох
+	cards.push_back(kanikulu);
 	UsefullCard *strah = new UsefullCard(21, 220 * k, 24 * k, 5); // страх ком
 	cards.push_back(strah);
 	UsefullCard *invest = new UsefullCard(22, 220 * k, 26 * k, 5); // инвест ком
