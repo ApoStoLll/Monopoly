@@ -157,7 +157,7 @@ void Controler::okCard(Player &player) {
 void Controler::step(Player &player, bool p) {
 	int a = player.random();
 	int b = player.random();
-	if (!p)
+	if (p)
 	{
 		if ((player.getPosition() + a + b) / 40 > 0) player.setMoney(player.getMoney() + 200000);
 		player.setPosition((player.getPosition() + a + b) % 40); // изменение позиции
@@ -179,11 +179,6 @@ void Controler::step(Player &player, bool p) {
 		if (a == b) step(player, p);
 	}
 	//if (p)	player.setPosition(player.getPosition());
-	/*if ((player.getPosition() + a + b) / 40 > 0) player.setMoney(player.getMoney() + 200000);
-	player.setPosition((player.getPosition() + a + b) % 40); // изменение позиции
-	viewConsole.printMap(a, b, player.getNumber());	//изменить карту
-	*/
-
 }
 void Controler::gameCycle() {
 	int i = 0;
