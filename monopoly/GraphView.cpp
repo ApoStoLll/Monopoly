@@ -134,7 +134,6 @@ void GraphView::loadMap() {
 		cop0[i].setPosition(1000, 1000);
 		cop1[i].setPosition(1000, 1000);
 	}
-
 	player11.setTexture(player1);
 	player22.setTexture(player2);
 	mapa.setTexture(map);
