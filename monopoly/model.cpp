@@ -42,6 +42,42 @@ void Player::buyShop(int number) {
 	if (count == 4) if (number != 5 && number != 15) createShop(number);
 }
 
+void Player::changeCard (Player &player, int num)
+{ 
+	player.findCard(num).buy(number);
+}
+
+void Player::pay( int sum, Player &player)
+{
+	money -= sum;// sum <0, якщо цей player отримує гроші
+	player.setMoney(player.getMoney() + sum);
+}
+
+bool Player :: checkCard( int num)
+{
+	for (int i = 0; i < cards.size(); i++)
+	{
+		if (cards[i]->getPosition() == num) return 1;
+	}
+	 return 0;
+}
+
+bool Player::checkMoney(int sum)
+{
+	if (Player :: money < sum) return 1;
+	else return 0;
+}
+
+void Player::change(Player &player1, Player &player2, int num1, int num2, int sum)
+{
+	if (player1.checkMoney(sum) && player2.checkMoney(-sum) && player1.checkCard(num1) && player2.checkCard(num2))
+	{
+		player1.changeCard(player2, num2);
+		player2.changeCard(player1, num1);
+		player1.pay(sum, player2);
+	}
+	else return;
+}
 /*void RoflanCard::caraganda(Player &player) {
 	player.setPosition(player.random(20));
 }*/
