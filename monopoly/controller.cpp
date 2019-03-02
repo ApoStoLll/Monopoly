@@ -83,13 +83,36 @@ void Controler::menu(Player &player) {
 }
 void Controler::okCard(Player &player) {
 	if (choose(player)) {	//Если хватает денег и текущая карточка не куплена
-		if (view.skipOrBuy()) player.buyCard(cards[player.getPosition()]); // Если тру купить
 		if (view.skipOr()) player.buyCard(cards[player.getPosition()]); // Если тру купить
+		if (view.skipOrBuy()) player.buyCard(cards[player.getPosition()]); // Если тру купить
 	}
 	else
 		if (cards[player.getPosition()]->getOwner() > -1) player.payRent(players[cards[player.getPosition()]->getOwner()]);
 	//Плоти нологи
 }
+void Controler::step(Player &player) {
+	int a = player.random();
+	int b = player.random();
+	if ((player.getPosition() + a + b) / 40 > 0) player.setMoney(player.getMoney() + 200000);
+	player.setPosition((player.getPosition() + a + b) % 40); // изменение позиции
+	view.printMap( a, b, player.getNumber());	//изменить карту
+	if (cards[player.getPosition()]->getType() == -1) { //If UsefullCard
+		okCard(player);
+	}
+	if (cards[player.getPosition()]->getType() == 1) {
+		caraganda(player);
+	}
+	if (cards[player.getPosition()]->getType() == 2) {
+		fas(player);
+	}
+	if (cards[player.getPosition()]->getType() == 3) {
+		kazna(player);
+	}
+	if (cards[player.getPosition()]->getType() == 4) {
+		naezd(player);
+	}
+	if (cards[player.getPosition()]->getType() == 5) {
+		birga(player);
 void Controler::step(Player &player) {
 	int a = player.random();
 	int b = player.random();
@@ -114,29 +137,6 @@ void Controler::gameCycle() {
 		step(players[i]);	//Походить
 		view.MMenu();	//Вызвать меню
 		i++;	//следующий игрок	
-void Controler::step(Player &player) {
-	int a = player.random();
-	int b = player.random();
-	if ((player.getPosition() + a + b) / 40 > 0) player.setMoney(player.getMoney() + 200000);
-	player.setPosition((player.getPosition() + a + b) % 40); // изменение позиции
-	view.printMap( a, b, player.getNumber());	//изменить карту
-	if (cards[player.getPosition()]->getType() == -1) { //If UsefullCard
-		okCard(player);
-	}
-	if (cards[player.getPosition()]->getType() == 1) {
-		caraganda(player);
-	}
-	if (cards[player.getPosition()]->getType() == 2) {
-		fas(player);
-	}
-	if (cards[player.getPosition()]->getType() == 3) {
-		kazna(player);
-	}
-	if (cards[player.getPosition()]->getType() == 4) {
-		naezd(player);
-	}
-	if (cards[player.getPosition()]->getType() == 5) {
-		birga(player);
 	}
 	if (cards[player.getPosition()]->getType() == 6) {
 		avos(player);
