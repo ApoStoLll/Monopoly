@@ -116,7 +116,7 @@ void GraphView::createMap(int a, int b, int c, int d) {
 void GraphView::pprintMap(std::vector<Player> &players, std::vector<Card*> cards, int a, int b, int num)
 {
 	createMap(players[0].getMoney(), players[1].getMoney(), a, b);
-	if (cards[players[0].getPosition()]->getOwner() == 0)cop0[players[0].getPosition()].setPosition(pos1(players[0].getPosition()), pos2(players[0].getPosition()));
+	//if (cards[players[0].getPosition()]->getOwner() == 0) cop0[players[0].getPosition()].setPosition(pos1(players[0].getPosition()), pos2(players[0].getPosition()));
 	if (num == 0) { going.setTexture(player1); going.setPosition(500, 350); }
 	else { going.setTexture(player2); going.setPosition(500, 350); }
 	for (int i = (a + b); i >= 0; i--) {

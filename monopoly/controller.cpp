@@ -54,10 +54,10 @@ void Controler::present(Player &player1, Player &player2) {
 
 void Controler::avos(Player &player) {
 	int i = player.random(5);
-	if (i == 1) { present(player, player); }
-	if (i == 2) { inverse(player); }
-	if (i == 3) { player.setMoney(player.getMoney() + (25 + player.random(175) * 1000)); }
-	if (i == 4) { player.setMoney(player.getMoney() + (25 + player.random(175) * 1000)); }
+	if (i == 1)  present(player, player); 
+	if (i == 2)  inverse(player); 
+	if (i == 3)  player.setMoney(player.getMoney() + (25 + player.random(175) * 1000)); 
+	if (i == 4)  player.setMoney(player.getMoney() + (25 + player.random(175) * 1000)); 
 	if (i == 5) caraganda(player);
 }
 void Controler::kanikulu(Player &player) {
