@@ -12,13 +12,17 @@ private:
 	std::vector<Player> players;
 	std::vector<Card*> createCards();
 	std::vector<Player> createPlayers();
+	sf::RenderWindow *window = new sf::RenderWindow(sf::VideoMode(900, 813), "Mono");
+	GraphView view;
+	View viewConsole;
 	View view;
 	bool p = false;
 public:
 	Controler() {
 		cards = createCards();
 		players = createPlayers();
-		view = View(players, cards);
+		viewConsole = View(players, cards);
+		view = GraphView(window);
 	}
 	void gameCycle();
 	void step(Player &player,bool p);
