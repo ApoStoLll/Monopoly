@@ -187,6 +187,7 @@ void Controler::step(Player &player, bool p) {
 }
 void Controler::gameCycle() {
 	int i = 0;
+	view.loadMap();
 	while (players.size() > 1) {
 		if (i == players.size()) i = 0;
 		step(players[i]);	//Походить

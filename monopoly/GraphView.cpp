@@ -75,28 +75,7 @@ bool GraphView::skipOrBuy() {
 	}
 }
 void GraphView::createMap(int a, int b, int c, int d) {
-	map.loadFromFile("images/map.png");
-	player1.loadFromFile("images/p0.png");
-	player2.loadFromFile("images/p1.png");
-	for (int i = 0; i < 40; i++) {
-		cp0[i].loadFromFile("images/cop0.png");
-		cp1[i].loadFromFile("images/cop1.png");
-		cop0[i].setTexture(cp0[i]);
-		cop1[i].setTexture(cp1[i]);
-		cop0[i].setPosition(1000,1000);
-		cop1[i].setPosition(1000, 1000);
-	}
-
-	player11.setTexture(player1);
-	player22.setTexture(player2);
-	mapa.setTexture(map);
-	mapa.setPosition(0, 0);
-	font.loadFromFile("images/14.otf");//передаем нашему шрифту файл шрифта
-	text1.setFont(font);
-	text2.setFont(font);
-	text3.setFont(font);
-	text4.setFont(font);
-	text5.setFont(font);
+	
 	text1.setString("Player 1:");
 	text2.setString(std::to_string(a));
 	text3.setString("Player 2:");
@@ -144,4 +123,28 @@ void GraphView::pprintMap(std::vector<Player> &players, std::vector<Card*> cards
 void GraphView::drawCard(int pos,int num) {
 	if (num == 0) cop0[pos].setPosition(pos1(pos), pos2(pos));
 	if (num == 1) cop1[pos].setPosition(pos1(pos), pos2(pos));
+}
+void GraphView::loadMap() {
+	map.loadFromFile("images/map.png");
+	player1.loadFromFile("images/p0.png");
+	player2.loadFromFile("images/p1.png");
+	for (int i = 0; i < 40; i++) {
+		cp0[i].loadFromFile("images/cop0.png");
+		cp1[i].loadFromFile("images/cop1.png");
+		cop0[i].setTexture(cp0[i]);
+		cop1[i].setTexture(cp1[i]);
+		cop0[i].setPosition(1000, 1000);
+		cop1[i].setPosition(1000, 1000);
+	}
+
+	player11.setTexture(player1);
+	player22.setTexture(player2);
+	mapa.setTexture(map);
+	mapa.setPosition(0, 0);
+	font.loadFromFile("images/14.otf");//передаем нашему шрифту файл шрифта
+	text1.setFont(font);
+	text2.setFont(font);
+	text3.setFont(font);
+	text4.setFont(font);
+	text5.setFont(font);
 }
