@@ -44,7 +44,7 @@
     <ClCompile Include="controller.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="NewView.cpp">
+    <ClCompile Include="GraphView.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
