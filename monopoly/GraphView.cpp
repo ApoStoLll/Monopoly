@@ -42,7 +42,7 @@ void GraphView::drawMap() {
 	window->draw(text3);
 	window->draw(text4);
 	window->draw(text5);
-	for (int i = 0; i < 40; i++) {
+	for (int i = 0; i < 40; i++){
 		window->draw(cop0[i]);
 		window->draw(cop1[i]);
 	}
@@ -83,6 +83,8 @@ void GraphView::createMap(int a, int b, int c, int d) {
 		cp1[i].loadFromFile("images/33.png");
 		cop0[i].setTexture(cp0[i]);
 		cop1[i].setTexture(cp1[i]);
+		cop0[i].setPosition(1000,1000);
+		cop1[i].setPosition(1000, 1000);
 	}
 
 	player11.setTexture(player1);
@@ -116,8 +118,6 @@ void GraphView::createMap(int a, int b, int c, int d) {
 void GraphView::pprintMap(std::vector<Player> &players, std::vector<Card*> cards, int a, int b, int num)
 {
 	createMap(players[0].getMoney(), players[1].getMoney(), a, b);
-	//if (cards[players[0].getPosition()]->getOwner() == 0)cop0[players[0].getPosition()].setPosition(pos1(players[0].getPosition()), pos2(players[0].getPosition()));
-	//if (cards[players[1].getPosition()]->getOwner() == 1)cop1[players[1].getPosition()].setPosition(pos1(players[1].getPosition()), pos2(players[1].getPosition()));
 	if (num == 0) { going.setTexture(player1); going.setPosition(500, 350); }
 	else { going.setTexture(player2); going.setPosition(500, 350); }
 	for (int i = (a + b); i >= 0; i--) {
