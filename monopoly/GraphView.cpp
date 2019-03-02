@@ -75,6 +75,7 @@ void GraphView::drawMap() {
 void GraphView::pprintMap(std::vector<Player> &players, std::vector<Card*> cards, int a, int b, int num)
 {
 	createMap();
+
 	if (num == 0) { going.setTexture(player1); going.setPosition(500, 350); }
 	else { going.setTexture(player2); going.setPosition(500, 350); }
 	for (int i = (a + b); i >= 0; i--) {

@@ -14,6 +14,7 @@ private:
 	sf::Texture player1, player2;
 	sf::Sprite player11, player22, going;
 	sf::Text text;
+
 public:
 	GraphView(){}
 	GraphView(sf::RenderWindow *window) {
