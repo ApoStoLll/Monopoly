@@ -42,7 +42,11 @@ void GraphView::drawMap() {
 	window->draw(text3);
 	window->draw(text4);
 	window->draw(text5);
-	window->draw(cop0);
+	for (int i = 0; i < 40; i++) {
+		window->draw(cop0[i]);
+		window->draw(cop1[i]);
+	}
+	
 	window->display();
 }
 bool GraphView::skipOrBuy() {
@@ -74,10 +78,15 @@ void GraphView::createMap(int a, int b, int c, int d) {
 	map.loadFromFile("images/1.png");
 	player1.loadFromFile("images/2.png");
 	player2.loadFromFile("images/3.png");
-	cp0.loadFromFile("images/22.png");
+	for (int i = 0; i < 40; i++) {
+		cp0[i].loadFromFile("images/22.png");
+		cp1[i].loadFromFile("images/33.png");
+		cop0[i].setTexture(cp0[i]);
+		cop0[i].setTexture(cp1[i]);
+	}
+
 	player11.setTexture(player1);
 	player22.setTexture(player2);
-	cop0.setTexture(cp0);
 	mapa.setTexture(map);
 	mapa.setPosition(0, 0);
 	font.loadFromFile("images/14.otf");//передаем нашему шрифту файл шрифта
@@ -107,7 +116,7 @@ void GraphView::createMap(int a, int b, int c, int d) {
 void GraphView::pprintMap(std::vector<Player> &players, std::vector<Card*> cards, int a, int b, int num)
 {
 	createMap(players[0].getMoney(), players[1].getMoney(), a, b);
-	if (cards[players[0].getPosition()]->getOwner() == 0)cop0.setPosition(pos1(players[0].getPosition()), pos2(players[0].getPosition()));
+	if (cards[players[0].getPosition()]->getOwner() == 0)cop0[players[0].getPosition()].setPosition(pos1(players[0].getPosition()), pos2(players[0].getPosition()));
 	if (num == 0) { going.setTexture(player1); going.setPosition(500, 350); }
 	else { going.setTexture(player2); going.setPosition(500, 350); }
 	for (int i = (a + b); i >= 0; i--) {

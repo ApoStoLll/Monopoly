@@ -11,8 +11,13 @@ private:
 	sf::RenderWindow *window;
 	sf::Texture map;
 	sf::Sprite mapa;
-	sf::Texture player1, player2, cp0;
-	sf::Sprite player11, player22, going, cop0;
+	sf::Texture player1, player2;
+	
+	sf::Texture cp0[40];
+	sf::Texture cp1[40];
+	sf::Sprite player11, player22, going;
+	sf::Sprite cop0[40];
+	sf::Sprite cop1[40];
 	sf::Font font;//רנטפע 
 	sf::Text text1, text2, text3, text4, text5;//סמחהאול מבתוךע 
 
