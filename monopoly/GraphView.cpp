@@ -51,8 +51,8 @@ void GraphView::drawMap() {
 }
 bool GraphView::skipOrBuy() {
 	Texture menuTexture1, menuTexture2;
-	menuTexture1.loadFromFile("images/111.png");
-	menuTexture2.loadFromFile("images/222.png");
+	menuTexture1.loadFromFile("images/buy.png");
+	menuTexture2.loadFromFile("images/skip.png");
 	Sprite menu1(menuTexture1), menu2(menuTexture2);
 	bool isMenu = 1;
 	int menuNum = 0;
@@ -75,12 +75,12 @@ bool GraphView::skipOrBuy() {
 	}
 }
 void GraphView::createMap(int a, int b, int c, int d) {
-	map.loadFromFile("images/1.png");
-	player1.loadFromFile("images/2.png");
-	player2.loadFromFile("images/3.png");
+	map.loadFromFile("images/map.png");
+	player1.loadFromFile("images/p0.png");
+	player2.loadFromFile("images/p1.png");
 	for (int i = 0; i < 40; i++) {
-		cp0[i].loadFromFile("images/22.png");
-		cp1[i].loadFromFile("images/33.png");
+		cp0[i].loadFromFile("images/cop0.png");
+		cp1[i].loadFromFile("images/cop1.png");
 		cop0[i].setTexture(cp0[i]);
 		cop1[i].setTexture(cp1[i]);
 		cop0[i].setPosition(1000,1000);
