@@ -34,6 +34,7 @@ public:
 	bool skipOrBuy();
 	void drawCard(int pos,int num);
 	void pprintMap(std::vector<Player> &players, std::vector<Card*> cards, int a, int b, int num);
+	void loadMap();
 };
 class View {
 private:
