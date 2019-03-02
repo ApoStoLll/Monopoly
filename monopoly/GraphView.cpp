@@ -110,9 +110,7 @@ void GraphView::createMap(int a, int b, int c, int d) {
 	text4.setFillColor(Color::Black);
 	text5.setPosition(200, 200);
 	text5.setFillColor(Color::Black);
-
 }
-
 void GraphView::pprintMap(std::vector<Player> &players, std::vector<Card*> cards, int a, int b, int num)
 {
 	createMap(players[0].getMoney(), players[1].getMoney(), a, b);
@@ -142,6 +140,6 @@ void GraphView::pprintMap(std::vector<Player> &players, std::vector<Card*> cards
 
 }
 void GraphView::drawCard(int pos,int num) {
-	if (num == 0) cop0[pos].setPosition(pos1(pos), pos2(pos));
-	if (num == 1) cop1[pos].setPosition(pos1(pos), pos2(pos));
+	if (num == 0) cop0[pos].setPosition(pos1(pos), pos2(pos) - 10);
+	if (num == 1) cop1[pos].setPosition(pos1(pos), pos2(pos) - 10);
 }
