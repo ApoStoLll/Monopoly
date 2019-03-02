@@ -13,6 +13,7 @@ private:
 	std::vector<Card*> createCards();
 	std::vector<Player> createPlayers();
 	View view;
+	bool p = false;
 public:
 	Controler() {
 		cards = createCards();
@@ -20,7 +21,7 @@ public:
 		view = View(players, cards);
 	}
 	void gameCycle();
-	void step(Player &player);
+	void step(Player &player,bool p);
 	//void addPlayer(std::vector<Player> &players);
 	void okCard(Player &player);
 	bool choose(Player &player);
@@ -32,9 +33,13 @@ public:
 	void birga(Player &player);
 	void inverse(Player &player);
 	void present(Player &player1, Player &player2);
-	void roflanCards(Player &player);
+	//void roflanCards(Player &player);
 	void teleport(Player &player);
 	void avos(Player &player);
+	void kanikulu(Player &player);
+	void svazi(Player &player);
+	void rusbiznes(Player &player);
+	void jail(Player &player,bool p);
 };
  //Меню после хода
 #endif //MONOPOLY_CONTROLLER_H
