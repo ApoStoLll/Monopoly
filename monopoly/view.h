@@ -11,7 +11,7 @@ private:
 	sf::RenderWindow *window;
 	sf::Texture map;
 	sf::Sprite mapa;
-	sf::Texture player1, player2;
+	sf::Texture player1, player2,p1g,p2g;
 	
 	sf::Texture cp0[40];
 	sf::Texture cp1[40];
@@ -54,5 +54,6 @@ public:
 	bool skipOrBuy();
 	void printMap( int a, int b, int num);
 	char findOwner(int number);
+	int askReide();
 };
 #endif //MONOPOLY_VIEW_H

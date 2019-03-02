@@ -6,8 +6,14 @@ int View::textMenu() {
 	std::cout << "What do u want to do? " << std::endl;
 	std::cin >> what;
 	if (what == 'e') return 0;
-	if (what == 's') {
+	if (what == 's') {//stroit domik
 		int num;
+		std::cin >> num;
+		return num;
+	}
+	if (what == 'p') {//prodat domik
+		int num;
+		std::cout << "Print number of card with -\n";
 		std::cin >> num;
 		return num;
 	}
@@ -60,6 +66,12 @@ int View::jailask() {
 			else std::cout << "Only Y or N, (Try again)\n";
 		}
 	}
+}
+int View::askReide() {
+	int n;
+	std::cout << "Print the number of card to reid(1-40)\n";
+	std::cin >> n;
+	return n;
 }
 char View::findOwner(int number) {
 	if (cards->at(number)->getOwner() == 0) return '0';

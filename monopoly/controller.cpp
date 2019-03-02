@@ -60,7 +60,7 @@ void Controler::avos(Player &player) {
 	if (i == 5) caraganda(player);
 }
 void Controler::kanikulu(Player &player) {
-	player.setMoney(player.getMoney() + (200 + player.random(200) * 10000));
+	player.setMoney(player.getMoney() + (200 + player.random(200)) * 10000);
 }
 void Controler::svazi(Player &player) {
 	if (player.getCountchin() == 0) {
@@ -76,6 +76,7 @@ void Controler::svazi(Player &player) {
 		if (i = 2) {
 			player.setPosition(k);
 			player.buyCard(cards[player.getPosition()]);
+			player.setMoney(player.getMoney() + cards[player.getPosition()]->getPrice());
 			player.setPosition(23);
 		}
 	}
@@ -97,6 +98,7 @@ void Controler::rusbiznes(Player &player) {
 		if (i = 3) {
 			player.setPosition(k);
 			player.buyCard(cards[player.getPosition()]);
+			player.setMoney(player.getMoney() + cards[player.getPosition()]->getPrice());
 			player.setPosition(27);
 		}
 		if (i = 4) player.setMoney(player.getMoney() - (player.random(50) + player.random(75) + player.random(325)) * 10000);
@@ -130,8 +132,19 @@ void Controler::jail(Player &player) {
 	}
 }
 void Controler::reide(Player &player) {
-
+	int k = viewConsole.askReide();
+	player.setPosition(k);
+	player.buyCard(cards[player.getPosition()]);
+	player.setMoney(player.getMoney() + cards[player.getPosition()]->getPrice());
+	player.setPosition(32);
 }
+void Controler::love(Player &player) {
+	kazna(player);
+}
+void Controler::nalogi(Player &player) {
+	player.setMoney(player.getMoney()*0.8);//20 percent 
+}
+
 
 bool Controler::choose(Player &player) {
 	if ((cards[player.getPosition()]->getOwner() == -1) //Если не куплена
@@ -141,7 +154,8 @@ bool Controler::choose(Player &player) {
 void Controler::menu(Player &player) {
 	int n = viewConsole.textMenu();
 	if (n == 0) return;
-	if (n > 0) player.buyShop(n);
+	if (n > 0 && n < 100) player.buyShop(n);
+	if (n < 0 && n != -100) player.sellShop(n);
 }
 void Controler::okCard(Player &player) {
 	if (choose(player)) {	//Если хватает денег и текущая карточка не куплена
@@ -175,6 +189,8 @@ void Controler::step(Player &player) {
 		if (cards[player.getPosition()]->getType() == 9) rusbiznes(player);
 		if (cards[player.getPosition()]->getType() == 10) jail(player);
 		if (cards[player.getPosition()]->getType() == 11) reide(player);
+		if (cards[player.getPosition()]->getType() == 12) love(player);
+		if (cards[player.getPosition()]->getType() == 13) nalogi(player);
 		view.createMap(players[0].getMoney(), players[1].getMoney(), a, b);
 		if (a == b) step(player);
 	}

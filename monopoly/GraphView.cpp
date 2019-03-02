@@ -96,8 +96,8 @@ void GraphView::createMap(int a, int b, int c, int d) {
 void GraphView::pprintMap(std::vector<Player> &players, std::vector<Card*> cards, int a, int b, int num)
 {
 	createMap(players[0].getMoney(), players[1].getMoney(), a, b);
-	if (num == 0) { going.setTexture(player1); going.setPosition(500, 350); }
-	else { going.setTexture(player2); going.setPosition(500, 350); }
+	if (num == 0) { going.setTexture(p1g); going.setPosition(210, 620); }
+	else { going.setTexture(p2g); going.setPosition(320, 620); }
 	for (int i = (a + b); i >= 0; i--) {
 		if (num == 0) {
 			player11.setPosition(pos1(players[0].getPosition() - i), pos2(players[0].getPosition() - i));
@@ -127,6 +127,9 @@ void GraphView::loadMap() {
 	map.loadFromFile("images/map.png");
 	player1.loadFromFile("images/p0.png");
 	player2.loadFromFile("images/p1.png");
+	p1g.loadFromFile("images/p0g.png");
+	p2g.loadFromFile("images/p1g.png");
+	
 	for (int i = 0; i < 40; i++) {
 		cp0[i].loadFromFile("images/cop0.png");
 		cp1[i].loadFromFile("images/cop1.png");

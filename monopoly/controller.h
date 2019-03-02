@@ -35,13 +35,14 @@ public:
 	void birga(Player &player);
 	void inverse(Player &player);
 	void present(Player &player1, Player &player2);
-	//void roflanCards(Player &player);
 	void avos(Player &player);
 	void kanikulu(Player &player);
 	void svazi(Player &player);
 	void rusbiznes(Player &player);
 	void jail(Player &player);
 	void reide(Player &player);
+	void love(Player &player);
+	void nalogi(Player &player);
 };
  //Меню после хода
 #endif //MONOPOLY_CONTROLLER_H
