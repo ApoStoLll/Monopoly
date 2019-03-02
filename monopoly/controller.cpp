@@ -26,6 +26,7 @@ void Controler::naezd(Player &player) {
 }
 void Controler::birga(Player &player) {
 	int k = viewConsole.birgaStavka();
+	if (k >= 100000) k = 100000;
 	int n = viewConsole.birgaRisk();
 	int a = player.random();
 	int b = player.random();
@@ -36,7 +37,6 @@ void Controler::birga(Player &player) {
 	if (n == 9 && n < (a + b))  player.setMoney(player.getMoney() + 8 * k); 
 	if (n == 9 && n >= (a + b))  player.setMoney(player.getMoney() - k); 
 }
-
 void Controler::inverse(Player &player) {
 	player.setPosition(player.getPosition() - player.random() - player.random());
 }
@@ -51,7 +51,6 @@ void Controler::present(Player &player1, Player &player2) {
 		player1.setMoney(player1.getMoney() - ((25 + player1.random(35)) * 10000));
 	}
 }
-
 void Controler::avos(Player &player) {
 	int i = player.random(5);
 	if (i == 1)  present(player, player); 
@@ -191,6 +190,7 @@ void Controler::step(Player &player) {
 		if (cards[player.getPosition()]->getType() == 11) reide(player);
 		if (cards[player.getPosition()]->getType() == 12) love(player);
 		if (cards[player.getPosition()]->getType() == 13) nalogi(player);
+		view.createMap(players[0].getMoney(), players[1].getMoney(), a, b);
 		if (a == b) step(player);
 	}
 	if (player.getCountjail()>0) {

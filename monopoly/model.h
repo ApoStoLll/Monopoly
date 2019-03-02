@@ -58,6 +58,7 @@ public:
 	virtual int getNumberOfShops()   { return numberOfShops; }
 	virtual int getOwner()   { return owner; }
 	virtual int getType()  { return -1; }
+	
 };
 
 class RoflanCard : public Card {
@@ -82,15 +83,14 @@ public:
 	Player(int m_money, int num) : number(num), money(m_money), position(0) {}
 	Card& findCard(int pos);
 	void buyCard(Card *card);
-	void pay(int sum, Player &player);
-	bool checkCard(int num);
-	void changeCard(Player &player, int num);
-	bool checkMoney(int sum);
-	void change(Player &player1, Player &player2, int num1, int num2, int sum);
 	int random(int num = 6); // Âîçâðàùàåò ñóììó êóáèêîâ ðàíäîìíûõ
 	void payRent(Player &player);
 	//void sell();
-	//void change();
+	void pay( int sum, Player &player);
+	void changeCard(Player &player, int num);
+	bool checkCard( int num);
+	bool checkMoney(int sum);
+	void change(Player &player1, Player &player2, int num1, int num2, int sum);
 	void buyShop(int number);
 	void createShop(int number);
 	void setMoney(int money) { this->money = money; }
