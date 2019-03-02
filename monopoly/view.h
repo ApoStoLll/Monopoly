@@ -12,3 +12,4 @@ void printMap(std::vector<Player> &players,std::vector<Card*> cards,int a,int b,
 char findOwner(int number, std::vector<Card*> cards);
 
 #endif //MONOPOLY_VIEW_H
+î
