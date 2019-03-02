@@ -130,6 +130,10 @@ void Controler::jail(Player &player) {
 		step(player);
 	}
 }
+void Controler::reide(Player &player) {
+
+}
+
 bool Controler::choose(Player &player) {
 	if ((cards[player.getPosition()]->getOwner() == -1) //Если не куплена
 		&& (player.getMoney() > cards[player.getPosition()]->getPrice())) return true;
@@ -171,7 +175,7 @@ void Controler::step(Player &player) {
 		if (cards[player.getPosition()]->getType() == 8) svazi(player);
 		if (cards[player.getPosition()]->getType() == 9) rusbiznes(player);
 		if (cards[player.getPosition()]->getType() == 10) jail(player);
-		if (cards[player.getPosition()]->getType() == 11);
+		if (cards[player.getPosition()]->getType() == 11) reide(player);
 
 		if (a == b) step(player);
 	}
