@@ -7,44 +7,33 @@ void Controler::caraganda(Player &player) {
 void Controler::fas(Player &player) {
 	int j = 0;
 	for (int i = 0; i < cards.size(); i++)
-	{
-		if (cards[i]->getNumberOfShops() > 0) {
-			j += cards[i]->getNumberOfShops();
-		}
-	}
+		if (cards[i]->getNumberOfShops() > 0) j += cards[i]->getNumberOfShops();
 	player.setMoney(player.getMoney() - j * 30000);
 }
 void Controler::kazna(Player &player) {
 	int i = player.random(2);
-	if (i == 1) {
-		player.setMoney(player.getMoney() + ((50 + player.random(150)) * 1000));
-	}
+	if (i == 1) player.setMoney(player.getMoney() + ((50 + player.random(150)) * 1000));
 	else player.setMoney(player.getMoney() - ((50 + player.random(150)) * 1000));
 }
 void Controler::naezd(Player &player) {
-	int i = view.naezdOrPolice();
+	int i = viewConsole.naezdOrPolice();
 	int j = ((10 + player.random(50)) * 1000);
 	int k = player.random(4);
-	if (i == 0) {
-		player.setMoney(player.getMoney() - j);
-	}
+	if (i == 0) player.setMoney(player.getMoney() - j);
 	else
-		if (k == 1 || k == 2 || k == 3) {
-			player.setMoney(player.getMoney() - j * 2);
-		}
+		if (k == 1 || k == 2 || k == 3) player.setMoney(player.getMoney() - j * 2);
 }
 void Controler::birga(Player &player) {
-	int k = view.birgaStavka();
-	int n = view.birgaRisk();
+	int k = viewConsole.birgaStavka();
+	int n = viewConsole.birgaRisk();
 	int a = player.random();
 	int b = player.random();
-	int c = a + b;
-	if (n == 0 && 3 < c) { player.setMoney(player.getMoney() + 2 * k); }
-	if (n == 0 && 3 > c) { player.setMoney(player.getMoney() - k); }
-	if (n == 1 && 7 < c) { player.setMoney(player.getMoney() + 4 * k); }
-	if (n == 1 && 7 > c) { player.setMoney(player.getMoney() - k); }
-	if (n == 2 && 9 < c) { player.setMoney(player.getMoney() + 8 * k); }
-	if (n == 2 && 9 > c) { player.setMoney(player.getMoney() - k); }
+	if (n == 0 && 3 < a + b)  player.setMoney(player.getMoney() + 2 * k); 
+	if (n == 0 && 3 > a + b)  player.setMoney(player.getMoney() - k); 
+	if (n == 1 && 7 < a + b)  player.setMoney(player.getMoney() + 4 * k); 
+	if (n == 1 && 7 > a + b)  player.setMoney(player.getMoney() - k); 
+	if (n == 2 && 9 < a + b)  player.setMoney(player.getMoney() + 8 * k); 
+	if (n == 2 && 9 > a + b)  player.setMoney(player.getMoney() - k); 
 }
 
 void Controler::inverse(Player &player) {
@@ -56,19 +45,21 @@ void Controler::present(Player &player1, Player &player2) {
 		player1.setMoney(player1.getMoney() + ((25 + player1.random(35)) * 10000));
 		player2.setMoney(player2.getMoney() - ((25 + player1.random(35)) * 10000));
 	}
-	else player2.setMoney(player2.getMoney() + ((25 + player1.random(35)) * 10000));
-	player1.setMoney(player1.getMoney() - ((25 + player1.random(35)) * 10000));
+	else {
+		player2.setMoney(player2.getMoney() + ((25 + player1.random(35)) * 10000));
+		player1.setMoney(player1.getMoney() - ((25 + player1.random(35)) * 10000));
+	}
 }
-void Controler::teleport(Player &player) {
+/*void Controler::teleport(Player &player) {
 	int i = player.random(14) - 1;
 	//player.setPosition(
-}
+}*/
 void Controler::avos(Player &player) {
 	int i = player.random(4);
-	if (i == 1) { present(player, player); }
-	if (i == 2) { inverse(player); }
-	if (i == 3) { player.setMoney(player.getMoney() + (25 + player.random(175) * 1000)); }
-	if (i == 4) { player.setMoney(player.getMoney() + (25 + player.random(175) * 1000)); }
+	if (i == 1)  present(player, player); 
+	if (i == 2)  inverse(player); 
+	if (i == 3)  player.setMoney(player.getMoney() + (25 + player.random(175) * 1000)); 
+	if (i == 4)  player.setMoney(player.getMoney() + (25 + player.random(175) * 1000)); 
 }
 
 bool Controler::choose(Player &player) {
@@ -77,14 +68,14 @@ bool Controler::choose(Player &player) {
 	else return false;
 }
 void Controler::menu(Player &player) {
-	int n = view.textMenu();
+	int n = viewConsole.textMenu();
 	if (n == 0) return;
 	if (n > 0) player.buyShop(n);
 }
 void Controler::okCard(Player &player) {
 	if (choose(player)) {	//Если хватает денег и текущая карточка не куплена
 		if (view.skipOr()) player.buyCard(cards[player.getPosition()]); // Если тру купить
-		if (view.skipOrBuy()) player.buyCard(cards[player.getPosition()]); // Если тру купить
+		//if (viewConsole.skipOrBuy()) player.buyCard(cards[player.getPosition()]); // Если тру купить
 	}
 	else
 		if (cards[player.getPosition()]->getOwner() > -1) player.payRent(players[cards[player.getPosition()]->getOwner()]);
@@ -95,7 +86,8 @@ void Controler::step(Player &player) {
 	int b = player.random();
 	if ((player.getPosition() + a + b) / 40 > 0) player.setMoney(player.getMoney() + 200000);
 	player.setPosition((player.getPosition() + a + b) % 40); // изменение позиции
-	view.printMap( a, b, player.getNumber());	//изменить карту
+	viewConsole.printMap(a, b, player.getNumber());	//изменить карту
+	view.pprintMap(players, cards, a, b, player.getNumber());
 	if (cards[player.getPosition()]->getType() == -1) { //If UsefullCard
 		okCard(player);
 	}
@@ -113,35 +105,7 @@ void Controler::step(Player &player) {
 	}
 	if (cards[player.getPosition()]->getType() == 5) {
 		birga(player);
-void Controler::step(Player &player) {
-	int a = player.random();
-	int b = player.random();
-	if ((player.getPosition() + a + b) / 40 > 0) player.setMoney(player.getMoney() + 200000);
-	player.setPosition((player.getPosition() + a + b) % 40); // изменение позиции
-	printMap(players, cards, a, b, player.getNumber());	//изменить карту
-	view.pprintMap(players, cards, a, b, player.getNumber());
-	if (cards[player.getPosition()]->getType() == -1) { //If UsefullCard
-		okCard(player);
 	}
-	if (cards[player.getPosition()]->getType() == 1) {
-		//cards[player.getPosition()].caraganda(player);
-		caraganda(player);
-	}
-	if (a == b) step(player);
-}
-void Controler::gameCycle() {
-	//sf::RenderWindow window(sf::VideoMode(900, 813), "Mono");
-	int i = 0;
-	while (players.size() > 1) {
-		if (i == players.size()) i = 0;
-		step(players[i]);	//Походить
-		view.MMenu();	//Вызвать меню
-		i++;	//следующий игрок	
-	}
-	if (cards[player.getPosition()]->getType() == 6) {
-		avos(player);
-	}
-
 	if (a == b) step(player);
 }
 void Controler::gameCycle() {
@@ -149,7 +113,7 @@ void Controler::gameCycle() {
 	while (players.size() > 1) {
 		if (i == players.size()) i = 0;
 		step(players[i]);	//Походить
-		menu(players[i]);	//Вызвать меню
+		view.MMenu();	//Вызвать меню
 		i++;	//следующий игрок	
 	}
 }

@@ -1,4 +1,4 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include "view.h"
 using namespace sf;
 int GraphView::pos1(int pos) {
@@ -22,12 +22,10 @@ int GraphView::MMenu() {
 	drawMap();
 	window->draw(menu);
 	window->display();
-	while (true){
+	while (true) {
 		menuNum = 0;
-		if (IntRect(500, 500, 300, 50).contains(Mouse::getPosition(*window))) { menu.setColor(Color::Blue); menuNum = 1; }
-		if (Mouse::isButtonPressed(Mouse::Left)) {
-			if (menuNum == 1) return 1;
-		}
+		if (IntRect(500, 500, 300, 50).contains(Mouse::getPosition(*window)))  menu.setColor(Color::Blue); menuNum = 1;
+		if (Mouse::isButtonPressed(Mouse::Left)) if (menuNum == 1) return 1;
 	}
 }
 bool GraphView::skipOr() {
@@ -63,6 +61,7 @@ void GraphView::createMap() {
 	player22.setTexture(player2);
 	mapa.setTexture(map);
 	mapa.setPosition(0, 0);
+
 }
 void GraphView::drawMap() {
 	window->clear();
@@ -70,6 +69,7 @@ void GraphView::drawMap() {
 	window->draw(player11);
 	window->draw(player22);
 	window->draw(going);
+	window->draw(text);
 	window->display();
 }
 void GraphView::pprintMap(std::vector<Player> &players, std::vector<Card*> cards, int a, int b, int num)
@@ -77,17 +77,27 @@ void GraphView::pprintMap(std::vector<Player> &players, std::vector<Card*> cards
 	createMap();
 	if (num == 0) { going.setTexture(player1); going.setPosition(500, 350); }
 	else { going.setTexture(player2); going.setPosition(500, 350); }
-	for (int i = (a+b); i>=0; i--) {
-		if(num==0) player11.setPosition(pos1(players[0].getPosition()-i), pos2(players[0].getPosition()-i));
-		else player22.setPosition(pos1(players[1].getPosition()-i) + 2, pos2(players[1].getPosition()-i) + 2);
+	for (int i = (a + b); i >= 0; i--) {
+		if (num == 0) {
+			player11.setPosition(pos1(players[0].getPosition() - i), pos2(players[0].getPosition() - i));
+			player22.setPosition(pos1(players[1].getPosition()) + 2, pos2(players[1].getPosition()) + 2);
+		}
+		else {
+			player11.setPosition(pos1(players[0].getPosition()), pos2(players[0].getPosition()));
+			player22.setPosition(pos1(players[1].getPosition() - i) + 2, pos2(players[1].getPosition() - i) + 2);
+		}
+
+		text.setString("efefefe");//çàäàåò ñòðîêó òåêñòó
+		text.setPosition(500, 500);//çàäàåì ïîçèöèþ òåêñòà, öåíòð êàìåðû
 		drawMap();
 		Sleep(500);
 	}
+
 	Event event;
 	while (window->pollEvent(event))
 	{
 		if (event.type == Event::Closed)
 			window->close();
 	}
-	
+
 }

@@ -4,13 +4,6 @@
 #include "model.h"
 #ifndef MONOPOLY_VIEW_H
 #define MONOPOLY_VIEW_H
-void print(std::string str);
-bool skipOrBuy();
-int input();
-int textMenu();
-void printMap(std::vector<Player> &players,std::vector<Card*> cards,int a,int b,int num);
-bool skipOrBuy();
-char findOwner(int number, std::vector<Card*> cards);
 class GraphView {
 private:
 	int pos1(int pos);
@@ -20,6 +13,7 @@ private:
 	sf::Sprite mapa;
 	sf::Texture player1, player2;
 	sf::Sprite player11, player22, going;
+	sf::Text text;
 public:
 	GraphView(){}
 	GraphView(sf::RenderWindow *window) {

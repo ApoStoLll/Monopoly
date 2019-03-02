@@ -14,18 +14,16 @@ private:
 	std::vector<Player> createPlayers();
 	sf::RenderWindow *window = new sf::RenderWindow(sf::VideoMode(900, 813), "Mono");
 	GraphView view;
-	View view;
+	View viewConsole;
 public:
 	Controler() {
 		cards = createCards();
 		players = createPlayers();
-		view = View(players, cards);
+		viewConsole = View(players, cards);
 		view = GraphView(window);
 	}
-	void step(Player &player);
 	void gameCycle();
 	void step(Player &player);
-	//void addPlayer(std::vector<Player> &players);
 	void okCard(Player &player);
 	bool choose(Player &player);
 	void menu(Player &player);
@@ -36,7 +34,7 @@ public:
 	void birga(Player &player);
 	void inverse(Player &player);
 	void present(Player &player1, Player &player2);
-	void roflanCards(Player &player);
+	//void roflanCards(Player &player);
 	void teleport(Player &player);
 	void avos(Player &player);
 };

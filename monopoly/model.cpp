@@ -38,7 +38,6 @@ void Player::buyShop(int number) {
 	if (count == 3) if (number == 1 || number == 3 || number == 40 || number == 38) createShop(number); // OK
 	if (count == 4) if (number != 5 && number != 15) createShop(number);
 }
-
 /*int RoflanCard::caraganda() {
 	return random(40);
 }*/
