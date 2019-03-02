@@ -37,7 +37,6 @@ public:
 	void inverse(Player &player);
 	void present(Player &player1, Player &player2);
 	//void roflanCards(Player &player);
-	void teleport(Player &player);
 	void avos(Player &player);
 	void kanikulu(Player &player);
 	void svazi(Player &player);

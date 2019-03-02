@@ -28,12 +28,12 @@ void Controler::birga(Player &player) {
 	int n = viewConsole.birgaRisk();
 	int a = player.random();
 	int b = player.random();
-	if (n == 0 && 3 < a + b)  player.setMoney(player.getMoney() + 2 * k); 
-	if (n == 0 && 3 > a + b)  player.setMoney(player.getMoney() - k); 
-	if (n == 1 && 7 < a + b)  player.setMoney(player.getMoney() + 4 * k); 
-	if (n == 1 && 7 > a + b)  player.setMoney(player.getMoney() - k); 
-	if (n == 2 && 9 < a + b)  player.setMoney(player.getMoney() + 8 * k); 
-	if (n == 2 && 9 > a + b)  player.setMoney(player.getMoney() - k); 
+	if (n == 3 && n < (a + b))  player.setMoney(player.getMoney() + 2 * k); 
+	if (n == 3 && n >= (a + b))  player.setMoney(player.getMoney() - k); 
+	if (n == 7 && n < (a + b)) player.setMoney(player.getMoney() + 4 * k); 
+	if (n == 7 && n >= (a + b))  player.setMoney(player.getMoney() - k); 
+	if (n == 9 && n < (a + b))  player.setMoney(player.getMoney() + 8 * k); 
+	if (n == 9 && n >= (a + b))  player.setMoney(player.getMoney() - k); 
 }
 
 void Controler::inverse(Player &player) {
@@ -50,10 +50,7 @@ void Controler::present(Player &player1, Player &player2) {
 		player1.setMoney(player1.getMoney() - ((25 + player1.random(35)) * 10000));
 	}
 }
-/*void Controler::teleport(Player &player) {
-	int i = player.random(14) - 1;
-	//player.setPosition(
-}*/
+
 void Controler::avos(Player &player) {
 	int i = player.random(5);
 	if (i == 1) { present(player, player); }
