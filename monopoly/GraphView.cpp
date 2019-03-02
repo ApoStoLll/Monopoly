@@ -91,6 +91,7 @@ void GraphView::createMap(int a, int b, int c, int d) {
 	text4.setFillColor(Color::Black);
 	text5.setPosition(200, 200);
 	text5.setFillColor(Color::Black);
+	drawMap();
 }
 void GraphView::pprintMap(std::vector<Player> &players, std::vector<Card*> cards, int a, int b, int num)
 {

@@ -176,7 +176,7 @@ void Controler::step(Player &player) {
 		if (cards[player.getPosition()]->getType() == 9) rusbiznes(player);
 		if (cards[player.getPosition()]->getType() == 10) jail(player);
 		if (cards[player.getPosition()]->getType() == 11) reide(player);
-
+		view.createMap(players[0].getMoney(), players[1].getMoney(), a, b);
 		if (a == b) step(player);
 	}
 	if (player.getCountjail()>0) {
@@ -190,7 +190,6 @@ void Controler::gameCycle() {
 	while (players.size() > 1) {
 		if (i == players.size()) i = 0;
 		step(players[i]);	//Походить
-		view.drawMap();
 		view.menu();	//Вызвать меню
 		//int a = player.random();
 		//int b = player.random();
