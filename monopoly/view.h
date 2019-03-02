@@ -32,4 +32,22 @@ public:
 	bool skipOr();
 	void pprintMap(std::vector<Player> &players, std::vector<Card*> cards, int a, int b, int num);
 };
+class View {
+private:
+	std::vector<Player> players;
+	std::vector<Card*> cards;
+public:
+	View() {}
+	View(std::vector<Player> player, std::vector<Card*> card) {
+		 players = player;
+		 cards = card;
+	}
+	int textMenu();
+	int naezdOrPolice();
+	int birgaStavka();
+	int birgaRisk();
+	bool skipOrBuy();
+	void printMap( int a, int b, int num);
+	char findOwner(int number);
+};
 #endif //MONOPOLY_VIEW_H
