@@ -99,9 +99,24 @@ void Controler::step(Player &player) {
 		okCard(player);
 	}
 	if (cards[player.getPosition()]->getType() == 1) {
-		//cards[player.getPosition()].caraganda(player);
-		//player.setPosition(player.random(20));
+		caraganda(player);
 	}
+	if (cards[player.getPosition()]->getType() == 2) {
+		fas(player);
+	}
+	if (cards[player.getPosition()]->getType() == 3) {
+		kazna(player);
+	}
+	if (cards[player.getPosition()]->getType() == 4) {
+		naezd(player);
+	}
+	if (cards[player.getPosition()]->getType() == 5) {
+		birga(player);
+	}
+	if (cards[player.getPosition()]->getType() == 6) {
+		avos(player);
+	}
+
 	if (a == b) step(player);
 }
 void Controler::gameCycle() {
