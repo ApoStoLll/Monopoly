@@ -25,7 +25,7 @@ public:
 	GraphView(){}
 	GraphView(sf::RenderWindow *window) {
 		this->window = window;
-		//createMap();
+	
 	}
 	void createMap(int a, int b, int c, int d);
 	void drawMap();
