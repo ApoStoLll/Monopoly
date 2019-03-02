@@ -1,6 +1,76 @@
 #include "pch.h"
 #include "controller.h"
 
+void Controler::caraganda(Player &player) {
+	player.setPosition(player.random(40));
+}
+void Controler::fas(Player &player) {
+	int j = 0;
+	for (int i = 0; i < cards.size(); i++)
+	{
+		if (cards[i]->getNumberOfShops() > 0) {
+			j += cards[i]->getNumberOfShops();
+		}
+	}
+	player.setMoney(player.getMoney() - j * 30000);
+}
+void Controler::kazna(Player &player) {
+	int i = player.random(2);
+	if (i == 1) {
+		player.setMoney(player.getMoney() + ((50 + player.random(150)) * 1000));
+	}
+	else player.setMoney(player.getMoney() - ((50 + player.random(150)) * 1000));
+}
+void Controler::naezd(Player &player) {
+	int i = view.naezdOrPolice();
+	int j = ((10 + player.random(50)) * 1000);
+	int k = player.random(4);
+	if (i == 0) {
+		player.setMoney(player.getMoney() - j);
+	}
+	else
+		if (k == 1 || k == 2 || k == 3) {
+			player.setMoney(player.getMoney() - j * 2);
+		}
+}
+void Controler::birga(Player &player) {
+	int k = view.birgaStavka();
+	int n = view.birgaRisk();
+	int a = player.random();
+	int b = player.random();
+	int c = a + b;
+	if (n == 0 && 3 < c) { player.setMoney(player.getMoney() + 2 * k); }
+	if (n == 0 && 3 > c) { player.setMoney(player.getMoney() - k); }
+	if (n == 1 && 7 < c) { player.setMoney(player.getMoney() + 4 * k); }
+	if (n == 1 && 7 > c) { player.setMoney(player.getMoney() - k); }
+	if (n == 2 && 9 < c) { player.setMoney(player.getMoney() + 8 * k); }
+	if (n == 2 && 9 > c) { player.setMoney(player.getMoney() - k); }
+}
+
+void Controler::inverse(Player &player) {
+	player.setPosition(player.getPosition() - player.random() - player.random());
+}
+void Controler::present(Player &player1, Player &player2) {
+	int k = player1.random(2);
+	if (k == 1) {
+		player1.setMoney(player1.getMoney() + ((25 + player1.random(35)) * 10000));
+		player2.setMoney(player2.getMoney() - ((25 + player1.random(35)) * 10000));
+	}
+	else player2.setMoney(player2.getMoney() + ((25 + player1.random(35)) * 10000));
+	player1.setMoney(player1.getMoney() - ((25 + player1.random(35)) * 10000));
+}
+void Controler::teleport(Player &player) {
+	int i = player.random(14) - 1;
+	//player.setPosition(
+}
+void Controler::avos(Player &player) {
+	int i = player.random(4);
+	if (i == 1) { present(player, player); }
+	if (i == 2) { inverse(player); }
+	if (i == 3) { player.setMoney(player.getMoney() + (25 + player.random(175) * 1000)); }
+	if (i == 4) { player.setMoney(player.getMoney() + (25 + player.random(175) * 1000)); }
+}
+
 bool Controler::choose(Player &player) {
 	if ((cards[player.getPosition()]->getOwner() == -1) //Если не куплена
 		&& (player.getMoney() > cards[player.getPosition()]->getPrice())) return true;

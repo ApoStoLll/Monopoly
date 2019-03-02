@@ -25,6 +25,28 @@ bool View::skipOrBuy() {
 		}
 	}
 }
+int View::naezdOrPolice() {
+	std::cout << "Do you want to call the police?(Y or N)\n";
+	char in;
+	std::cin >> in;
+	if (in == 'Y' || in == 'y') return 1;
+	else {
+		if (in == 'N' || in == 'n') return 0;
+	}
+}
+int View::birgaStavka() {
+	int k = 0;
+	std::cout << "Print the amount of money you're willing to bet\n";
+	std::cin >> k;
+	return k;
+}
+int View::birgaRisk() {
+	int n;
+	std::cout << "Print the rate(3 or 7 or 9)\n";
+	std::cin >> n;
+	return n;
+}
+
 char View::findOwner(int number) {
 	if (cards[number]->getOwner() == 0) return '0';
 	else {

@@ -15,6 +15,9 @@ public:
 		 cards = card;
 	}
 	int textMenu();
+	int naezdOrPolice();
+	int birgaStavka();
+	int birgaRisk();
 	bool skipOrBuy();
 	void printMap( int a, int b, int num);
 	char findOwner(int number);
