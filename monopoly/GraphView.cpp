@@ -53,16 +53,16 @@ bool GraphView::skipOrBuy() {
 	
 	bool isMenu = 1;
 	int menuNum = 0;
-	menu1.setPosition(300, 300);
-	menu2.setPosition(400, 300);
+	menu1.setPosition(230, 360);
+	menu2.setPosition(230, 400);
 	drawMap();
 	window->draw(menu1);
 	window->draw(menu2);
 	window->display();
 	while (true)
 	{
-		if (IntRect(300, 300, 300, 50).contains(Mouse::getPosition(*window))) if (Mouse::isButtonPressed(Mouse::Left)) return 1;	
-		if (IntRect(400, 300, 300, 50).contains(Mouse::getPosition(*window))) if (Mouse::isButtonPressed(Mouse::Left)) return 0;
+		if (IntRect(230, 360, 145, 31).contains(Mouse::getPosition(*window))) if (Mouse::isButtonPressed(Mouse::Left)) return 1;	
+		if (IntRect(230, 400, 145, 31).contains(Mouse::getPosition(*window))) if (Mouse::isButtonPressed(Mouse::Left)) return 0;
 	}
 }
 void GraphView::createMap(int a, int b, int c, int d) {
