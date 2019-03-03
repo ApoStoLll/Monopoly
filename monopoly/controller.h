@@ -24,6 +24,9 @@ public:
 	}
 	void gameCycle();
 	void step(Player &player);
+	void pledgeCard(Player &player);
+	void repledgeCard(Player &player);
+	bool lose(Player &player);
 	//void addPlayer(std::vector<Player> &players);
 	void okCard(Player &player);
 	bool choose(Player &player);

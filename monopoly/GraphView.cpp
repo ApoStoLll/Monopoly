@@ -3,32 +3,27 @@
 #include <string>
 using namespace sf;
 int GraphView::pos1(int pos) {
+	if (pos < 0) pos = 40 + pos;
 	if (pos > 10 && pos < 20) return 97;
 	if (pos > 30) return 767;
 	if (pos <= 10) return 767 - pos * 67;
 	if (pos >= 20 && pos <= 30) return 97 + pos % 20 * 67;
 }
 int GraphView::pos2(int pos) {
+	if (pos < 0) pos = 40 + pos;
 	if (pos > 10 && pos < 20) return 707 - pos % 10 * 63;
 	if (pos > 30) return 77 + pos % 30 * 63;
 	if (pos <= 10) return 707;
 	if (pos >= 20 && pos <= 30) return 37;
 }
 int GraphView::menu() {
-	Texture menuTexture;
-	menuTexture.loadFromFile("images/m.png");
 	Sprite menu(menuTexture);
-	int menuNum = 0;
-	menu.setPosition(500, 500);
+	menu.setPosition(170, 340);
 	drawMap();
 	window->draw(menu);
 	window->display();
 	while (true) {
-		menuNum = 0;
-		if (IntRect(500, 500, 300, 50).contains(Mouse::getPosition(*window))) { menu.setColor(Color::Blue); menuNum = 1; }
-		if (Mouse::isButtonPressed(Mouse::Left)) {
-			if (menuNum == 1) return 1;
-		}
+		if (IntRect(190, 430, 260, 36).contains(Mouse::getPosition(*window))) if (Mouse::isButtonPressed(Mouse::Left)) return 1;
 	}
 }
 void GraphView::drawMap() {
@@ -50,47 +45,22 @@ void GraphView::drawMap() {
 	window->display();
 }
 bool GraphView::skipOrBuy() {
-	Texture menuTexture1, menuTexture2;
-	menuTexture1.loadFromFile("images/buy.png");
-	menuTexture2.loadFromFile("images/skip.png");
-	Sprite menu1(menuTexture1), menu2(menuTexture2);
-	bool isMenu = 1;
-	int menuNum = 0;
-	menu1.setPosition(300, 300);
-	menu2.setPosition(400, 300);
+	menu1.setPosition(230, 360);
+	menu2.setPosition(230, 400);
 	drawMap();
 	window->draw(menu1);
 	window->draw(menu2);
 	window->display();
 	while (true)
 	{
-		menuNum = 0;
-		//window.clear();
-		if (IntRect(300, 300, 300, 50).contains(Mouse::getPosition(*window))) { menu1.setColor(Color::Blue); menuNum = 1; }
-		if (IntRect(400, 300, 300, 50).contains(Mouse::getPosition(*window))) { menu2.setColor(Color::Blue); menuNum = 2; }
-		if (Mouse::isButtonPressed(Mouse::Left)) {
-			if (menuNum == 1) return 1;
-			if (menuNum == 2) return 0;
-		}
+		if (IntRect(230, 360, 145, 31).contains(Mouse::getPosition(*window))) if (Mouse::isButtonPressed(Mouse::Left)) return 1;	
+		if (IntRect(230, 400, 145, 31).contains(Mouse::getPosition(*window))) if (Mouse::isButtonPressed(Mouse::Left)) return 0;
 	}
 }
 void GraphView::createMap(int a, int b, int c, int d) {
-	
-	text1.setString("Player 1:");
 	text2.setString(std::to_string(a));
-	text3.setString("Player 2:");
 	text4.setString(std::to_string(b));
 	text5.setString(std::to_string(c) + '+' + std::to_string(d));
-	text1.setPosition(175, 540);
-	text1.setFillColor(Color::Black);
-	text2.setPosition(175, 580);
-	text2.setFillColor(Color::Black);
-	text3.setPosition(285, 540);
-	text3.setFillColor(Color::Black);
-	text4.setPosition(285, 580);
-	text4.setFillColor(Color::Black);
-	text5.setPosition(200, 200);
-	text5.setFillColor(Color::Black);
 	drawMap();
 }
 void GraphView::pprintMap(std::vector<Player> &players, std::vector<Card*> cards, int a, int b, int num)
@@ -129,7 +99,10 @@ void GraphView::loadMap() {
 	player2.loadFromFile("images/p1.png");
 	p1g.loadFromFile("images/p0g.png");
 	p2g.loadFromFile("images/p1g.png");
-	
+	menuTexture1.loadFromFile("images/buy.png");
+	menuTexture2.loadFromFile("images/skip.png");
+	menuTexture.loadFromFile("images/m.png");
+	naezdM.loadFromFile("images/naezdMenu.png");
 	for (int i = 0; i < 40; i++) {
 		cp0[i].loadFromFile("images/cop0.png");
 		cp1[i].loadFromFile("images/cop1.png");
@@ -140,6 +113,9 @@ void GraphView::loadMap() {
 	}
 	player11.setTexture(player1);
 	player22.setTexture(player2);
+	menu1.setTexture(menuTexture1);
+	menu2.setTexture(menuTexture2);
+	naezdT.setTexture(naezdM);
 	mapa.setTexture(map);
 	mapa.setPosition(0, 0);
 	font.loadFromFile("images/14.otf");//передаем нашему шрифту файл шрифта
@@ -148,4 +124,32 @@ void GraphView::loadMap() {
 	text3.setFont(font);
 	text4.setFont(font);
 	text5.setFont(font);
+	text6.setFont(font);
+	text6.setFillColor(Color::Black);
+	text1.setPosition(175, 540);
+	text1.setFillColor(Color::Black);
+	text2.setPosition(175, 580);
+	text2.setFillColor(Color::Black);
+	text3.setPosition(285, 540);
+	text3.setFillColor(Color::Black);
+	text4.setPosition(285, 580);
+	text4.setFillColor(Color::Black);
+	text5.setPosition(200, 200);
+	text5.setFillColor(Color::Black);
+	text1.setString("Player 1:");
+	text3.setString("Player 2:");
+}
+bool GraphView::naezd(int money) {
+	naezdT.setPosition(200,207);
+	text6.setString(std::to_string(money));
+	text6.setPosition(273, 342);
+	drawMap();
+	window->draw(naezdT);
+	window->draw(text6);
+	window->display();
+	while (true)
+	{
+		if (IntRect(220, 390, 155, 28).contains(Mouse::getPosition(*window))) if (Mouse::isButtonPressed(Mouse::Left)) return 0;
+		if (IntRect(220, 420, 155, 28).contains(Mouse::getPosition(*window))) if (Mouse::isButtonPressed(Mouse::Left)) return 1;
+	}
 }

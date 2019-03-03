@@ -17,11 +17,51 @@ int View::textMenu() {
 		std::cin >> num;
 		return num;
 	}
+	if (what == 'z') {//zalozhit card
+		return 100;
+	}
+	if (what == 'v') {//vukupit card
+		return 101;
+	}
 	if (what == 'c') {//change
 		return -1000;
 	}
 
 	else return -100;
+}
+int View::zal() {
+	std::cout << "what do u want zaloshit(enter a num of card) " << std::endl;
+	int n;
+	std::cin >> n;
+	return n;
+}
+int View::razzal() {
+	std::cout << "what do u want vukupit(enter a num of card) " << std::endl;
+	int n;
+	std::cin >> n;
+	return n;
+}
+int View::help() {
+	int i;
+	char in;
+	while (true) {
+		std::cout << "Do you want to sell house if you have one?(Y or N)\n";
+		std::cin >> in;
+		if (in == 'Y' || in == 'y') return 1;
+		else {
+			if (in == 'N' || in == 'n') break;
+			else std::cout << "Only Y or N, Genius (Try again)\n";
+		}
+	}
+	while (true) {
+		std::cout << "Do you want to put in pledge a card if you have one?(Y or N)\n";
+		std::cin >> in;
+		if (in == 'Y' || in == 'y') return 2;
+		else {
+			if (in == 'N' || in == 'n') return 0;
+			else std::cout << "Only Y or N, Genius (Try again)\n";
+		}
+	}
 }
 bool View::skipOrBuy() {
 	std::cout << "Do you want to buy it?(Y or N)\n";
