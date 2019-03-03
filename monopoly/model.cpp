@@ -38,6 +38,12 @@ void Player::buyShop(int number) {
 	if (count == 3) if (number == 1 || number == 3 || number == 40 || number == 38) createShop(number); // OK
 	if (count == 4) if (number != 5 && number != 15) createShop(number);
 }
+void Player::sellShop(int number) {
+	number = -1 * number;
+	Card &card = findCard(number);
+	money += card.getPriceShop();
+}
+
 void Player::changeCard(Player &player, int num){
 	player.findCard(num).buy(number);
 }
