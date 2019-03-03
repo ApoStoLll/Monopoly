@@ -106,5 +106,6 @@ public:
 	int getCountchin() { return countchin; }
 	int getCountrus() { return countrus; }
 	int getCountjail() { return countjail; }
+
 };
 #endif //MONOPOLY_MODEL_H

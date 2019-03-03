@@ -46,6 +46,7 @@ public:
 		 players = player;
 		 cards = card;
 	}
+	[] int change();
 	int textMenu();
 	int naezdOrPolice();
 	int birgaStavka();
@@ -55,5 +56,6 @@ public:
 	void printMap( int a, int b, int num);
 	char findOwner(int number);
 	int askReide();
+	int chose_player();
 };
 #endif //MONOPOLY_VIEW_H
