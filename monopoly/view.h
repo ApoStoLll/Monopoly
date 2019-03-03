@@ -47,6 +47,7 @@ public:
 		 cards = card;
 	}
 	int textMenu();
+	int zal();
 	int naezdOrPolice();
 	int birgaStavka();
 	int birgaRisk();

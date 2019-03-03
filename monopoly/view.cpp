@@ -19,6 +19,12 @@ int View::textMenu() {
 	}
 	else return -100;
 }
+int View::zal() {
+	std::cout << "what do u want zaloshit(enter a num of card) " << std::endl;
+	int n;
+	cin >> n;
+	return n;
+}
 bool View::skipOrBuy() {
 	std::cout << "Do you want to buy it?(Y or N)\n";
 	char in;
