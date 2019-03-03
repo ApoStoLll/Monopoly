@@ -273,7 +273,7 @@ void Controler::change(Player &player1) {
 		player2.changeCard(player1, num1);
 		player1.pay(sum, player2);
 	}
-	else return;
+	else std::cout << "Change impossible\n";
 }
 std::vector<Card*> Controler::createCards() {
 	std::vector<Card*> cards;
