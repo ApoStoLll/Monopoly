@@ -153,7 +153,7 @@ bool GraphView::naezd(int money) {
 		if (IntRect(220, 420, 155, 28).contains(Mouse::getPosition(*window))) if (Mouse::isButtonPressed(Mouse::Left)) return 1;
 	}
 }
-void GraphView::drawBought() {
+void GraphView::drawBought(std::vector<Player> &players) {
 
 }
 
