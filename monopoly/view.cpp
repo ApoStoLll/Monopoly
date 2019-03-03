@@ -29,11 +29,20 @@ int View::help() {
 	int i;
 	char in;
 	while (true) {
-		std::cout << "Do you want to sell house if you have?(Y or N)\n";
+		std::cout << "Do you want to sell house if you have one?(Y or N)\n";
 		std::cin >> in;
 		if (in == 'Y' || in == 'y') return 1;
 		else {
-			if (in == 'N' || in == 'n') return 2;
+			if (in == 'N' || in == 'n') break;
+			else std::cout << "Only Y or N, Genius (Try again)\n";
+		}
+	}
+	while (true) {
+		std::cout << "Do you want to put in pledge a card if you have one?(Y or N)\n";
+		std::cin >> in;
+		if (in == 'Y' || in == 'y') return 2;
+		else {
+			if (in == 'N' || in == 'n') return 0;
 			else std::cout << "Only Y or N, Genius (Try again)\n";
 		}
 	}
