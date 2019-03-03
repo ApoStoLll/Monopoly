@@ -83,6 +83,7 @@ public:
 	Player(int m_money, int num) : number(num), money(m_money), position(0) {}
 	Card& findCard(int pos);
 	void buyCard(Card *card);
+	void rebuyCard(Card *card);
 	int random(int num = 6); // Âîçâðàùàåò ñóììó êóáèêîâ ðàíäîìíûõ
 	void payRent(Player &player);
 	//void sell();

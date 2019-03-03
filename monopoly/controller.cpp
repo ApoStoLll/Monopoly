@@ -174,6 +174,13 @@ void Controler::pledgeCard(Player &player) {
 	player.setMoney(player.getMoney() + (cards[player.getPosition()]->getPrice()) / 2);
 	player.setPosition(j);
 }
+void Controler::repledgeCard(Player &player) {
+	int i = viewConsole.razzal();
+	int j = player.getPosition();
+	player.setPosition(i);
+	player.setMoney(player.getMoney() - (cards[player.getPosition()]->getPrice()));
+	player.setPosition(j);
+}
 
 bool Controler::lose(Player &player) {
 	while (true) {
