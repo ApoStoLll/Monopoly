@@ -127,10 +127,12 @@ void GraphView::loadMap() {
 	text7.setFont(font);
 	text8.setFont(font);
 	text9.setFont(font);
+	text10.setFont(font);
 	text6.setFillColor(Color::Black);
 	text7.setFillColor(Color::Black);
 	text8.setFillColor(Color::Black);
 	text9.setFillColor(Color::Black);
+	text10.setFillColor(Color::Black);
 	text1.setPosition(175, 540);
 	text1.setFillColor(Color::Black);
 	text2.setPosition(175, 580);
@@ -188,14 +190,41 @@ void GraphView::fasView(int j) {
 	Sleep(3000);
 }
 void GraphView::kaznaView(int l ,bool k) {
-	text9.setCharacterSize(22);
-	text9.setPosition(180, 250);
-	if (k) text9.setString("You've been given " + std::to_string(l));
-	if (!k) text9.setString("You lost " + std::to_string(l));
+	text10.setCharacterSize(22);
+	text10.setPosition(180, 250);
+	if (k) text10.setString("You've been given " + std::to_string(l));
+	if (!k) text10.setString("You lost " + std::to_string(l));
 	drawMap();
-	window->draw(text9);
+	window->draw(text10);
 	window->display();
 	Sleep(3000);
+}
+void GraphView::avosView(int l, bool k) {
+	text11.setCharacterSize(22);
+	text11.setPosition(180, 250);
+	if (l < 13) {
+		text11.setString("You've gone backwards by " + std::to_string(l));
+		drawMap();
+		window->draw(text11);
+		window->display();
+		Sleep(3000);
+	}
+	else {
+		if (k) {
+			text11.setString("It's your birthday! Your present is " + std::to_string(l));
+			drawMap();
+			window->draw(text11);
+			window->display();
+			Sleep(3000);
+		}
+		if (!k) {
+			text11.setString("It's other's player birthday! Your present is " + std::to_string(l));
+			drawMap();
+			window->draw(text11);
+			window->display();
+			Sleep(3000);
+		}
+	}
 }
 
 

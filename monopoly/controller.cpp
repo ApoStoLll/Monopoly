@@ -49,26 +49,50 @@ void Controler::birga(Player &player) {
 	if (n == 9 && n < (a + b))  player.setMoney(player.getMoney() + 8 * k); 
 	if (n == 9 && n >= (a + b))  player.setMoney(player.getMoney() - k); 
 }
-void Controler::inverse(Player &player) {
-	player.setPosition(player.getPosition() - player.random() - player.random());
+void Controler::inverse(Player &player,int a,int b) {
+	player.setPosition(player.getPosition() - a - b);
 }
 void Controler::present(Player &player1, Player &player2) {
 	int k = player1.random(2);
+	int y = ((25 + player1.random(35)) * 10000);
 	if (k == 1) {
-		player1.setMoney(player1.getMoney() + ((25 + player1.random(35)) * 10000));
-		player2.setMoney(player2.getMoney() - ((25 + player1.random(35)) * 10000));
+		bool o = true;
+		player1.setMoney(player1.getMoney() + y);
+		player2.setMoney(player2.getMoney() - y);
+		view.avosView(y, o);
 	}
 	else {
-		player2.setMoney(player2.getMoney() + ((25 + player1.random(35)) * 10000));
-		player1.setMoney(player1.getMoney() - ((25 + player1.random(35)) * 10000));
+		bool o = false;
+		player2.setMoney(player2.getMoney() + y);
+		player1.setMoney(player1.getMoney() - y);
+		view.avosView(y, o);
 	}
 }
 void Controler::avos(Player &player) {
 	int i = player.random(5);
-	if (i == 1)  present(player, player); 
-	if (i == 2)  inverse(player); 
-	if (i == 3)  player.setMoney(player.getMoney() + (25 + player.random(175) * 1000)); 
-	if (i == 4)  player.setMoney(player.getMoney() + (25 + player.random(175) * 1000)); 
+	if (i == 1) {
+		present(player, player);
+	}
+	if (i == 2) {
+		int a = player.random();
+		int b = player.random();
+		bool o = true;
+		inverse(player,a,b);
+		int k = a + b;
+		view.avosView(k, o);
+	}
+	if (i == 3) {
+		bool o = true;
+		int k = (25 + player.random(175) * 1000);
+		player.setMoney(player.getMoney() + k);
+		view.kaznaView(k, o);
+	}
+	if (i == 4) {
+		bool o = false;
+		int k = (25 + player.random(175) * 1000);
+		player.setMoney(player.getMoney() - k);
+		view.kaznaView(k, o);
+	}
 	if (i == 5) caraganda(player);
 }
 void Controler::kanikulu(Player &player) {

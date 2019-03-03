@@ -36,7 +36,7 @@ public:
 	void fas(Player &player);
 	void caraganda(Player &player);
 	void birga(Player &player);
-	void inverse(Player &player);
+	void inverse(Player &player,int a, int b);
 	void present(Player &player1, Player &player2);
 	void avos(Player &player);
 	void kanikulu(Player &player);

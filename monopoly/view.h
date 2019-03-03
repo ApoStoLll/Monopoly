@@ -18,7 +18,7 @@ private:
 	sf::Sprite cop0[40];
 	sf::Sprite cop1[40];
 	sf::Font font;//רנטפע 
-	sf::Text text1, text2, text3, text4, text5,text6,text7,text8,text9;//סמחהאול מבתוךע 
+	sf::Text text1, text2, text3, text4, text5,text6,text7,text8,text9,text10,text11;//סמחהאול מבתוךע 
 
 public:
 	GraphView(){}
@@ -38,6 +38,7 @@ public:
 	void drawBought(std::vector<Player> &players);
 	void fasView(int j);
 	void kaznaView(int l,bool k);
+	void avosView(int l, bool k);
 
 };
 
