@@ -11,15 +11,14 @@ private:
 	sf::RenderWindow *window;
 	sf::Texture map;
 	sf::Sprite mapa;
-	sf::Texture player1, player2,p1g,p2g, menuTexture1, menuTexture2, menuTexture;
+	sf::Texture player1, player2,p1g,p2g, menuTexture1, menuTexture2, menuTexture,naezdM;
 	sf::Texture cp0[40];
 	sf::Texture cp1[40];
-	sf::Sprite player11, player22, going;
-	sf::Sprite menu1, menu2;
+	sf::Sprite player11, player22, going,menu1, menu2,naezdT;
 	sf::Sprite cop0[40];
 	sf::Sprite cop1[40];
 	sf::Font font;//רנטפע 
-	sf::Text text1, text2, text3, text4, text5;//סמחהאול מבתוךע 
+	sf::Text text1, text2, text3, text4, text5,text6;//סמחהאול מבתוךע 
 
 public:
 	GraphView(){}
@@ -29,12 +28,12 @@ public:
 	}
 	void createMap(int a, int b, int c, int d);
 	void drawMap();
-	//int MMenu();
 	int menu();
 	bool skipOrBuy();
 	void drawCard(int pos,int num);
 	void pprintMap(std::vector<Player> &players, std::vector<Card*> cards, int a, int b, int num);
 	void loadMap();
+	bool naezd(int money);
 };
 class View {
 private:
