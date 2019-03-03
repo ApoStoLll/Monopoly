@@ -10,6 +10,7 @@ void Controler::fas(Player &player) {
 	for (int i = 0; i < cards.size(); i++)
 		if (cards[i]->getNumberOfShops() > 0) j += cards[i]->getNumberOfShops();
 	player.setMoney(player.getMoney() - j * 30000);
+	view.fasView(j);
 }
 void Controler::kazna(Player &player) {
 	int i = player.random(2);
@@ -213,7 +214,7 @@ void Controler::okCard(Player &player) {
 }
 void Controler::step(Player &player) {
 	int a = 1;// player.random();
-	int b = 2;// player.random();
+	int b = 3;// player.random();
 	if (cards[player.getPosition()]->getType() == 10) jail(player);
 	if (player.getCountjail() == 0) {
 		if ((player.getPosition() + a + b) / 40 > 0) player.setMoney(player.getMoney() + 200000);

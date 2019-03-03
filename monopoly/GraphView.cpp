@@ -126,9 +126,11 @@ void GraphView::loadMap() {
 	text6.setFont(font);
 	text7.setFont(font);
 	text8.setFont(font);
+	text9.setFont(font);
 	text6.setFillColor(Color::Black);
 	text7.setFillColor(Color::Black);
 	text8.setFillColor(Color::Black);
+	text9.setFillColor(Color::Black);
 	text1.setPosition(175, 540);
 	text1.setFillColor(Color::Black);
 	text2.setPosition(175, 580);
@@ -176,6 +178,14 @@ void GraphView::rentView(int a,int b,int rentPrice){
 	Sleep(3500);
 	//text7.setString(std::to_string(rentPrice));
 }
-//void GraphView::fasView()
+void GraphView::fasView(int j) {
+	text9.setCharacterSize(22);
+	text9.setPosition(180, 250);
+	text9.setString("You have to pay " + std::to_string(j));
+	drawMap();
+	window->draw(text9);
+	window->display();
+	Sleep(3000);
+}
 
 
