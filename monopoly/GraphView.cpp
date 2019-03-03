@@ -15,20 +15,13 @@ int GraphView::pos2(int pos) {
 	if (pos >= 20 && pos <= 30) return 37;
 }
 int GraphView::menu() {
-	Texture menuTexture;
-	menuTexture.loadFromFile("images/m.png");
 	Sprite menu(menuTexture);
-	int menuNum = 0;
-	menu.setPosition(500, 500);
+	menu.setPosition(170, 340);
 	drawMap();
 	window->draw(menu);
 	window->display();
 	while (true) {
-		menuNum = 0;
-		if (IntRect(500, 500, 300, 50).contains(Mouse::getPosition(*window))) { menu.setColor(Color::Blue); menuNum = 1; }
-		if (Mouse::isButtonPressed(Mouse::Left)) {
-			if (menuNum == 1) return 1;
-		}
+		if (IntRect(190, 430, 260, 36).contains(Mouse::getPosition(*window))) if (Mouse::isButtonPressed(Mouse::Left)) return 1;
 	}
 }
 void GraphView::drawMap() {
@@ -119,6 +112,7 @@ void GraphView::loadMap() {
 	p2g.loadFromFile("images/p1g.png");
 	menuTexture1.loadFromFile("images/buy.png");
 	menuTexture2.loadFromFile("images/skip.png");
+	menuTexture.loadFromFile("images/m.png");
 	for (int i = 0; i < 40; i++) {
 		cp0[i].loadFromFile("images/cop0.png");
 		cp1[i].loadFromFile("images/cop1.png");
@@ -131,6 +125,7 @@ void GraphView::loadMap() {
 	player22.setTexture(player2);
 	menu1.setTexture(menuTexture1);
 	menu2.setTexture(menuTexture2);
+	//menu.setTexture(menuTexture);
 	mapa.setTexture(map);
 	mapa.setPosition(0, 0);
 	font.loadFromFile("images/14.otf");//передаем нашему шрифту файл шрифта
