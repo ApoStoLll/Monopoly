@@ -58,14 +58,12 @@ void Player::pay(int sum, Player &player){
 bool Player::checkCard(int num)
 {
 	for (int i = 0; i < cards.size(); i++)
-	{
-		if (cards[i]->getPosition() == num) return 1;
-	}
-	return 0;
+		if (cards[i]->getPosition() == num) return true;
+	return false;
 }
 
 bool Player::checkMoney(int sum)
 {
-	if (Player::money < sum) return 1;
+	if (money < sum) return 1;
 	else return 0;
 }

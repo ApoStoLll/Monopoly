@@ -3,7 +3,9 @@
 
 void Controler::caraganda(Player &player) {
 	player.setPosition(player.random(40));
-	Sleep(2000);
+	Sleep(1000);
+	view.pprintMap(players, cards, 0, 0, player.getNumber());
+	action(player);
 }
 void Controler::fas(Player &player) {
 	int j = 0;
@@ -40,6 +42,8 @@ void Controler::birga(Player &player) {
 }
 void Controler::inverse(Player &player) {
 	player.setPosition(player.getPosition() - player.random() - player.random());
+	view.pprintMap(players, cards, 0, 0, player.getNumber());
+	action(player);
 }
 void Controler::present(Player &player1, Player &player2) {
 	int k = player1.random(2);
@@ -54,7 +58,12 @@ void Controler::present(Player &player1, Player &player2) {
 }
 void Controler::avos(Player &player) {
 	int i = player.random(5);
-	if (i == 1)  present(player, player); 
+	if (i == 1) {
+		Player *player2;
+		if (player.getNumber() == 1) player2 = &players[0];
+		else player2 = &players[1];
+		present(player, *player2);
+	}
 	if (i == 2)  inverse(player); 
 	if (i == 3)  player.setMoney(player.getMoney() + (25 + player.random(175) * 1000)); 
 	if (i == 4)  player.setMoney(player.getMoney() + (25 + player.random(175) * 1000)); 
@@ -210,16 +219,7 @@ void Controler::okCard(Player &player) {
 		}
 	//Плоти нологи
 }
-void Controler::step(Player &player) {
-	int a = 1;// player.random();
-	int b = 2;// player.random();
-	if (cards[player.getPosition()]->getType() == 10) jail(player);
-	if (player.getCountjail() == 0) {
-		if ((player.getPosition() + a + b) / 40 > 0) player.setMoney(player.getMoney() + 200000);
-		player.setPosition((player.getPosition() + a + b) % 40); // изменение позиции
-	}
-	viewConsole.printMap(a, b, player.getNumber());
-	view.pprintMap(players, cards, a, b, player.getNumber());//изменить карту
+void Controler::action(Player &player) {
 	if (cards[player.getPosition()]->getType() == -1) okCard(player);
 	if (cards[player.getPosition()]->getType() == 1) caraganda(player);
 	if (cards[player.getPosition()]->getType() == 2) fas(player);
@@ -234,7 +234,19 @@ void Controler::step(Player &player) {
 	if (cards[player.getPosition()]->getType() == 11) reide(player);
 	if (cards[player.getPosition()]->getType() == 12) love(player);
 	if (cards[player.getPosition()]->getType() == 13) nalogi(player);
-	view.createMap(players[0].getMoney(), players[1].getMoney(), a, b,players);
+}
+void Controler::step(Player &player) {
+	int a = 0;//player.random();
+	int b = 17;//player.random();
+	if (cards[player.getPosition()]->getType() == 10) jail(player);
+	if (player.getCountjail() == 0) {
+		if ((player.getPosition() + a + b) / 40 > 0) player.setMoney(player.getMoney() + 200000);
+		player.setPosition((player.getPosition() + a + b) % 40); // изменение позиции
+	}
+	viewConsole.printMap(a, b, player.getNumber());
+	view.pprintMap(players, cards, a, b, player.getNumber());//изменить карту
+	action(player);
+	view.createMap(players[0].getMoney(), players[1].getMoney(), a, b, players);
 	if (player.getCountjail()==0) if (a == b) step(player);
 }
 
@@ -261,13 +273,13 @@ void Controler::change(Player &player1) {
 	int num1 = viewConsole.change();
 	std::cout << "another card\n";
 	int num2 = viewConsole.change();
-	Player player2 = players[plyr];
-	if (player1.checkMoney(sum) && player2.checkMoney(-sum) && player1.checkCard(num1) && player2.checkCard(num2)) {
+	Player &player2 = players[plyr];
+	//if (player1.checkMoney(sum) && player2.checkMoney(-sum) && player1.checkCard(num1) && player2.checkCard(num2)) {
 		player1.changeCard(player2, num2);
 		player2.changeCard(player1, num1);
 		player1.pay(sum, player2);
-	}
-	else std::cout << "Change impossible\n";
+	//}
+	//else std::cout << "Change impossible\n";
 }
 
 std::vector<Card*> Controler::createCards() {

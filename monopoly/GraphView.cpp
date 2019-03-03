@@ -1,6 +1,5 @@
 ﻿#include "pch.h"
 #include "view.h"
-#include <string>
 
 using namespace sf;
 int GraphView::pos1(int pos) {

@@ -1,7 +1,6 @@
 #pragma once
 #include "model.h"
 #include "view.h"
-#include <vector>
 #include <Windows.h>
 
 #ifndef MONOPOLY_CONTROLLER_H
@@ -27,6 +26,7 @@ public:
 	void pledgeCard(Player &player);
 	void repledgeCard(Player &player);
 	bool lose(Player &player);
+	void action(Player &player);
 	//void addPlayer(std::vector<Player> &players);
 	void okCard(Player &player);
 	bool choose(Player &player);
