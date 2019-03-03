@@ -254,7 +254,8 @@ void Controler::gameCycle() {
 		if (players[i].getMoney() < 0) {
 			if (lose(players[i])) players.erase(players.begin() + i);
 		}
-		view.menu();	//Вызвать меню
+		//view.menu();	
+		menu(players[i]);//Вызвать меню
 		i++;	//следующий игрок	
 	}
 }
