@@ -75,7 +75,7 @@ private:
 	int number;
 	int countchin;//dlya druzhbu s chinovnikom
 	int countrus;//dlya ruskogo biznessa
-	int countjail;
+	int countjail = 0;//dlya turmu
 	int money;
 	int position;
 	std::vector<Card*> cards; // купленные карточки
@@ -92,6 +92,7 @@ public:
 	bool checkMoney(int sum);
 	void change(Player &player1, Player &player2, int num1, int num2, int sum);
 	void buyShop(int number);
+	void pledgeCard(int number);
 	void sellShop(int number);
 	void createShop(int number);
 	void setMoney(int money) { this->money = money; }
