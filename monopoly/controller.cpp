@@ -133,11 +133,19 @@ void Controler::jail(Player &player) {
 }
 void Controler::reide(Player &player) {
 	int k = viewConsole.askReide();
-	player.setPosition(k);
+	int l = player.random(4);
+	if (l == 1) {
+		player.setPosition(k);
+		player.buyCard(cards[player.getPosition()]);
+		player.setMoney(player.getMoney() + cards[player.getPosition()]->getPrice());
+		player.setPosition(32);
+	}
+	else player.setPosition(k);
 	player.buyCard(cards[player.getPosition()]);
-	player.setMoney(player.getMoney() + cards[player.getPosition()]->getPrice());
+	player.setMoney(player.getMoney() - cards[player.getPosition()]->getPrice());
 	player.setPosition(32);
 }
+
 void Controler::love(Player &player) {
 	kazna(player);
 }
