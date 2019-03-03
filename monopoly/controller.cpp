@@ -175,10 +175,11 @@ void Controler::pledgeCard(Player &player) {
 	player.setPosition(j);
 }
 
-bool Controler::lose(Player &player) {
-	pledgeCard(player);
-
-}
+//bool Controler::lose(Player &player) {
+	//int i = viewConsole.help();
+	//pledgeCard(player);
+	
+//}
 void Controler::okCard(Player &player) {
 	if (choose(player)) {	//Если хватает денег и текущая карточка не куплена
 		if (view.skipOrBuy()) {
@@ -230,9 +231,10 @@ void Controler::gameCycle() {
 	while (players.size() > 1) {
 		if (i == players.size()) i = 0;
 		step(players[i]);	//Походить
-		if (players[i].getMoney() < 0) {
-			if (lose(players[i])) players.erase(players.begin() + i);
-		}
+
+		//if (players[i].getMoney() < 0) {
+			//if (lose(players[i])) players.erase(players.begin() + i);
+		//}
 		view.menu();	//Вызвать меню
 		i++;	//следующий игрок	
 	}
