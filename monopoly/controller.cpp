@@ -105,9 +105,8 @@ void Controler::rusbiznes(Player &player) {
 	}
 }
 void Controler::jail(Player &player) {
-	if (player.getCountjail() > 4) {
+	if (player.getCountjail() > 4) 
 		player.setCountjail(0);
-	}
 	else {
 		int i = 0;
 		if (player.getMoney() > 50000)  i = viewConsole.jailask();
@@ -122,8 +121,6 @@ void Controler::jail(Player &player) {
 			else player.setCountjail(player.getCountjail() + 1);
 		}
 	}
-	
-	
 }
 void Controler::reide(Player &player) {
 	int k = viewConsole.askReide();
