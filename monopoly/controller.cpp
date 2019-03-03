@@ -205,12 +205,15 @@ void Controler::okCard(Player &player) {
 		//if (viewConsole.skipOrBuy()) player.buyCard(cards[player.getPosition()]); // Если тру купить
 	}
 	else
-		if (cards[player.getPosition()]->getOwner() > -1) player.payRent(players[cards[player.getPosition()]->getOwner()]);
+		if (cards[player.getPosition()]->getOwner() > -1) {
+			player.payRent(players[cards[player.getPosition()]->getOwner()]);
+			view.rentView(player.getNumber(), players[cards[player.getPosition()]->getOwner()].getNumber(), cards[player.getPosition()]->getPriceRent());
+		}
 	//Плоти нологи
 }
 void Controler::step(Player &player) {
-	int a = player.random();
-	int b = player.random();
+	int a = 2;// player.random();
+	int b = 3;// player.random();
 	if (cards[player.getPosition()]->getType() == 10) jail(player);
 	if (player.getCountjail() == 0) {
 		if ((player.getPosition() + a + b) / 40 > 0) player.setMoney(player.getMoney() + 200000);
