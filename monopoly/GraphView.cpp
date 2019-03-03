@@ -175,3 +175,4 @@ void GraphView::rentView(int a,int b,int rentPrice){
 	//text7.setString(std::to_string(rentPrice));
 
 }
+
