@@ -234,7 +234,7 @@ void Controler::step(Player &player) {
 	if (cards[player.getPosition()]->getType() == 11) reide(player);
 	if (cards[player.getPosition()]->getType() == 12) love(player);
 	if (cards[player.getPosition()]->getType() == 13) nalogi(player);
-	view.createMap(players[0].getMoney(), players[1].getMoney(), a, b);
+	view.createMap(players[0].getMoney(), players[1].getMoney(), a, b,players);
 	if (player.getCountjail()==0) if (a == b) step(player);
 }
 

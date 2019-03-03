@@ -26,7 +26,7 @@ public:
 		this->window = window;
 	
 	}
-	void createMap(int a, int b, int c, int d);
+	void createMap(int a, int b, int c, int d, std::vector<Player> &players);
 	void drawMap();
 	int menu();
 	bool skipOrBuy();
@@ -34,7 +34,6 @@ public:
 	void pprintMap(std::vector<Player> &players, std::vector<Card*> cards, int a, int b, int num);
 	void loadMap();
 	bool naezd(int money);
-	void drawBought();
 	void rentView(int a,int b,int rentPrice);
 	void drawBought(std::vector<Player> &players);
 };
