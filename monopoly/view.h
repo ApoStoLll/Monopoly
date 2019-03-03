@@ -37,6 +37,7 @@ public:
 	void rentView(int a,int b,int rentPrice);
 	void drawBought(std::vector<Player> &players);
 	void fasView(int j);
+	void kaznaView(int l,bool k);
 
 };
 

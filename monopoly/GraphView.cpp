@@ -187,5 +187,15 @@ void GraphView::fasView(int j) {
 	window->display();
 	Sleep(3000);
 }
+void GraphView::kaznaView(int l ,bool k) {
+	text9.setCharacterSize(22);
+	text9.setPosition(180, 250);
+	if (k) text9.setString("You've been given " + std::to_string(l));
+	if (!k) text9.setString("You lost " + std::to_string(l));
+	drawMap();
+	window->draw(text9);
+	window->display();
+	Sleep(3000);
+}
 
 

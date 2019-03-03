@@ -13,9 +13,19 @@ void Controler::fas(Player &player) {
 	view.fasView(j);
 }
 void Controler::kazna(Player &player) {
-	int i = player.random(2);
-	if (i == 1) player.setMoney(player.getMoney() + ((50 + player.random(150)) * 1000));
-	else player.setMoney(player.getMoney() - ((50 + player.random(150)) * 1000));
+	int i = player.random(4);
+	int l = ((50 + player.random(150)) * 1000);
+	bool o = true;
+	if (i == 1) {
+		player.setMoney(player.getMoney() + l);
+		view.kaznaView(l, o);
+	}
+	else {
+		o = false;
+		player.setMoney(player.getMoney() - l);
+		view.kaznaView(l, o);
+	}
+
 }
 void Controler::naezd(Player &player) {
 	int j = ((10 + player.random(50)) * 1000);
@@ -213,7 +223,7 @@ void Controler::okCard(Player &player) {
 	//Плоти нологи
 }
 void Controler::step(Player &player) {
-	int a = 1;// player.random();
+	int a = 5;// player.random();
 	int b = 3;// player.random();
 	if (cards[player.getPosition()]->getType() == 10) jail(player);
 	if (player.getCountjail() == 0) {
