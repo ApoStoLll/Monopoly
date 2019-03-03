@@ -359,7 +359,7 @@ std::vector<Player> Controler::createPlayers() {
 }
 void Controler::change(Player &player1) {
 	std::cout << "num of player\n";
-	int plyr = viewConsole.change();
+	Player player2 = players[viewConsole.change()];
 	std::cout << "sum\n";
 	int sum = viewConsole.change();
 	std::cout << "your card\n";
