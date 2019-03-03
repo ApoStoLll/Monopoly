@@ -145,15 +145,12 @@ void Controler::reide(Player &player) {
 	player.setMoney(player.getMoney() - cards[player.getPosition()]->getPrice());
 	player.setPosition(32);
 }
-
 void Controler::love(Player &player) {
 	kazna(player);
 }
 void Controler::nalogi(Player &player) {
 	player.setMoney(player.getMoney()*0.8);//20 percent 
 }
-
-
 bool Controler::choose(Player &player) {
 	if ((cards[player.getPosition()]->getOwner() == -1) //Если не куплена
 		&& (player.getMoney() > cards[player.getPosition()]->getPrice())) return true;
@@ -185,7 +182,6 @@ void Controler::repledgeCard(Player &player) {
 	player.setMoney(player.getMoney() - (cards[player.getPosition()]->getPrice()));
 	player.setPosition(j);
 }
-
 bool Controler::lose(Player &player) {
 	while (true) {
 		int i = viewConsole.help();
@@ -248,7 +244,6 @@ void Controler::step(Player &player) {
 		player.setPosition(player.getPosition());
 	}
 }
-
 void Controler::gameCycle() {
 	int i = 0;
 	view.loadMap();
@@ -258,10 +253,27 @@ void Controler::gameCycle() {
 		if (players[i].getMoney() < 0) {
 			if (lose(players[i])) players.erase(players.begin() + i);
 		}
-		view.menu();
-		//menu(players[i]);	//Вызвать меню
+		//view.menu();
+		menu(players[i]);	//Вызвать меню
 		i++;	//следующий игрок	
 	}
+}
+void Controler::change(Player &player1) {
+	std::cout << "num of player\n";
+	int plyr = viewConsole.change();
+	std::cout << "sum\n";
+	int sum = viewConsole.change();
+	std::cout << "your card\n";
+	int num1 = viewConsole.change();
+	std::cout << "another card\n";
+	int num2 = viewConsole.change();
+	Player player2 = players[plyr];
+	if (player1.checkMoney(sum) && player2.checkMoney(-sum) && player1.checkCard(num1) && player2.checkCard(num2)) {
+		player1.changeCard(player2, num2);
+		player2.changeCard(player1, num1);
+		player1.pay(sum, player2);
+	}
+	else return;
 }
 std::vector<Card*> Controler::createCards() {
 	std::vector<Card*> cards;
@@ -348,7 +360,6 @@ std::vector<Card*> Controler::createCards() {
 	cards.push_back(almazi);
 	return cards;
 }
-
 std::vector<Player> Controler::createPlayers() {
 	std::vector<Player> players;
 	Player player1(1500000, 0);
@@ -356,21 +367,4 @@ std::vector<Player> Controler::createPlayers() {
 	players.push_back(player1);
 	players.push_back(player2);
 	return players;
-}
-void Controler::change(Player &player1) {
-	std::cout << "num of player\n";
-	Player player2 = players[viewConsole.change()];
-	std::cout << "sum\n";
-	int sum = viewConsole.change();
-	std::cout << "your card\n";
-	int num1 = viewConsole.change();
-	std::cout << "another card\n";
-	int num2 = viewConsole.change();
-	Player player2 = players[viewConsole.change()];
-	if (player1.checkMoney(sum) && player2.checkMoney(-sum) && player1.checkCard(num1) && player2.checkCard(num2)) {
-		player1.changeCard(player2, num2);
-		player2.changeCard(player1, num1);
-		player1.pay(sum, player2);
-	}
-	else return;
 }

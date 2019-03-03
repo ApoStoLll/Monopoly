@@ -34,6 +34,7 @@ public:
 	void pprintMap(std::vector<Player> &players, std::vector<Card*> cards, int a, int b, int num);
 	void loadMap();
 	bool naezd(int money);
+	void drawBought();
 };
 
 class View {
