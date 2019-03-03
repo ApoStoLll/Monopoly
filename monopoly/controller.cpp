@@ -12,48 +12,106 @@ void Controler::fas(Player &player) {
 	for (int i = 0; i < cards.size(); i++)
 		if (cards[i]->getNumberOfShops() > 0) j += cards[i]->getNumberOfShops();
 	player.setMoney(player.getMoney() - j * 30000);
+	view.fasView(j);
 }
 void Controler::kazna(Player &player) {
-	int i = player.random(2);
-	if (i == 1) player.setMoney(player.getMoney() + ((50 + player.random(150)) * 1000));
-	else player.setMoney(player.getMoney() - ((50 + player.random(150)) * 1000));
+	int i = player.random(4);
+	int l = ((50 + player.random(150)) * 1000);
+	bool o = true;
+	if (i == 1) {
+		player.setMoney(player.getMoney() + l);
+		view.kaznaView(l, o);
+	}
+	else {
+		o = false;
+		player.setMoney(player.getMoney() - l);
+		view.kaznaView(l, o);
+	}
+
 }
 void Controler::naezd(Player &player) {
 	int j = ((10 + player.random(50)) * 1000);
 	int i = view.naezd(j);
 	int k = player.random(4);
-	if (i == 0) player.setMoney(player.getMoney() - j);
-	if (i == 1) {
-		if (k == 1 || k == 2 || k == 3) player.setMoney(player.getMoney() - j * 2);
+	if (i == 0){
+		player.setMoney(player.getMoney() - j); 
+		view.naezdPlata(j);
 	}
+	if (i == 1){ 
+			if (k == 1 || k == 2 || k == 3) { player.setMoney(player.getMoney() - j * 2); view.naezdLose(j * 2); }
+			else view.naezdWin();
+	}
+	
 }
 void Controler::birga(Player &player) {
 	int k = viewConsole.birgaStavka();
 	if (k >= 100000) k = 100000;
-	int n = viewConsole.birgaRisk();
+	int n = view.birga();
 	int a = player.random();
 	int b = player.random();
-	if (n == 3 && n < (a + b))  player.setMoney(player.getMoney() + 2 * k); 
-	if (n == 3 && n >= (a + b))  player.setMoney(player.getMoney() - k); 
-	if (n == 7 && n < (a + b)) player.setMoney(player.getMoney() + 4 * k); 
-	if (n == 7 && n >= (a + b))  player.setMoney(player.getMoney() - k); 
-	if (n == 9 && n < (a + b))  player.setMoney(player.getMoney() + 8 * k); 
-	if (n == 9 && n >= (a + b))  player.setMoney(player.getMoney() - k); 
+	if (n == 3 && n < (a + b)) {
+		player.setMoney(player.getMoney() + 2 * k);
+		view.birgaWin(2 * k);
+	}
+	if (n == 3 && n >= (a + b)) {
+		player.setMoney(player.getMoney() - k);
+		view.birgaLose(k);
+	}
+	if (n == 7 && n < (a + b)) {
+		player.setMoney(player.getMoney() + 4 * k);
+		view.birgaWin(4 * k);
+	}
+	if (n == 7 && n >= (a + b)) {
+		player.setMoney(player.getMoney() - k);
+		view.birgaLose(k);
+	}
+		if (n == 9 && n < (a + b)) {
+			player.setMoney(player.getMoney() + 8 * k);
+			view.birgaWin(8 * k);
+		}
+		if (n == 9 && n >= (a + b)) {
+			player.setMoney(player.getMoney() - k);
+			view.birgaLose(k);
+		}
+
 }
-void Controler::inverse(Player &player) {
-	player.setPosition(player.getPosition() - player.random() - player.random());
-	view.pprintMap(players, cards, 0, 0, player.getNumber());
-	action(player);
+void Controler::inverse(Player &player,int a,int b) {
+	player.setPosition(player.getPosition() - a - b);
 }
 void Controler::present(Player &player1, Player &player2) {
 	int k = player1.random(2);
+	int y = ((25 + player1.random(35)) * 10000);
 	if (k == 1) {
-		player1.setMoney(player1.getMoney() + ((25 + player1.random(35)) * 10000));
-		player2.setMoney(player2.getMoney() - ((25 + player1.random(35)) * 10000));
+		bool o = true;
+		player1.setMoney(player1.getMoney() + y);
+		player2.setMoney(player2.getMoney() - y);
+		view.avosView(y, o);
 	}
 	else {
-		player2.setMoney(player2.getMoney() + ((25 + player1.random(35)) * 10000));
-		player1.setMoney(player1.getMoney() - ((25 + player1.random(35)) * 10000));
+		bool o = false;
+		player2.setMoney(player2.getMoney() + y);
+		player1.setMoney(player1.getMoney() - y);
+		view.avosView(y, o);
+	}
+}
+void Controler::avos(Player &player1, Player &player2) {
+	int i = player1.random(5);
+	if (i == 1) {
+		present(player1, player2);
+	}
+	if (i == 2) {
+		int a = player1.random();
+		int b = player1.random();
+		bool o = true;
+		int k = a + b;
+		view.avosView(k, o);
+		inverse(player1,a,b);
+	}
+	if (i == 3) {
+		bool o = true;
+		int k = (25 + player1.random(175) * 1000);
+		player1.setMoney(player1.getMoney() + k);
+		view.kaznaView(k, o);
 	}
 }
 void Controler::avos(Player &player) {
@@ -66,11 +124,20 @@ void Controler::avos(Player &player) {
 	}
 	if (i == 2)  inverse(player); 
 	if (i == 3)  player.setMoney(player.getMoney() + (25 + player.random(175) * 1000)); 
-	if (i == 4)  player.setMoney(player.getMoney() + (25 + player.random(175) * 1000)); 
+	if (i == 4) {
+		bool o = false;
+		int k = (25 + player1.random(175) * 1000);
+		player1.setMoney(player1.getMoney() - k);
+		view.kaznaView(k, o);
+	}
 	if (i == 5) caraganda(player);
 }
 void Controler::kanikulu(Player &player) {
-	player.setMoney(player.getMoney() + (200 + player.random(200)) * 10000);
+	int k = (200 + player.random(200)) * 1000;
+	bool o = true;
+	player.setMoney(player.getMoney() + k);
+	view.kaznaView(k,o);
+
 }
 void Controler::svazi(Player &player) {
 	if (player.getCountchin() == 0) {
@@ -80,14 +147,19 @@ void Controler::svazi(Player &player) {
 		player.setCountchin(0);
 		int i = player.random(2);
 		int k = player.random(40);
-		if (i = 1) {
-			player.setMoney(player.getMoney() + (50 + player.random(125) * 10000));
+		if (i == 1) {
+			int l = (50 + player.random(125) * 10000);
+			bool o = true;
+			player.setMoney(player.getMoney() + l);
+			view.kaznaView(l, o);
 		}
-		if (i = 2) {
+		if (i == 2) {
+			bool b = true;
 			player.setPosition(k);
 			player.buyCard(cards[player.getPosition()]);
 			player.setMoney(player.getMoney() + cards[player.getPosition()]->getPrice());
 			player.setPosition(23);
+			view.zemlyaView(k, b);
 		}
 	}
 }
@@ -226,7 +298,7 @@ void Controler::action(Player &player) {
 	if (cards[player.getPosition()]->getType() == 3) kazna(player);
 	if (cards[player.getPosition()]->getType() == 4) naezd(player);
 	if (cards[player.getPosition()]->getType() == 5) birga(player);
-	if (cards[player.getPosition()]->getType() == 6) avos(player);
+	if (cards[player.getPosition()]->getType() == 6) avos(player1,player2);
 	if (cards[player.getPosition()]->getType() == 7) kanikulu(player);
 	if (cards[player.getPosition()]->getType() == 8) svazi(player);
 	if (cards[player.getPosition()]->getType() == 9) rusbiznes(player);
@@ -259,8 +331,8 @@ void Controler::gameCycle() {
 		if (players[i].getMoney() < 0) {
 			if (lose(players[i])) players.erase(players.begin() + i);
 		}
-		//if (players[i].getCountjail()==0)view.menu();
-		menu(players[i]);	//Вызвать меню
+		if (players[i].getCountjail()==0)view.menu();
+		//menu(players[i]);	//Вызвать меню
 		i++;	//следующий игрок	
 	}
 }
@@ -325,7 +397,7 @@ std::vector<Card*> Controler::createCards() {
 	cards.push_back(radio);
 	UsefullCard *televishka = new UsefullCard(19, 200 * k, 22 * k, 3); // телевышка
 	cards.push_back(televishka);
-	RoflanCard *kanikulu = new RoflanCard(20, 7); // плати налох
+	RoflanCard *kanikulu = new RoflanCard(20, 7); // получи деньги
 	cards.push_back(kanikulu);
 	UsefullCard *strah = new UsefullCard(21, 220 * k, 24 * k, 5); // страх ком
 	cards.push_back(strah);

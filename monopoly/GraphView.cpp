@@ -101,6 +101,12 @@ void GraphView::loadMap() {
 	menuTexture2.loadFromFile("images/skip.png");
 	menuTexture.loadFromFile("images/m.png");
 	naezdM.loadFromFile("images/naezdMenu.png");
+	naezdW.loadFromFile("images/naezdWin.png");
+	naezdP.loadFromFile("images/naezdlose.png");
+	naezdL.loadFromFile("images/naezdPlata.png");
+	birgaP.loadFromFile("images/birga.png");
+	birgaL.loadFromFile("images/loseBirga.png");
+	birgaW.loadFromFile("images/winBirga.png");
 	for (int i = 0; i < 40; i++) {
 		cp0[i].loadFromFile("images/cop0.png");
 		cp1[i].loadFromFile("images/cop1.png");
@@ -114,6 +120,11 @@ void GraphView::loadMap() {
 	menu1.setTexture(menuTexture1);
 	menu2.setTexture(menuTexture2);
 	naezdT.setTexture(naezdM);
+	naezdPP.setTexture(naezdP);
+	naezdLL.setTexture(naezdL);
+	birgaT.setTexture(birgaP);
+	birgaWW.setTexture(birgaW);
+	birgaLL.setTexture(birgaL);
 	mapa.setTexture(map);
 	mapa.setPosition(0, 0);
 	font.loadFromFile("images/14.otf");//передаем нашему шрифту файл шрифта
@@ -125,9 +136,15 @@ void GraphView::loadMap() {
 	text6.setFont(font);
 	text7.setFont(font);
 	text8.setFont(font);
+	text9.setFont(font);
+	text10.setFont(font);
+	zemlya.setFont(font);
 	text6.setFillColor(Color::Black);
 	text7.setFillColor(Color::Black);
 	text8.setFillColor(Color::Black);
+	text9.setFillColor(Color::Black);
+	text10.setFillColor(Color::Black);
+	zemlya.setFillColor(Color::Black);
 	text1.setPosition(175, 540);
 	text1.setFillColor(Color::Black);
 	text2.setPosition(175, 580);
@@ -173,8 +190,87 @@ void GraphView::rentView(int a,int b,int rentPrice){
 	window->draw(text8);
 	window->display();
 	Sleep(3500);
-	//text7.setString(std::to_string(rentPrice));
 }
-//void GraphView::fasView()
+void GraphView::fasView(int j) {
+	text9.setCharacterSize(22);
+	text9.setPosition(180, 250);
+	text9.setString("You have to pay " + std::to_string(j));
+	drawMap();
+	window->draw(text9);
+	window->display();
+	Sleep(3000);
+}
+void GraphView::kaznaView(int l ,bool k) {
+	text10.setCharacterSize(22);
+	text10.setPosition(180, 250);
+	if (k) text10.setString("You've been given " + std::to_string(l));
+	if (!k) text10.setString("You lost " + std::to_string(l));
+	drawMap();
+	window->draw(text10);
+	window->display();
+	Sleep(3000);
+}
+void GraphView::avosView(int l, bool k) {
+	text11.setCharacterSize(22);
+	text11.setPosition(180, 250);
+	if (l < 13) {
+		text11.setString("You've gone backwards by " + std::to_string(l));
+		drawMap();
+		window->draw(text11);
+		window->display();
+		Sleep(3000);
+	}
+	else {
+		if (k) {
+			text11.setString("It's your birthday! Your present is " + std::to_string(l));
+			drawMap();
+			window->draw(text11);
+			window->display();
+			Sleep(3000);
+		}
+		if (!k) {
+			text11.setString("It's other's player birthday! Your present is " + std::to_string(l));
+			drawMap();
+			window->draw(text11);
+			window->display();
+			Sleep(3000);
+		}
+	}
+}
+void GraphView::zemlyaView(int k, bool b) {
+	zemlya.setCharacterSize(22);
+	zemlya.setPosition(180, 230);
+	if (b) {
+		zemlya.setString("You now own card number  " + std::to_string(k));
+		drawMap();
+		window->draw(zemlya);
+		window->display();
+		Sleep(3000);
+	}
+	if (!b) {
+		zemlya.setString("You lost card number  " + std::to_string(k));
+		drawMap();
+		window->draw(zemlya);
+		window->display();
+		Sleep(3000);
+	}
+}
 
+}
+void GraphView::birgaLose(int money) {
+	birgaLL.setPosition(0, 0);
+	drawMap();
+	window->draw(birgaLL);
+	window->display();
+	std::cout << "lose";
+	Sleep(3000);
 
+}
+void GraphView::birgaWin(int money) {
+	birgaWW.setPosition(0, 0);
+	drawMap();
+	window->draw(birgaWW);
+	window->display();
+	std::cout << "win";
+	Sleep(3000);
+}
