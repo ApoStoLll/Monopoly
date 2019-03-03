@@ -96,7 +96,11 @@ void Controler::avos(Player &player) {
 	if (i == 5) caraganda(player);
 }
 void Controler::kanikulu(Player &player) {
-	player.setMoney(player.getMoney() + (200 + player.random(200)) * 10000);
+	int k = (200 + player.random(200)) * 10000;
+	bool o = true;
+	player.setMoney(player.getMoney() + k);
+	view.kaznaView(k,o);
+
 }
 void Controler::svazi(Player &player) {
 	if (player.getCountchin() == 0) {
