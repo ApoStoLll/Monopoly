@@ -10,11 +10,22 @@ void Controler::fas(Player &player) {
 	for (int i = 0; i < cards.size(); i++)
 		if (cards[i]->getNumberOfShops() > 0) j += cards[i]->getNumberOfShops();
 	player.setMoney(player.getMoney() - j * 30000);
+	view.fasView(j);
 }
 void Controler::kazna(Player &player) {
-	int i = player.random(2);
-	if (i == 1) player.setMoney(player.getMoney() + ((50 + player.random(150)) * 1000));
-	else player.setMoney(player.getMoney() - ((50 + player.random(150)) * 1000));
+	int i = player.random(4);
+	int l = ((50 + player.random(150)) * 1000);
+	bool o = true;
+	if (i == 1) {
+		player.setMoney(player.getMoney() + l);
+		view.kaznaView(l, o);
+	}
+	else {
+		o = false;
+		player.setMoney(player.getMoney() - l);
+		view.kaznaView(l, o);
+	}
+
 }
 void Controler::naezd(Player &player) {
 	int j = ((10 + player.random(50)) * 1000);
@@ -62,30 +73,58 @@ void Controler::birga(Player &player) {
 		}
 
 }
-void Controler::inverse(Player &player) {
-	player.setPosition(player.getPosition() - player.random() - player.random());
+void Controler::inverse(Player &player,int a,int b) {
+	player.setPosition(player.getPosition() - a - b);
 }
 void Controler::present(Player &player1, Player &player2) {
 	int k = player1.random(2);
+	int y = ((25 + player1.random(35)) * 10000);
 	if (k == 1) {
-		player1.setMoney(player1.getMoney() + ((25 + player1.random(35)) * 10000));
-		player2.setMoney(player2.getMoney() - ((25 + player1.random(35)) * 10000));
+		bool o = true;
+		player1.setMoney(player1.getMoney() + y);
+		player2.setMoney(player2.getMoney() - y);
+		view.avosView(y, o);
 	}
 	else {
-		player2.setMoney(player2.getMoney() + ((25 + player1.random(35)) * 10000));
-		player1.setMoney(player1.getMoney() - ((25 + player1.random(35)) * 10000));
+		bool o = false;
+		player2.setMoney(player2.getMoney() + y);
+		player1.setMoney(player1.getMoney() - y);
+		view.avosView(y, o);
 	}
 }
 void Controler::avos(Player &player) {
 	int i = player.random(5);
-	if (i == 1)  present(player, player); 
-	if (i == 2)  inverse(player); 
-	if (i == 3)  player.setMoney(player.getMoney() + (25 + player.random(175) * 1000)); 
-	if (i == 4)  player.setMoney(player.getMoney() + (25 + player.random(175) * 1000)); 
+	if (i == 1) {
+		present(player, player);
+	}
+	if (i == 2) {
+		int a = player.random();
+		int b = player.random();
+		bool o = true;
+		inverse(player,a,b);
+		int k = a + b;
+		view.avosView(k, o);
+	}
+	if (i == 3) {
+		bool o = true;
+		int k = (25 + player.random(175) * 1000);
+		player.setMoney(player.getMoney() + k);
+		view.kaznaView(k, o);
+	}
+	if (i == 4) {
+		bool o = false;
+		int k = (25 + player.random(175) * 1000);
+		player.setMoney(player.getMoney() - k);
+		view.kaznaView(k, o);
+	}
 	if (i == 5) caraganda(player);
 }
 void Controler::kanikulu(Player &player) {
-	player.setMoney(player.getMoney() + (200 + player.random(200)) * 10000);
+	int k = (200 + player.random(200)) * 10000;
+	bool o = true;
+	player.setMoney(player.getMoney() + k);
+	view.kaznaView(k,o);
+
 }
 void Controler::svazi(Player &player) {
 	if (player.getCountchin() == 0) {
@@ -185,8 +224,7 @@ void Controler::menu(Player &player) {
 		if (n == 101) repledgeCard(player);
 		if (n == 102)  change(player);
 	}
-	}
-
+}
 void Controler::pledgeCard(Player &player) {
 	int i = viewConsole.zal();
 	int j = player.getPosition();
@@ -236,8 +274,8 @@ void Controler::okCard(Player &player) {
 	//Плоти нологи
 }
 void Controler::step(Player &player) {
-	int a = 6;// player.random();
-	int b = 6;// player.random();
+	int a = 5;// player.random();
+	int b = 3;// player.random();
 	if (cards[player.getPosition()]->getType() == 10) jail(player);
 	if (player.getCountjail() == 0) {
 		if ((player.getPosition() + a + b) / 40 > 0) player.setMoney(player.getMoney() + 200000);

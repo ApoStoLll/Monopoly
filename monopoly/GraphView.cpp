@@ -137,9 +137,13 @@ void GraphView::loadMap() {
 	text6.setFont(font);
 	text7.setFont(font);
 	text8.setFont(font);
+	text9.setFont(font);
+	text10.setFont(font);
 	text6.setFillColor(Color::Black);
 	text7.setFillColor(Color::Black);
 	text8.setFillColor(Color::Black);
+	text9.setFillColor(Color::Black);
+	text10.setFillColor(Color::Black);
 	text1.setPosition(175, 540);
 	text1.setFillColor(Color::Black);
 	text2.setPosition(175, 580);
@@ -186,39 +190,52 @@ void GraphView::rentView(int a,int b,int rentPrice){
 	window->display();
 	Sleep(3500);
 }
-//void GraphView::fasView()
-void GraphView::naezdWin() {
-	naezdWW.setPosition(200, 200);
+void GraphView::fasView(int j) {
+	text9.setCharacterSize(22);
+	text9.setPosition(180, 250);
+	text9.setString("You have to pay " + std::to_string(j));
 	drawMap();
-	window->draw(naezdWW);
+	window->draw(text9);
 	window->display();
 	Sleep(3000);
 }
-void GraphView::naezdLose(int money) {
-	naezdLL.setPosition(200, 200);
+void GraphView::kaznaView(int l ,bool k) {
+	text10.setCharacterSize(22);
+	text10.setPosition(180, 250);
+	if (k) text10.setString("You've been given " + std::to_string(l));
+	if (!k) text10.setString("You lost " + std::to_string(l));
 	drawMap();
-	window->draw(naezdLL);
+	window->draw(text10);
 	window->display();
 	Sleep(3000);
 }
-void GraphView::naezdPlata(int money) {
-	naezdPP.setPosition(200, 200);
-	drawMap();
-	window->draw(naezdPP);
-	window->display();
-	Sleep(3000);
-}
-int GraphView::birga() {
-	birgaT.setPosition(200, 207);
-	drawMap();
-	window->draw(birgaT);
-	window->display();
-	while (true)
-	{
-		if (IntRect(217, 451, 40, 30).contains(Mouse::getPosition(*window))) if (Mouse::isButtonPressed(Mouse::Left)) return 3;
-		if (IntRect(315, 420, 40, 30).contains(Mouse::getPosition(*window))) if (Mouse::isButtonPressed(Mouse::Left)) return 7;
-		if (IntRect(368, 420, 40, 30).contains(Mouse::getPosition(*window))) if (Mouse::isButtonPressed(Mouse::Left)) return 7;
+void GraphView::avosView(int l, bool k) {
+	text11.setCharacterSize(22);
+	text11.setPosition(180, 250);
+	if (l < 13) {
+		text11.setString("You've gone backwards by " + std::to_string(l));
+		drawMap();
+		window->draw(text11);
+		window->display();
+		Sleep(3000);
 	}
+	else {
+		if (k) {
+			text11.setString("It's your birthday! Your present is " + std::to_string(l));
+			drawMap();
+			window->draw(text11);
+			window->display();
+			Sleep(3000);
+		}
+		if (!k) {
+			text11.setString("It's other's player birthday! Your present is " + std::to_string(l));
+			drawMap();
+			window->draw(text11);
+			window->display();
+			Sleep(3000);
+		}
+	}
+}
 
 }
 void GraphView::birgaLose(int money) {
