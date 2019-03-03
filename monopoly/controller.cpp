@@ -139,7 +139,6 @@ void Controler::reide(Player &player) {
 	player.setMoney(player.getMoney() - cards[player.getPosition()]->getPrice());
 	player.setPosition(32);
 }
-
 void Controler::love(Player &player) {
 	kazna(player);
 }
@@ -245,11 +244,12 @@ void Controler::gameCycle() {
 		if (players[i].getMoney() < 0) {
 			if (lose(players[i])) players.erase(players.begin() + i);
 		}
-		if (players[i].getCountjail()==0)view.menu();
-		//menu(players[i]);	//Вызвать меню
+		//if (players[i].getCountjail()==0)view.menu();
+		menu(players[i]);	//Вызвать меню
 		i++;	//следующий игрок	
 	}
 }
+
 std::vector<Card*> Controler::createCards() {
 	std::vector<Card*> cards;
 	int k = 1000;

@@ -68,9 +68,3 @@ bool Player::checkMoney(int sum)
 	if (Player::money < sum) return 1;
 	else return 0;
 }
-
-
-
-/*int RoflanCard::caraganda() {
-	return random(40);
-}*/

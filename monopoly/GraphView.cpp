@@ -90,10 +90,6 @@ void GraphView::pprintMap(std::vector<Player> &players, std::vector<Card*> cards
 	}
 
 }
-/*void GraphView::drawCard(int pos,int num) {
-	if (num == 0) cop0[pos].setPosition(pos1(pos), pos2(pos)-10);
-	if (num == 1) cop1[pos].setPosition(pos1(pos), pos2(pos)-10);
-}*/
 void GraphView::loadMap() {
 	map.loadFromFile("images/map.png");
 	player1.loadFromFile("images/p0.png");
