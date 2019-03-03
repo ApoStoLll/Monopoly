@@ -136,6 +136,7 @@ void Controler::reide(Player &player) {
 	player.setMoney(player.getMoney() - cards[player.getPosition()]->getPrice());
 	player.setPosition(32);
 }
+
 void Controler::love(Player &player) {
 	kazna(player);
 }
@@ -157,6 +158,8 @@ void Controler::menu(Player &player) {
 		if (n < 0 && n != -100) player.sellShop(n);
 		if (n == 100) pledgeCard(player);
 		if (n == 101) repledgeCard(player);
+		if (n == 102)  change(player);
+	}
 	}
 }
 void Controler::pledgeCard(Player &player) {
@@ -244,10 +247,27 @@ void Controler::gameCycle() {
 		if (players[i].getMoney() < 0) {
 			if (lose(players[i])) players.erase(players.begin() + i);
 		}
-		//if (players[i].getCountjail()==0)view.menu();
-		menu(players[i]);	//Вызвать меню
+		if (players[i].getCountjail()==0)view.menu();
+		//menu(players[i]);	//Вызвать меню
 		i++;	//следующий игрок	
 	}
+}
+void Controler::change(Player &player1) {
+	std::cout << "num of player\n";
+	int plyr = viewConsole.change();
+	std::cout << "sum\n";
+	int sum = viewConsole.change();
+	std::cout << "your card\n";
+	int num1 = viewConsole.change();
+	std::cout << "another card\n";
+	int num2 = viewConsole.change();
+	Player player2 = players[plyr];
+	if (player1.checkMoney(sum) && player2.checkMoney(-sum) && player1.checkCard(num1) && player2.checkCard(num2)) {
+		player1.changeCard(player2, num2);
+		player2.changeCard(player1, num1);
+		player1.pay(sum, player2);
+	}
+	else std::cout << "Change impossible\n";
 }
 
 std::vector<Card*> Controler::createCards() {
