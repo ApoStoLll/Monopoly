@@ -75,7 +75,7 @@ private:
 	int number;
 	int countchin;//dlya druzhbu s chinovnikom
 	int countrus;//dlya ruskogo biznessa
-	int countjail;
+	int countjail = 0;//dlya turmu
 	int money;
 	int position;
 	std::vector<Card*> cards; // купленные карточки
