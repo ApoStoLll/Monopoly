@@ -113,6 +113,7 @@ void GraphView::loadMap() {
 	menuTexture1.loadFromFile("images/buy.png");
 	menuTexture2.loadFromFile("images/skip.png");
 	menuTexture.loadFromFile("images/m.png");
+	naezdM.loadFromFile("images/naezdMenu.png");
 	for (int i = 0; i < 40; i++) {
 		cp0[i].loadFromFile("images/cop0.png");
 		cp1[i].loadFromFile("images/cop1.png");
@@ -125,7 +126,7 @@ void GraphView::loadMap() {
 	player22.setTexture(player2);
 	menu1.setTexture(menuTexture1);
 	menu2.setTexture(menuTexture2);
-	//menu.setTexture(menuTexture);
+	naezdT.setTexture(naezdM);
 	mapa.setTexture(map);
 	mapa.setPosition(0, 0);
 	font.loadFromFile("images/14.otf");//передаем нашему шрифту файл шрифта
@@ -134,4 +135,20 @@ void GraphView::loadMap() {
 	text3.setFont(font);
 	text4.setFont(font);
 	text5.setFont(font);
+	text6.setFont(font);
+	text6.setFillColor(Color::Black);
+}
+bool GraphView::naezd(int money) {
+	naezdT.setPosition(200,207);
+	text6.setString(std::to_string(money));
+	text6.setPosition(273, 342);
+	drawMap();
+	window->draw(naezdT);
+	window->draw(text6);
+	window->display();
+	while (true)
+	{
+		if (IntRect(220, 390, 155, 28).contains(Mouse::getPosition(*window))) if (Mouse::isButtonPressed(Mouse::Left)) return 0;
+		if (IntRect(220, 420, 155, 28).contains(Mouse::getPosition(*window))) if (Mouse::isButtonPressed(Mouse::Left)) return 1;
+	}
 }

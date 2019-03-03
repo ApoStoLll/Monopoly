@@ -16,8 +16,8 @@ void Controler::kazna(Player &player) {
 	else player.setMoney(player.getMoney() - ((50 + player.random(150)) * 1000));
 }
 void Controler::naezd(Player &player) {
-	int i = viewConsole.naezdOrPolice();
 	int j = ((10 + player.random(50)) * 1000);
+	int i = view.naezd(j);
 	int k = player.random(4);
 	if (i == 0) player.setMoney(player.getMoney() - j);
 	if (i == 1) {
