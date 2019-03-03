@@ -3,12 +3,14 @@
 #include <string>
 using namespace sf;
 int GraphView::pos1(int pos) {
+	if (pos < 0) pos = 40 + pos;
 	if (pos > 10 && pos < 20) return 97;
 	if (pos > 30) return 767;
 	if (pos <= 10) return 767 - pos * 67;
 	if (pos >= 20 && pos <= 30) return 97 + pos % 20 * 67;
 }
 int GraphView::pos2(int pos) {
+	if (pos < 0) pos = 40 + pos;
 	if (pos > 10 && pos < 20) return 707 - pos % 10 * 63;
 	if (pos > 30) return 77 + pos % 30 * 63;
 	if (pos <= 10) return 707;
@@ -56,22 +58,9 @@ bool GraphView::skipOrBuy() {
 	}
 }
 void GraphView::createMap(int a, int b, int c, int d) {
-	
-	text1.setString("Player 1:");
 	text2.setString(std::to_string(a));
-	text3.setString("Player 2:");
 	text4.setString(std::to_string(b));
 	text5.setString(std::to_string(c) + '+' + std::to_string(d));
-	text1.setPosition(175, 540);
-	text1.setFillColor(Color::Black);
-	text2.setPosition(175, 580);
-	text2.setFillColor(Color::Black);
-	text3.setPosition(285, 540);
-	text3.setFillColor(Color::Black);
-	text4.setPosition(285, 580);
-	text4.setFillColor(Color::Black);
-	text5.setPosition(200, 200);
-	text5.setFillColor(Color::Black);
 	drawMap();
 }
 void GraphView::pprintMap(std::vector<Player> &players, std::vector<Card*> cards, int a, int b, int num)
@@ -137,6 +126,18 @@ void GraphView::loadMap() {
 	text5.setFont(font);
 	text6.setFont(font);
 	text6.setFillColor(Color::Black);
+	text1.setPosition(175, 540);
+	text1.setFillColor(Color::Black);
+	text2.setPosition(175, 580);
+	text2.setFillColor(Color::Black);
+	text3.setPosition(285, 540);
+	text3.setFillColor(Color::Black);
+	text4.setPosition(285, 580);
+	text4.setFillColor(Color::Black);
+	text5.setPosition(200, 200);
+	text5.setFillColor(Color::Black);
+	text1.setString("Player 1:");
+	text3.setString("Player 2:");
 }
 bool GraphView::naezd(int money) {
 	naezdT.setPosition(200,207);
