@@ -66,6 +66,7 @@ void GraphView::createMap(int a, int b, int c, int d) {
 void GraphView::pprintMap(std::vector<Player> &players, std::vector<Card*> cards, int a, int b, int num)
 {
 	createMap(players[0].getMoney(), players[1].getMoney(), a, b);
+	drawBought(players);
 	if (num == 0) { going.setTexture(p1g); going.setPosition(210, 620); }
 	else { going.setTexture(p2g); going.setPosition(320, 620); }
 	for (int i = (a + b); i >= 0; i--) {
@@ -89,10 +90,10 @@ void GraphView::pprintMap(std::vector<Player> &players, std::vector<Card*> cards
 	}
 
 }
-void GraphView::drawCard(int pos,int num) {
+/*void GraphView::drawCard(int pos,int num) {
 	if (num == 0) cop0[pos].setPosition(pos1(pos), pos2(pos)-10);
 	if (num == 1) cop1[pos].setPosition(pos1(pos), pos2(pos)-10);
-}
+}*/
 void GraphView::loadMap() {
 	map.loadFromFile("images/map.png");
 	player1.loadFromFile("images/p0.png");
@@ -153,7 +154,10 @@ bool GraphView::naezd(int money) {
 		if (IntRect(220, 420, 155, 28).contains(Mouse::getPosition(*window))) if (Mouse::isButtonPressed(Mouse::Left)) return 1;
 	}
 }
-void GraphView::drawBought(std::vector<Player> &players) {
-
+void GraphView::drawBought(std::vector<Player> &players) { //BE CAREFUL STRASHNO NEOPNYATNA VIRYBAI
+	for (int i = 0; i < players[0].getCards().size(); i++) 
+		cop0[players[0].getCards()[i]->getPosition()].setPosition(pos1(players[0].getCards()[i]->getPosition()), pos2(players[0].getCards()[i]->getPosition()) - 10);
+	for (int i = 0; i < players[1].getCards().size(); i++)
+		cop1[players[1].getCards()[i]->getPosition()].setPosition(pos1(players[1].getCards()[i]->getPosition()), pos2(players[1].getCards()[i]->getPosition()) - 10);
 }
 

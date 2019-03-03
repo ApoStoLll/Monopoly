@@ -199,7 +199,7 @@ bool Controler::lose(Player &player) {
 void Controler::okCard(Player &player) {
 	if (choose(player)) {	//Если хватает денег и текущая карточка не куплена
 		if (view.skipOrBuy()) {
-			view.drawCard(player.getPosition(),player.getNumber());
+			//view.drawCard(player.getPosition(),player.getNumber());
 			player.buyCard(cards[player.getPosition()]);
 		}// Если тру купить
 		//if (viewConsole.skipOrBuy()) player.buyCard(cards[player.getPosition()]); // Если тру купить
