@@ -50,9 +50,6 @@ void GraphView::drawMap() {
 	window->display();
 }
 bool GraphView::skipOrBuy() {
-	
-	bool isMenu = 1;
-	int menuNum = 0;
 	menu1.setPosition(230, 360);
 	menu2.setPosition(230, 400);
 	drawMap();

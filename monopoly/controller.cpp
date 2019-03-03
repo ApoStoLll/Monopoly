@@ -168,7 +168,7 @@ void Controler::menu(Player &player) {
 	}
 }
 bool lose(Player &player) {
-
+	return 0;
 }
 void Controler::okCard(Player &player) {
 	if (choose(player)) {	//≈сли хватает денег и текуща€ карточка не куплена

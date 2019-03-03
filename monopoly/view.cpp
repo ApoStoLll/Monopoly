@@ -22,7 +22,7 @@ int View::textMenu() {
 int View::zal() {
 	std::cout << "what do u want zaloshit(enter a num of card) " << std::endl;
 	int n;
-	cin >> n;
+	std::cin >> n;
 	return n;
 }
 bool View::skipOrBuy() {
