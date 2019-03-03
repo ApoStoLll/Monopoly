@@ -38,10 +38,10 @@ public:
 	void fasView(int j);
 	void kaznaView(int l,bool k);
 	void avosView(int l, bool k);
-	void naezdWin();
-	void naezdLose(int money);
-	void naezdPlata(int money);
-	int birga();
+	void naezdWin() {}
+	void naezdLose(int money) {}
+	void naezdPlata(int money) {}
+	int birga() { return 0; }
 	void birgaWin(int money);
 	void birgaLose(int money);
 	void zemlyaView(int k, bool b);
