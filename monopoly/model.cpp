@@ -22,6 +22,7 @@ void Player::buyCard(Card *card) {
 	money = money - card->getPrice();
 	cards.push_back(card);
 }
+
 void Player::createShop(int number) {
 	Card &card = findCard(number);
 	money -= card.getPriceShop();

@@ -17,10 +17,22 @@ int View::textMenu() {
 		std::cin >> num;
 		return num;
 	}
+	if (what == 'z') {//zalozhit card
+		return 100;
+	}
+	if (what == 'v') {//vukupit card
+		return 101;
+	}
 	else return -100;
 }
 int View::zal() {
 	std::cout << "what do u want zaloshit(enter a num of card) " << std::endl;
+	int n;
+	std::cin >> n;
+	return n;
+}
+int View::razzal() {
+	std::cout << "what do u want vukupit(enter a num of card) " << std::endl;
 	int n;
 	std::cin >> n;
 	return n;

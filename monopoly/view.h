@@ -47,6 +47,7 @@ public:
 	}
 	int textMenu();
 	int zal();
+	int razzal();
 	int help();
 	int naezdOrPolice();
 	int birgaStavka();

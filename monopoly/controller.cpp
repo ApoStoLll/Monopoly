@@ -165,6 +165,8 @@ void Controler::menu(Player &player) {
 		if (n == 0) return;
 		if (n > 0 && n < 100) player.buyShop(n);
 		if (n < 0 && n != -100) player.sellShop(n);
+		if (n == 100) pledgeCard(player);
+		if (n == 101) repledgeCard(player);
 	}
 }
 void Controler::pledgeCard(Player &player) {
@@ -172,6 +174,13 @@ void Controler::pledgeCard(Player &player) {
 	int j = player.getPosition();
 	player.setPosition(i);
 	player.setMoney(player.getMoney() + (cards[player.getPosition()]->getPrice()) / 2);
+	player.setPosition(j);
+}
+void Controler::repledgeCard(Player &player) {
+	int i = viewConsole.razzal();
+	int j = player.getPosition();
+	player.setPosition(i);
+	player.setMoney(player.getMoney() - (cards[player.getPosition()]->getPrice()));
 	player.setPosition(j);
 }
 
@@ -247,7 +256,8 @@ void Controler::gameCycle() {
 		if (players[i].getMoney() < 0) {
 			if (lose(players[i])) players.erase(players.begin() + i);
 		}
-		view.menu();	//Вызвать меню
+		//view.menu();
+		menu(players[i]);	//Вызвать меню
 		i++;	//следующий игрок	
 	}
 }
