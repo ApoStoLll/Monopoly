@@ -50,10 +50,7 @@ void GraphView::drawMap() {
 	window->display();
 }
 bool GraphView::skipOrBuy() {
-	Texture menuTexture1, menuTexture2;
-	menuTexture1.loadFromFile("images/buy.png");
-	menuTexture2.loadFromFile("images/skip.png");
-	Sprite menu1(menuTexture1), menu2(menuTexture2);
+	
 	bool isMenu = 1;
 	int menuNum = 0;
 	menu1.setPosition(300, 300);
@@ -64,14 +61,8 @@ bool GraphView::skipOrBuy() {
 	window->display();
 	while (true)
 	{
-		menuNum = 0;
-		//window.clear();
-		if (IntRect(300, 300, 300, 50).contains(Mouse::getPosition(*window))) { menu1.setColor(Color::Blue); menuNum = 1; }
-		if (IntRect(400, 300, 300, 50).contains(Mouse::getPosition(*window))) { menu2.setColor(Color::Blue); menuNum = 2; }
-		if (Mouse::isButtonPressed(Mouse::Left)) {
-			if (menuNum == 1) return 1;
-			if (menuNum == 2) return 0;
-		}
+		if (IntRect(300, 300, 300, 50).contains(Mouse::getPosition(*window))) if (Mouse::isButtonPressed(Mouse::Left)) return 1;	
+		if (IntRect(400, 300, 300, 50).contains(Mouse::getPosition(*window))) if (Mouse::isButtonPressed(Mouse::Left)) return 0;
 	}
 }
 void GraphView::createMap(int a, int b, int c, int d) {
@@ -129,7 +120,8 @@ void GraphView::loadMap() {
 	player2.loadFromFile("images/p1.png");
 	p1g.loadFromFile("images/p0g.png");
 	p2g.loadFromFile("images/p1g.png");
-	
+	menuTexture1.loadFromFile("images/buy.png");
+	menuTexture2.loadFromFile("images/skip.png");
 	for (int i = 0; i < 40; i++) {
 		cp0[i].loadFromFile("images/cop0.png");
 		cp1[i].loadFromFile("images/cop1.png");
@@ -140,6 +132,8 @@ void GraphView::loadMap() {
 	}
 	player11.setTexture(player1);
 	player22.setTexture(player2);
+	menu1.setTexture(menuTexture1);
+	menu2.setTexture(menuTexture2);
 	mapa.setTexture(map);
 	mapa.setPosition(0, 0);
 	font.loadFromFile("images/14.otf");//передаем нашему шрифту файл шрифта

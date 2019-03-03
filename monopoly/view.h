@@ -12,10 +12,11 @@ private:
 	sf::Texture map;
 	sf::Sprite mapa;
 	sf::Texture player1, player2,p1g,p2g;
-	
+	sf::Texture menuTexture1, menuTexture2;
 	sf::Texture cp0[40];
 	sf::Texture cp1[40];
 	sf::Sprite player11, player22, going;
+	sf::Sprite menu1, menu2;
 	sf::Sprite cop0[40];
 	sf::Sprite cop1[40];
 	sf::Font font;//רנטפע 

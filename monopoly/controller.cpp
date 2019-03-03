@@ -126,18 +126,26 @@ void Controler::jail(Player &player) {
 			step(player);
 		}
 	}
-	if (player.getCountjail() == 3) {
+	if (player.getCountjail() > 3) {
 		player.setCountjail(0);
 		step(player);
 	}
 }
 void Controler::reide(Player &player) {
 	int k = viewConsole.askReide();
-	player.setPosition(k);
+	int l = player.random(4);
+	if (l == 1) {
+		player.setPosition(k);
+		player.buyCard(cards[player.getPosition()]);
+		player.setMoney(player.getMoney() + cards[player.getPosition()]->getPrice());
+		player.setPosition(32);
+	}
+	else player.setPosition(k);
 	player.buyCard(cards[player.getPosition()]);
-	player.setMoney(player.getMoney() + cards[player.getPosition()]->getPrice());
+	player.setMoney(player.getMoney() - cards[player.getPosition()]->getPrice());
 	player.setPosition(32);
 }
+
 void Controler::love(Player &player) {
 	kazna(player);
 }
@@ -192,14 +200,17 @@ void Controler::step(Player &player) {
 		if (cards[player.getPosition()]->getType() == 7) kanikulu(player);
 		if (cards[player.getPosition()]->getType() == 8) svazi(player);
 		if (cards[player.getPosition()]->getType() == 9) rusbiznes(player);
-		if (cards[player.getPosition()]->getType() == 10) jail(player);
+		if (cards[player.getPosition()]->getType() == 10) {
+			player.setCountjail(player.getCountjail() + 1);
+			jail(player);
+		}
 		if (cards[player.getPosition()]->getType() == 11) reide(player);
 		if (cards[player.getPosition()]->getType() == 12) love(player);
 		if (cards[player.getPosition()]->getType() == 13) nalogi(player);
 		view.createMap(players[0].getMoney(), players[1].getMoney(), a, b);
 		if (a == b) step(player);
 	}
-	if (player.getCountjail()>0) {
+	if (player.getCountjail()> 0) {
 		player.setPosition(player.getPosition());
 	}
 }
