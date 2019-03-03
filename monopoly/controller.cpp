@@ -79,7 +79,7 @@ void Controler::inverse(Player &player,int a,int b) {
 }
 void Controler::present(Player &player1, Player &player2) {
 	int k = player1.random(2);
-	int y = ((25 + player1.random(35)) * 10000);
+	int y = ((25 + player1.random(35)) * 1000);
 	if (k == 1) {
 		bool o = true;
 		player1.setMoney(player1.getMoney() + y);
@@ -95,7 +95,7 @@ void Controler::present(Player &player1, Player &player2) {
 }
 
 void Controler::avos(Player &player) {
-	int i = player.random(5);
+	int i = player.random(1);
 	if (i == 1) {
 		Player *player2;
 		if (player.getNumber() == 1) player2 = &players[0];
@@ -300,8 +300,8 @@ void Controler::action(Player &player) {
 	if (cards[player.getPosition()]->getType() == 13) nalogi(player);
 }
 void Controler::step(Player &player) {
-	int a = 0;//player.random();
-	int b = 17;//player.random();
+	int a = 7;//player.random();
+	int b = 10;//player.random();
 	if (cards[player.getPosition()]->getType() == 10) jail(player);
 	if (player.getCountjail() == 0) {
 		if ((player.getPosition() + a + b) / 40 > 0) player.setMoney(player.getMoney() + 200000);

@@ -138,12 +138,14 @@ void GraphView::loadMap() {
 	text8.setFont(font);
 	text9.setFont(font);
 	text10.setFont(font);
+	text11.setFont(font);
 	zemlya.setFont(font);
 	text6.setFillColor(Color::Black);
 	text7.setFillColor(Color::Black);
 	text8.setFillColor(Color::Black);
 	text9.setFillColor(Color::Black);
 	text10.setFillColor(Color::Black);
+	text11.setFillColor(Color::Black);
 	zemlya.setFillColor(Color::Black);
 	text1.setPosition(175, 540);
 	text1.setFillColor(Color::Black);
