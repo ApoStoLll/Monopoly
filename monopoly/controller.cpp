@@ -31,23 +31,47 @@ void Controler::naezd(Player &player) {
 	int j = ((10 + player.random(50)) * 1000);
 	int i = view.naezd(j);
 	int k = player.random(4);
-	if (i == 0) player.setMoney(player.getMoney() - j);
-	if (i == 1) {
-		if (k == 1 || k == 2 || k == 3) player.setMoney(player.getMoney() - j * 2);
+	if (i == 0){
+		player.setMoney(player.getMoney() - j); 
+		view.naezdPlata(j);
 	}
+	if (i == 1){ 
+			if (k == 1 || k == 2 || k == 3) { player.setMoney(player.getMoney() - j * 2); view.naezdLose(j * 2); }
+			else view.naezdWin();
+	}
+	
 }
 void Controler::birga(Player &player) {
 	int k = viewConsole.birgaStavka();
 	if (k >= 100000) k = 100000;
-	int n = viewConsole.birgaRisk();
+	int n = view.birga();
 	int a = player.random();
 	int b = player.random();
-	if (n == 3 && n < (a + b))  player.setMoney(player.getMoney() + 2 * k); 
-	if (n == 3 && n >= (a + b))  player.setMoney(player.getMoney() - k); 
-	if (n == 7 && n < (a + b)) player.setMoney(player.getMoney() + 4 * k); 
-	if (n == 7 && n >= (a + b))  player.setMoney(player.getMoney() - k); 
-	if (n == 9 && n < (a + b))  player.setMoney(player.getMoney() + 8 * k); 
-	if (n == 9 && n >= (a + b))  player.setMoney(player.getMoney() - k); 
+	if (n == 3 && n < (a + b)) {
+		player.setMoney(player.getMoney() + 2 * k);
+		view.birgaWin(2 * k);
+	}
+	if (n == 3 && n >= (a + b)) {
+		player.setMoney(player.getMoney() - k);
+		view.birgaLose(k);
+	}
+	if (n == 7 && n < (a + b)) {
+		player.setMoney(player.getMoney() + 4 * k);
+		view.birgaWin(4 * k);
+	}
+	if (n == 7 && n >= (a + b)) {
+		player.setMoney(player.getMoney() - k);
+		view.birgaLose(k);
+	}
+		if (n == 9 && n < (a + b)) {
+			player.setMoney(player.getMoney() + 8 * k);
+			view.birgaWin(8 * k);
+		}
+		if (n == 9 && n >= (a + b)) {
+			player.setMoney(player.getMoney() - k);
+			view.birgaLose(k);
+		}
+
 }
 void Controler::inverse(Player &player,int a,int b) {
 	player.setPosition(player.getPosition() - a - b);

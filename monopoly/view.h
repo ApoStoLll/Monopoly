@@ -11,10 +11,10 @@ private:
 	sf::RenderWindow *window;
 	sf::Texture map;
 	sf::Sprite mapa;
-	sf::Texture player1, player2,p1g,p2g, menuTexture1, menuTexture2, menuTexture,naezdM;
+	sf::Texture player1, player2,p1g,p2g, menuTexture1, menuTexture2, menuTexture,naezdM,naezdW,naezdL,naezdP,birgaP,birgaL,birgaW;
 	sf::Texture cp0[40];
 	sf::Texture cp1[40];
-	sf::Sprite player11, player22, going,menu1, menu2,naezdT;
+	sf::Sprite player11, player22, going,menu1, menu2,naezdT,naezdWW,naezdLL,naezdPP,birgaT,birgaLL,birgaWW;
 	sf::Sprite cop0[40];
 	sf::Sprite cop1[40];
 	sf::Font font;//רנטפע 
@@ -30,7 +30,6 @@ public:
 	void drawMap();
 	int menu();
 	bool skipOrBuy();
-	void drawCard(int pos,int num);
 	void pprintMap(std::vector<Player> &players, std::vector<Card*> cards, int a, int b, int num);
 	void loadMap();
 	bool naezd(int money);
@@ -39,6 +38,12 @@ public:
 	void fasView(int j);
 	void kaznaView(int l,bool k);
 	void avosView(int l, bool k);
+	void naezdWin();
+	void naezdLose(int money);
+	void naezdPlata(int money);
+	int birga();
+	void birgaWin(int money);
+	void birgaLose(int money);
 	void zemlyaView(int k, bool b);
 
 };

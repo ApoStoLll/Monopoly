@@ -102,6 +102,12 @@ void GraphView::loadMap() {
 	menuTexture2.loadFromFile("images/skip.png");
 	menuTexture.loadFromFile("images/m.png");
 	naezdM.loadFromFile("images/naezdMenu.png");
+	naezdW.loadFromFile("images/naezdWin.png");
+	naezdP.loadFromFile("images/naezdlose.png");
+	naezdL.loadFromFile("images/naezdPlata.png");
+	birgaP.loadFromFile("images/birga.png");
+	birgaL.loadFromFile("images/loseBirga.png");
+	birgaW.loadFromFile("images/winBirga.png");
 	for (int i = 0; i < 40; i++) {
 		cp0[i].loadFromFile("images/cop0.png");
 		cp1[i].loadFromFile("images/cop1.png");
@@ -115,6 +121,11 @@ void GraphView::loadMap() {
 	menu1.setTexture(menuTexture1);
 	menu2.setTexture(menuTexture2);
 	naezdT.setTexture(naezdM);
+	naezdPP.setTexture(naezdP);
+	naezdLL.setTexture(naezdL);
+	birgaT.setTexture(birgaP);
+	birgaWW.setTexture(birgaW);
+	birgaLL.setTexture(birgaL);
 	mapa.setTexture(map);
 	mapa.setPosition(0, 0);
 	font.loadFromFile("images/14.otf");//передаем нашему шрифту файл шрифта
@@ -180,7 +191,6 @@ void GraphView::rentView(int a,int b,int rentPrice){
 	window->draw(text8);
 	window->display();
 	Sleep(3500);
-	//text7.setString(std::to_string(rentPrice));
 }
 void GraphView::fasView(int j) {
 	text9.setCharacterSize(22);
@@ -247,3 +257,21 @@ void GraphView::zemlyaView(int k, bool b) {
 	}
 }
 
+}
+void GraphView::birgaLose(int money) {
+	birgaLL.setPosition(0, 0);
+	drawMap();
+	window->draw(birgaLL);
+	window->display();
+	std::cout << "lose";
+	Sleep(3000);
+
+}
+void GraphView::birgaWin(int money) {
+	birgaWW.setPosition(0, 0);
+	drawMap();
+	window->draw(birgaWW);
+	window->display();
+	std::cout << "win";
+	Sleep(3000);
+}
