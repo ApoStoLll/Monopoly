@@ -165,6 +165,8 @@ void Controler::menu(Player &player) {
 		if (n == 0) return;
 		if (n > 0 && n < 100) player.buyShop(n);
 		if (n < 0 && n != -100) player.sellShop(n);
+		if (n == 100) pledgeCard(player);
+		if (n == 101) repledgeCard(player);
 	}
 }
 void Controler::pledgeCard(Player &player) {
@@ -254,7 +256,8 @@ void Controler::gameCycle() {
 		if (players[i].getMoney() < 0) {
 			if (lose(players[i])) players.erase(players.begin() + i);
 		}
-		view.menu();	//Вызвать меню
+		//view.menu();
+		menu(players[i]);	//Вызвать меню
 		i++;	//следующий игрок	
 	}
 }

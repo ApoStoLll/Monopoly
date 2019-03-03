@@ -18,8 +18,10 @@ int View::textMenu() {
 		return num;
 	}
 	if (what == 'z') {//zalozhit card
-		int i = zal() + 100;
-		return i;
+		return 100;
+	}
+	if (what == 'v') {//vukupit card
+		return 101;
 	}
 	else return -100;
 }
