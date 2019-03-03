@@ -18,7 +18,7 @@ private:
 	sf::Sprite cop0[40];
 	sf::Sprite cop1[40];
 	sf::Font font;//רנטפע 
-	sf::Text text1, text2, text3, text4, text5,text6,text7;//סמחהאול מבתוךע 
+	sf::Text text1, text2, text3, text4, text5,text6,text7,text8;//סמחהאול מבתוךע 
 
 public:
 	GraphView(){}

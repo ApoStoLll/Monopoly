@@ -211,8 +211,8 @@ void Controler::okCard(Player &player) {
 	//Плоти нологи
 }
 void Controler::step(Player &player) {
-	int a = player.random();
-	int b = player.random();
+	int a = 1;// player.random();
+	int b = 2;// player.random();
 	if (cards[player.getPosition()]->getType() == 10) jail(player);
 	if (player.getCountjail() == 0) {
 		if ((player.getPosition() + a + b) / 40 > 0) player.setMoney(player.getMoney() + 200000);
@@ -247,8 +247,8 @@ void Controler::gameCycle() {
 		if (players[i].getMoney() < 0) {
 			if (lose(players[i])) players.erase(players.begin() + i);
 		}
-		//if (players[i].getCountjail()==0)view.menu();
-		menu(players[i]);	//Вызвать меню
+		if (players[i].getCountjail()==0)view.menu();
+		//menu(players[i]);	//Вызвать меню
 		i++;	//следующий игрок	
 	}
 }
