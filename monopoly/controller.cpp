@@ -167,7 +167,16 @@ void Controler::menu(Player &player) {
 		if (n < 0 && n != -100) player.sellShop(n);
 	}
 }
-bool lose(Player &player) {
+void Controler::pledgeCard(Player &player) {
+	int i = viewConsole.zal();
+	int j = player.getPosition();
+	player.setPosition(i);
+	player.setMoney(player.getMoney() + (cards[player.getPosition()]->getPrice()) / 2);
+	player.setPosition(j);
+}
+
+bool Controler::lose(Player &player) {
+	pledgeCard(player);
 
 }
 void Controler::okCard(Player &player) {
