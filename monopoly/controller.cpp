@@ -3,6 +3,7 @@
 
 void Controler::caraganda(Player &player) {
 	player.setPosition(player.random(40));
+	Sleep(2000);
 }
 void Controler::fas(Player &player) {
 	int j = 0;
@@ -161,7 +162,7 @@ void Controler::menu(Player &player) {
 		if (n == 102)  change(player);
 	}
 	}
-}
+
 void Controler::pledgeCard(Player &player) {
 	int i = viewConsole.zal();
 	int j = player.getPosition();
