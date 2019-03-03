@@ -36,6 +36,7 @@ public:
 	bool naezd(int money);
 	void drawBought();
 	void rentView(int a,int b,int rentPrice);
+	void drawBought(std::vector<Player> &players);
 };
 
 class View {

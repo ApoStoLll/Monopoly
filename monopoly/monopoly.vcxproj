@@ -91,7 +91,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>D:\Study\Прога\SFML vs2017\include;C:\sfml\include;G:\programe\sfml\include;D:\Study\Прога\SFML vs2017\include;D:\sfml\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\sfml\include;D:\Study\Прога\SFML vs2017\include;C:\sfml\include;G:\programe\sfml\include;D:\Study\Прога\SFML vs2017\include;D:\sfml\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -109,7 +109,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>D:\Study\Прога\SFML vs2017\include;C:\sfml\include;G:\programe\sfml\include;D:\sfml\includeD:\sfml\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\sfml\include;D:\Study\Прога\SFML vs2017\include;C:\sfml\include;G:\programe\sfml\include;D:\sfml\includeD:\sfml\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -129,7 +129,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\sfml\include;G:\programe\sfml\include;D:\Study\Прога\SFML vs2017\include;D:\Study\Прога\SFML vs2017\include;C:\sfml\include;D:\sfml\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\sfml\include;C:\sfml\include;G:\programe\sfml\include;D:\Study\Прога\SFML vs2017\include;D:\Study\Прога\SFML vs2017\include;C:\sfml\include;D:\sfml\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -151,7 +151,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\sfml\include;G:\programe\sfml\include;D:\Study\Прога\SFML vs2017\include;D:\sfml\includeD:\Study\Прога\SFML vs2017\include;C:\sfml\include;D:\sfml\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\sfml\include;C:\sfml\include;G:\programe\sfml\include;D:\Study\Прога\SFML vs2017\include;D:\sfml\includeD:\Study\Прога\SFML vs2017\include;C:\sfml\include;D:\sfml\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
