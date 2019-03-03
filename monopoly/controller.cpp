@@ -160,10 +160,15 @@ bool Controler::choose(Player &player) {
 	else return false;
 }
 void Controler::menu(Player &player) {
-	int n = viewConsole.textMenu();
-	if (n == 0) return;
-	if (n > 0 && n < 100) player.buyShop(n);
-	if (n < 0 && n != -100) player.sellShop(n);
+	while (true) {
+		int n = viewConsole.textMenu();
+		if (n == 0) return;
+		if (n > 0 && n < 100) player.buyShop(n);
+		if (n < 0 && n != -100) player.sellShop(n);
+	}
+}
+bool lose(Player &player) {
+
 }
 void Controler::okCard(Player &player) {
 	if (choose(player)) {	//Если хватает денег и текущая карточка не куплена
@@ -216,6 +221,9 @@ void Controler::gameCycle() {
 	while (players.size() > 1) {
 		if (i == players.size()) i = 0;
 		step(players[i]);	//Походить
+		if (players[i].getMoney() < 0) {
+			if (lose(players[i])) players.erase(players.begin() + i);
+		}
 		view.menu();	//Вызвать меню
 		i++;	//следующий игрок	
 	}
