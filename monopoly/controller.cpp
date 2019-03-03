@@ -3,6 +3,7 @@
 
 void Controler::caraganda(Player &player) {
 	player.setPosition(player.random(40));
+	Sleep(2000);
 }
 void Controler::fas(Player &player) {
 	int j = 0;
@@ -210,8 +211,8 @@ void Controler::okCard(Player &player) {
 	//Плоти нологи
 }
 void Controler::step(Player &player) {
-	int a = player.random();
-	int b = player.random();
+	int a = 1;// player.random();
+	int b = 2;// player.random();
 	if (cards[player.getPosition()]->getType() == 10) jail(player);
 	if (player.getCountjail() == 0) {
 		if ((player.getPosition() + a + b) / 40 > 0) player.setMoney(player.getMoney() + 200000);

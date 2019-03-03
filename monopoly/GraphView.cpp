@@ -125,8 +125,10 @@ void GraphView::loadMap() {
 	text5.setFont(font);
 	text6.setFont(font);
 	text7.setFont(font);
+	text8.setFont(font);
 	text6.setFillColor(Color::Black);
 	text7.setFillColor(Color::Black);
+	text8.setFillColor(Color::Black);
 	text1.setPosition(175, 540);
 	text1.setFillColor(Color::Black);
 	text2.setPosition(175, 580);
@@ -154,19 +156,26 @@ bool GraphView::naezd(int money) {
 		if (IntRect(220, 420, 155, 28).contains(Mouse::getPosition(*window))) if (Mouse::isButtonPressed(Mouse::Left)) return 1;
 	}
 }
-void GraphView::drawBought(std::vector<Player> &players) { //BE CAREFUL STRASHNO NEOPNYATNA VIRYBAI
+void GraphView::drawBought(std::vector<Player> &players) { //BE CAREFUL STRASHNO NEPONYATNA VIRYBAI
 	for (int i = 0; i < players[0].getCards().size(); i++) 
 		cop0[players[0].getCards()[i]->getPosition()].setPosition(pos1(players[0].getCards()[i]->getPosition()), pos2(players[0].getCards()[i]->getPosition()) - 10);
 	for (int i = 0; i < players[1].getCards().size(); i++)
 		cop1[players[1].getCards()[i]->getPosition()].setPosition(pos1(players[1].getCards()[i]->getPosition()), pos2(players[1].getCards()[i]->getPosition()) - 10);
 }
 void GraphView::rentView(int a,int b,int rentPrice){
-	text7.setPosition(51, 85);
-	text7.setString("player num" + std::to_string(a) + "pay rent pl num " + std::to_string(b) + std::to_string(rentPrice));
+	text7.setCharacterSize(22);
+	text8.setCharacterSize(22);
+	text7.setPosition(160, 230);
+	text8.setPosition(160, 260);
+	text7.setString("Player number " + std::to_string(a) + " pays rent to ");
+	text8.setString("player number "+std::to_string(b) + "the amount of "+ std::to_string(rentPrice));
 	drawMap();
 	window->draw(text7);
+	window->draw(text8);
 	window->display();
-	Sleep(2000);
+	Sleep(3500);
 	//text7.setString(std::to_string(rentPrice));
-
 }
+//void GraphView::fasView()
+
+
