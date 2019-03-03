@@ -35,6 +35,7 @@ public:
 	void loadMap();
 	bool naezd(int money);
 };
+
 class View {
 private:
 	std::vector<Player> *players;
@@ -45,7 +46,7 @@ public:
 		 players = player;
 		 cards = card;
 	}
-	int* change();
+	int change();
 	int textMenu();
 	int zal();
 	int razzal();
@@ -58,6 +59,5 @@ public:
 	void printMap( int a, int b, int num);
 	char findOwner(int number);
 	int askReide();
-	int chose_player();
 };
 #endif //MONOPOLY_VIEW_H

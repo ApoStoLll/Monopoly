@@ -167,7 +167,9 @@ void Controler::menu(Player &player) {
 		if (n < 0 && n != -100) player.sellShop(n);
 		if (n == 100) pledgeCard(player);
 		if (n == 101) repledgeCard(player);
+		if(n== 102)  change(player);
 	}
+	
 }
 void Controler::pledgeCard(Player &player) {
 	int i = viewConsole.zal();
@@ -356,10 +358,15 @@ std::vector<Player> Controler::createPlayers() {
 	return players;
 }
 void Controler::change(Player &player1) {
-	int sum = viewConsole.change()[1];
-	int num1 = viewConsole.change()[2];
-	int num2 = viewConsole.change()[3];
-	Player player2 = players[viewConsole.chose_player()];
+	std::cout << "num of player\n";
+	int plyr = viewConsole.change();
+	std::cout << "sum\n";
+	int sum = viewConsole.change();
+	std::cout << "your card\n";
+	int num1 = viewConsole.change();
+	std::cout << "another card\n";
+	int num2 = viewConsole.change();
+	Player player2 = players[viewConsole.change()];
 	if (player1.checkMoney(sum) && player2.checkMoney(-sum) && player1.checkCard(num1) && player2.checkCard(num2)) {
 		player1.changeCard(player2, num2);
 		player2.changeCard(player1, num1);
