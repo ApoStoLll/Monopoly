@@ -96,7 +96,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>G:\programe\sfml\include;D:\Study\Прога\SFML vs2017\libx32;G:\programe\sfml\lib-x86;C:\sfml\lib32;D:\sfml\lib x86</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\Study\Прога\SFML vs2017\libx32;G:\programe\sfml\include;G:\programe\sfml\lib-x86;C:\sfml\lib32;D:\sfml\lib x86</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;sfml-audio-d.lib;</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -114,7 +114,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>G:\programe\sfml\include;D:\Study\Прога\SFML vs2017\libx64;G:\programe\sfml\lib-x64;C:\sfml\lib64;D:\sfml\lib x64</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\Study\Прога\SFML vs2017\libx64;G:\programe\sfml\include;D:\Study\Прога\SFML vs2017\libx64;G:\programe\sfml\lib-x64;C:\sfml\lib64;D:\sfml\lib x64</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;sfml-audio-d.lib;</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>

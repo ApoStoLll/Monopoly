@@ -1,6 +1,7 @@
 ﻿#include "pch.h"
 #include "view.h"
 #include <string>
+
 using namespace sf;
 int GraphView::pos1(int pos) {
 	if (pos < 0) pos = 40 + pos;
