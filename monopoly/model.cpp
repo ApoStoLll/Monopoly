@@ -43,9 +43,6 @@ void Player::sellShop(int number) {
 	Card &card = findCard(number);
 	money += card.getPriceShop();
 }
-void Player::pledgeCard(int number) {
-
-}
 
 void Player::changeCard(Player &player, int num){
 	player.findCard(num).buy(number);
