@@ -47,6 +47,7 @@ void Player::sellShop(int number) {
 
 void Player::changeCard(Player &player, int num){
 	player.findCard(num).buy(number);
+	cards.push_back(&player.findCard(num));
 }
 
 void Player::pay(int sum, Player &player){
