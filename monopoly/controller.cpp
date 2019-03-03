@@ -45,7 +45,7 @@ void Controler::naezd(Player &player) {
 void Controler::birga(Player &player) {
 	int k = viewConsole.birgaStavka();
 	if (k >= 100000) k = 100000;
-	int n = view.birga();
+	int n = viewConsole.birgaRisk();
 	int a = player.random();
 	int b = player.random();
 	if (n == 3 && n < (a + b)) {
