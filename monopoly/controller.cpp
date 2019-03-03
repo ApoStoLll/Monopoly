@@ -94,26 +94,7 @@ void Controler::present(Player &player1, Player &player2) {
 		view.avosView(y, o);
 	}
 }
-void Controler::avos(Player &player1, Player &player2) {
-	int i = player1.random(5);
-	if (i == 1) {
-		present(player1, player2);
-	}
-	if (i == 2) {
-		int a = player1.random();
-		int b = player1.random();
-		bool o = true;
-		int k = a + b;
-		view.avosView(k, o);
-		inverse(player1,a,b);
-	}
-	if (i == 3) {
-		bool o = true;
-		int k = (25 + player1.random(175) * 1000);
-		player1.setMoney(player1.getMoney() + k);
-		view.kaznaView(k, o);
-	}
-}
+
 void Controler::avos(Player &player) {
 	int i = player.random(5);
 	if (i == 1) {
@@ -122,12 +103,24 @@ void Controler::avos(Player &player) {
 		else player2 = &players[1];
 		present(player, *player2);
 	}
-	if (i == 2)  inverse(player); 
-	if (i == 3)  player.setMoney(player.getMoney() + (25 + player.random(175) * 1000)); 
+	if (i == 2) {
+		int a = player.random();
+		int b = player.random();
+		bool o = true;
+		int k = a + b;
+		view.avosView(k, o);
+		inverse(player, a, b);
+	}
+	if (i == 3) {
+		bool o = true;
+		int k = (25 + player.random(175) * 1000);
+		player.setMoney(player.getMoney() + k);
+		view.kaznaView(k, o);
+	}
 	if (i == 4) {
 		bool o = false;
-		int k = (25 + player1.random(175) * 1000);
-		player1.setMoney(player1.getMoney() - k);
+		int k = (25 + player.random(175) * 1000);
+		player.setMoney(player.getMoney() - k);
 		view.kaznaView(k, o);
 	}
 	if (i == 5) caraganda(player);
@@ -298,7 +291,7 @@ void Controler::action(Player &player) {
 	if (cards[player.getPosition()]->getType() == 3) kazna(player);
 	if (cards[player.getPosition()]->getType() == 4) naezd(player);
 	if (cards[player.getPosition()]->getType() == 5) birga(player);
-	if (cards[player.getPosition()]->getType() == 6) avos(player1,player2);
+	if (cards[player.getPosition()]->getType() == 6) avos(player);
 	if (cards[player.getPosition()]->getType() == 7) kanikulu(player);
 	if (cards[player.getPosition()]->getType() == 8) svazi(player);
 	if (cards[player.getPosition()]->getType() == 9) rusbiznes(player);

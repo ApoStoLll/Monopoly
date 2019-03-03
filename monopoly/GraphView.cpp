@@ -256,7 +256,6 @@ void GraphView::zemlyaView(int k, bool b) {
 	}
 }
 
-}
 void GraphView::birgaLose(int money) {
 	birgaLL.setPosition(0, 0);
 	drawMap();
