@@ -101,12 +101,12 @@ int View::birgaRisk() {
 }
 int View::jailask() {
 	char in;
-	std::cout << "Do you want to leave jail?(Y or N)\n";
+	std::cout << "Do you want to escape or pay?(E or P)\n";
 	while (true) {
 		std::cin >> in;
-		if (in == 'Y' || in == 'y') return 1;
+		if (in == 'P' || in == 'p') return 1;
 		else {
-			if (in == 'N' || in == 'n') return 0;
+			if (in == 'E' || in == 'e') return 0;
 			else std::cout << "Only Y or N, (Try again)\n";
 		}
 	}

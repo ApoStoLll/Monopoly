@@ -105,31 +105,25 @@ void Controler::rusbiznes(Player &player) {
 	}
 }
 void Controler::jail(Player &player) {
-	int i = viewConsole.jailask();
-	int a = player.random();
-	int b = player.random();
-	if (player.getCountjail() != 3 ){ //sidit v turme ne bolshe 3 hodov
-		if (i == 0) {//if igrok ostaetsa v jail
-			if ((a + b) % 2 == 0)//vupal dubl
-			{
-				player.setCountjail(0);
-				step(player);
-			}
-			else {//dubl ne vupal, ne hodit, schetchik turmu +1
-				player.setCountjail(player.getCountjail() + 1);
-				step(player);
-			}
-		}
-		if (i = 1) {//igrok platit dengi i uhodit s turmu
-			player.setMoney(player.getMoney() - 50000);
-			player.setCountjail(0);
-			step(player);
-		}
-	}
-	if (player.getCountjail() > 3) {
+	if (player.getCountjail() > 4) {
 		player.setCountjail(0);
-		step(player);
 	}
+	else {
+		int i = 0;
+		if (player.getMoney() > 50000)  i = viewConsole.jailask();
+		int a = player.random();
+		int b = player.random();
+		if (i == 1) {
+			player.setCountjail(0);
+			player.setMoney(player.getMoney() - 50000);
+		}
+		else {
+			if (a == b) player.setCountjail(0);
+			else player.setCountjail(player.getCountjail() + 1);
+		}
+	}
+	
+	
 }
 void Controler::reide(Player &player) {
 	int k = viewConsole.askReide();
@@ -145,12 +139,15 @@ void Controler::reide(Player &player) {
 	player.setMoney(player.getMoney() - cards[player.getPosition()]->getPrice());
 	player.setPosition(32);
 }
+
 void Controler::love(Player &player) {
 	kazna(player);
 }
 void Controler::nalogi(Player &player) {
 	player.setMoney(player.getMoney()*0.8);//20 percent 
 }
+
+
 bool Controler::choose(Player &player) {
 	if ((cards[player.getPosition()]->getOwner() == -1) //Если не куплена
 		&& (player.getMoney() > cards[player.getPosition()]->getPrice())) return true;
@@ -164,9 +161,9 @@ void Controler::menu(Player &player) {
 		if (n < 0 && n != -100) player.sellShop(n);
 		if (n == 100) pledgeCard(player);
 		if (n == 101) repledgeCard(player);
-		if(n== 102)  change(player);
+		if (n == 102)  change(player);
 	}
-	
+	}
 }
 void Controler::pledgeCard(Player &player) {
 	int i = viewConsole.zal();
@@ -182,6 +179,7 @@ void Controler::repledgeCard(Player &player) {
 	player.setMoney(player.getMoney() - (cards[player.getPosition()]->getPrice()));
 	player.setPosition(j);
 }
+
 bool Controler::lose(Player &player) {
 	while (true) {
 		int i = viewConsole.help();
@@ -203,7 +201,7 @@ bool Controler::lose(Player &player) {
 void Controler::okCard(Player &player) {
 	if (choose(player)) {	//Если хватает денег и текущая карточка не куплена
 		if (view.skipOrBuy()) {
-			view.drawCard(player.getPosition(),player.getNumber());
+			//view.drawCard(player.getPosition(),player.getNumber());
 			player.buyCard(cards[player.getPosition()]);
 		}// Если тру купить
 		//if (viewConsole.skipOrBuy()) player.buyCard(cards[player.getPosition()]); // Если тру купить
@@ -215,35 +213,31 @@ void Controler::okCard(Player &player) {
 void Controler::step(Player &player) {
 	int a = player.random();
 	int b = player.random();
+	if (cards[player.getPosition()]->getType() == 10) jail(player);
 	if (player.getCountjail() == 0) {
 		if ((player.getPosition() + a + b) / 40 > 0) player.setMoney(player.getMoney() + 200000);
 		player.setPosition((player.getPosition() + a + b) % 40); // изменение позиции
-		viewConsole.printMap(a, b, player.getNumber());
-		view.pprintMap(players, cards, a, b, player.getNumber());//изменить карту
-		if (cards[player.getPosition()]->getType() == -1) okCard(player);
-		if (cards[player.getPosition()]->getType() == 1) caraganda(player);
-		if (cards[player.getPosition()]->getType() == 2) fas(player);
-		if (cards[player.getPosition()]->getType() == 3) kazna(player);
-		if (cards[player.getPosition()]->getType() == 4) naezd(player);
-		if (cards[player.getPosition()]->getType() == 5) birga(player);
-		if (cards[player.getPosition()]->getType() == 6) avos(player);
-		if (cards[player.getPosition()]->getType() == 7) kanikulu(player);
-		if (cards[player.getPosition()]->getType() == 8) svazi(player);
-		if (cards[player.getPosition()]->getType() == 9) rusbiznes(player);
-		if (cards[player.getPosition()]->getType() == 10) {
-			player.setCountjail(player.getCountjail() + 1);
-			jail(player);
-		}
-		if (cards[player.getPosition()]->getType() == 11) reide(player);
-		if (cards[player.getPosition()]->getType() == 12) love(player);
-		if (cards[player.getPosition()]->getType() == 13) nalogi(player);
-		view.createMap(players[0].getMoney(), players[1].getMoney(), a, b);
-		if (a == b) step(player);
 	}
-	if (player.getCountjail()> 0) {
-		player.setPosition(player.getPosition());
-	}
+	viewConsole.printMap(a, b, player.getNumber());
+	view.pprintMap(players, cards, a, b, player.getNumber());//изменить карту
+	if (cards[player.getPosition()]->getType() == -1) okCard(player);
+	if (cards[player.getPosition()]->getType() == 1) caraganda(player);
+	if (cards[player.getPosition()]->getType() == 2) fas(player);
+	if (cards[player.getPosition()]->getType() == 3) kazna(player);
+	if (cards[player.getPosition()]->getType() == 4) naezd(player);
+	if (cards[player.getPosition()]->getType() == 5) birga(player);
+	if (cards[player.getPosition()]->getType() == 6) avos(player);
+	if (cards[player.getPosition()]->getType() == 7) kanikulu(player);
+	if (cards[player.getPosition()]->getType() == 8) svazi(player);
+	if (cards[player.getPosition()]->getType() == 9) rusbiznes(player);
+	if (cards[player.getPosition()]->getType() == 10) if (player.getCountjail() == 0) player.setCountjail(1);
+	if (cards[player.getPosition()]->getType() == 11) reide(player);
+	if (cards[player.getPosition()]->getType() == 12) love(player);
+	if (cards[player.getPosition()]->getType() == 13) nalogi(player);
+	view.createMap(players[0].getMoney(), players[1].getMoney(), a, b);
+	if (player.getCountjail()==0) if (a == b) step(player);
 }
+
 void Controler::gameCycle() {
 	int i = 0;
 	view.loadMap();
@@ -253,8 +247,8 @@ void Controler::gameCycle() {
 		if (players[i].getMoney() < 0) {
 			if (lose(players[i])) players.erase(players.begin() + i);
 		}
-		//view.menu();
-		menu(players[i]);	//Вызвать меню
+		if (players[i].getCountjail()==0)view.menu();
+		//menu(players[i]);	//Вызвать меню
 		i++;	//следующий игрок	
 	}
 }
@@ -360,6 +354,7 @@ std::vector<Card*> Controler::createCards() {
 	cards.push_back(almazi);
 	return cards;
 }
+
 std::vector<Player> Controler::createPlayers() {
 	std::vector<Player> players;
 	Player player1(1500000, 0);
