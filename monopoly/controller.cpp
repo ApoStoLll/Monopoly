@@ -20,23 +20,47 @@ void Controler::naezd(Player &player) {
 	int j = ((10 + player.random(50)) * 1000);
 	int i = view.naezd(j);
 	int k = player.random(4);
-	if (i == 0) player.setMoney(player.getMoney() - j);
-	if (i == 1) {
-		if (k == 1 || k == 2 || k == 3) player.setMoney(player.getMoney() - j * 2);
+	if (i == 0){
+		player.setMoney(player.getMoney() - j); 
+		view.naezdPlata(j);
 	}
+	if (i == 1){ 
+			if (k == 1 || k == 2 || k == 3) { player.setMoney(player.getMoney() - j * 2); view.naezdLose(j * 2); }
+			else view.naezdWin();
+	}
+	
 }
 void Controler::birga(Player &player) {
 	int k = viewConsole.birgaStavka();
 	if (k >= 100000) k = 100000;
-	int n = viewConsole.birgaRisk();
+	int n = view.birga();
 	int a = player.random();
 	int b = player.random();
-	if (n == 3 && n < (a + b))  player.setMoney(player.getMoney() + 2 * k); 
-	if (n == 3 && n >= (a + b))  player.setMoney(player.getMoney() - k); 
-	if (n == 7 && n < (a + b)) player.setMoney(player.getMoney() + 4 * k); 
-	if (n == 7 && n >= (a + b))  player.setMoney(player.getMoney() - k); 
-	if (n == 9 && n < (a + b))  player.setMoney(player.getMoney() + 8 * k); 
-	if (n == 9 && n >= (a + b))  player.setMoney(player.getMoney() - k); 
+	if (n == 3 && n < (a + b)) {
+		player.setMoney(player.getMoney() + 2 * k);
+		view.birgaWin(2 * k);
+	}
+	if (n == 3 && n >= (a + b)) {
+		player.setMoney(player.getMoney() - k);
+		view.birgaLose(k);
+	}
+	if (n == 7 && n < (a + b)) {
+		player.setMoney(player.getMoney() + 4 * k);
+		view.birgaWin(4 * k);
+	}
+	if (n == 7 && n >= (a + b)) {
+		player.setMoney(player.getMoney() - k);
+		view.birgaLose(k);
+	}
+		if (n == 9 && n < (a + b)) {
+			player.setMoney(player.getMoney() + 8 * k);
+			view.birgaWin(8 * k);
+		}
+		if (n == 9 && n >= (a + b)) {
+			player.setMoney(player.getMoney() - k);
+			view.birgaLose(k);
+		}
+
 }
 void Controler::inverse(Player &player) {
 	player.setPosition(player.getPosition() - player.random() - player.random());
@@ -212,8 +236,8 @@ void Controler::okCard(Player &player) {
 	//Плоти нологи
 }
 void Controler::step(Player &player) {
-	int a = 1;// player.random();
-	int b = 2;// player.random();
+	int a = 6;// player.random();
+	int b = 6;// player.random();
 	if (cards[player.getPosition()]->getType() == 10) jail(player);
 	if (player.getCountjail() == 0) {
 		if ((player.getPosition() + a + b) / 40 > 0) player.setMoney(player.getMoney() + 200000);
