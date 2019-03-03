@@ -68,14 +68,8 @@ bool Player::checkMoney(int sum)
 	else return 0;
 }
 
-void Player::change(Player &player1, Player &player2, int num1, int num2, int sum){
-	if (player1.checkMoney(sum) && player2.checkMoney(-sum) && player1.checkCard(num1) && player2.checkCard(num2)){
-		player1.changeCard(player2, num2);
-		player2.changeCard(player1, num1);
-		player1.pay(sum, player2);
-	}
-	else return;
-}
+
+
 /*int RoflanCard::caraganda() {
 	return random(40);
 }*/

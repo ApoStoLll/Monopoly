@@ -46,7 +46,7 @@ public:
 		 players = player;
 		 cards = card;
 	}
-	[] int change();
+	int* change();
 	int textMenu();
 	int naezdOrPolice();
 	int birgaStavka();

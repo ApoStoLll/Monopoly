@@ -90,7 +90,6 @@ public:
 	void changeCard(Player &player, int num);
 	bool checkCard( int num);
 	bool checkMoney(int sum);
-	void change(Player &player1, Player &player2, int num1, int num2, int sum);
 	void buyShop(int number);
 	void sellShop(int number);
 	void createShop(int number);
@@ -106,6 +105,6 @@ public:
 	int getCountchin() { return countchin; }
 	int getCountrus() { return countrus; }
 	int getCountjail() { return countjail; }
-
+	Player& retplayer() {}
 };
 #endif //MONOPOLY_MODEL_H

@@ -17,6 +17,9 @@ int View::textMenu() {
 		std::cin >> num;
 		return num;
 	}
+	if (what == 'c') {//change
+		return -1000;
+	}
 
 	else return -100;
 }
@@ -217,22 +220,25 @@ void View::printMap( int a, int b, int num)
 	std::cout << "Go player: "<< num << "\n";
 }
 
-[]int View::change()//consol change
+int* View::change()//consol change
 {
-	int num[3];
+	int n;
+	int *num = new int[n];
+	n = 3;
 	std::cout << "sum\n";
 	std::cin >> num[1];
 	std::cout << "your card\n";
 	std::cin >> num[2];
 	std::cout << "another card\n";
 	std::cin >> num[3];
+	return num;
 }
 
 int View::chose_player()
 {
-	int num;
+	int numofpl;
 	std::cout << "Player for change";
-	std::cin >> num;
+	std::cin >> numofpl;
 
-	return num;
+	return numofpl;
 }

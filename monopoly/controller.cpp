@@ -155,7 +155,8 @@ void Controler::menu(Player &player) {
 	int n = viewConsole.textMenu();
 	if (n == 0) return;
 	if (n > 0 && n < 100) player.buyShop(n);
-	if (n < 0 && n != -100) player.sellShop(n);
+	if (n < 0 && n != -100 && n!=-1000) player.sellShop(n);
+	if (n = -1000) change(player);
 }
 void Controler::okCard(Player &player) {
 	if (choose(player)) {	//≈сли хватает денег и текуща€ карточка не куплена
@@ -302,4 +303,16 @@ std::vector<Player> Controler::createPlayers() {
 	players.push_back(player1);
 	players.push_back(player2);
 	return players;
+}
+void Controler::change(Player &player1) {
+	int sum = viewConsole.change()[1];
+	int num1 = viewConsole.change()[2];
+	int num2 = viewConsole.change()[3];
+	Player player2 = players[viewConsole.chose_player()];
+	if (player1.checkMoney(sum) && player2.checkMoney(-sum) && player1.checkCard(num1) && player2.checkCard(num2)) {
+		player1.changeCard(player2, num2);
+		player2.changeCard(player1, num1);
+		player1.pay(sum, player2);
+	}
+	else return;
 }
