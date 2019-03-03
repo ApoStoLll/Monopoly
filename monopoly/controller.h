@@ -46,6 +46,7 @@ public:
 	void reide(Player &player);
 	void love(Player &player);
 	void nalogi(Player &player);
+	void change(Player &player1);
 };
  //Меню после хода
 #endif //MONOPOLY_CONTROLLER_H

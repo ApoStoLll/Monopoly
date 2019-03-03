@@ -34,7 +34,9 @@ public:
 	void pprintMap(std::vector<Player> &players, std::vector<Card*> cards, int a, int b, int num);
 	void loadMap();
 	bool naezd(int money);
+	void drawBought();
 };
+
 class View {
 private:
 	std::vector<Player> *players;
@@ -45,6 +47,7 @@ public:
 		 players = player;
 		 cards = card;
 	}
+	int change();
 	int textMenu();
 	int zal();
 	int razzal();

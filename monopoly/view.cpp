@@ -23,6 +23,10 @@ int View::textMenu() {
 	if (what == 'v') {//vukupit card
 		return 101;
 	}
+	if (what == 'c') {//change
+		return 102;
+	}
+
 	else return -100;
 }
 int View::zal() {
@@ -255,3 +259,11 @@ void View::printMap( int a, int b, int num)
 	std::cout << a << " + " << b << "\n";
 	std::cout << "Go player: "<< num << "\n";
 }
+
+int View::change()//consol change
+{
+	int num;
+	std::cin >> num;
+	return num;
+}
+
