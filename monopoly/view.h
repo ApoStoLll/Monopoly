@@ -18,7 +18,7 @@ private:
 	sf::Sprite cop0[40];
 	sf::Sprite cop1[40];
 	sf::Font font;//רנטפע 
-	sf::Text text1, text2, text3, text4, text5,text6;//סמחהאול מבתוךע 
+	sf::Text text1, text2, text3, text4, text5,text6,text7;//סמחהאול מבתוךע 
 
 public:
 	GraphView(){}
@@ -26,7 +26,7 @@ public:
 		this->window = window;
 	
 	}
-	void createMap(int a, int b, int c, int d);
+	void createMap(int a, int b, int c, int d, std::vector<Player> &players);
 	void drawMap();
 	int menu();
 	bool skipOrBuy();
@@ -34,6 +34,7 @@ public:
 	void pprintMap(std::vector<Player> &players, std::vector<Card*> cards, int a, int b, int num);
 	void loadMap();
 	bool naezd(int money);
+	void rentView(int a,int b,int rentPrice);
 	void drawBought(std::vector<Player> &players);
 };
 

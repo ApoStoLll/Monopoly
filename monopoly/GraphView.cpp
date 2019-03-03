@@ -57,16 +57,17 @@ bool GraphView::skipOrBuy() {
 		if (IntRect(230, 400, 145, 31).contains(Mouse::getPosition(*window))) if (Mouse::isButtonPressed(Mouse::Left)) return 0;
 	}
 }
-void GraphView::createMap(int a, int b, int c, int d) {
+void GraphView::createMap(int a, int b, int c, int d, std::vector<Player> &players) {
 	text2.setString(std::to_string(a));
 	text4.setString(std::to_string(b));
 	text5.setString(std::to_string(c) + '+' + std::to_string(d));
+	drawBought(players);
 	drawMap();
 }
 void GraphView::pprintMap(std::vector<Player> &players, std::vector<Card*> cards, int a, int b, int num)
 {
-	createMap(players[0].getMoney(), players[1].getMoney(), a, b);
-	drawBought(players);
+	createMap(players[0].getMoney(), players[1].getMoney(), a, b,players);
+	
 	if (num == 0) { going.setTexture(p1g); going.setPosition(210, 620); }
 	else { going.setTexture(p2g); going.setPosition(320, 620); }
 	for (int i = (a + b); i >= 0; i--) {
@@ -90,10 +91,6 @@ void GraphView::pprintMap(std::vector<Player> &players, std::vector<Card*> cards
 	}
 
 }
-/*void GraphView::drawCard(int pos,int num) {
-	if (num == 0) cop0[pos].setPosition(pos1(pos), pos2(pos)-10);
-	if (num == 1) cop1[pos].setPosition(pos1(pos), pos2(pos)-10);
-}*/
 void GraphView::loadMap() {
 	map.loadFromFile("images/map.png");
 	player1.loadFromFile("images/p0.png");
@@ -126,7 +123,9 @@ void GraphView::loadMap() {
 	text4.setFont(font);
 	text5.setFont(font);
 	text6.setFont(font);
+	text7.setFont(font);
 	text6.setFillColor(Color::Black);
+	text7.setFillColor(Color::Black);
 	text1.setPosition(175, 540);
 	text1.setFillColor(Color::Black);
 	text2.setPosition(175, 580);
@@ -160,4 +159,13 @@ void GraphView::drawBought(std::vector<Player> &players) { //BE CAREFUL STRASHNO
 	for (int i = 0; i < players[1].getCards().size(); i++)
 		cop1[players[1].getCards()[i]->getPosition()].setPosition(pos1(players[1].getCards()[i]->getPosition()), pos2(players[1].getCards()[i]->getPosition()) - 10);
 }
+void GraphView::rentView(int a,int b,int rentPrice){
+	text7.setPosition(51, 85);
+	text7.setString("player num" + std::to_string(a) + "pay rent pl num " + std::to_string(b) + std::to_string(rentPrice));
+	drawMap();
+	window->draw(text7);
+	window->display();
+	Sleep(2000);
+	//text7.setString(std::to_string(rentPrice));
 
+}

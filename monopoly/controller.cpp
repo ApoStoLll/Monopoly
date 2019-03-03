@@ -207,7 +207,10 @@ void Controler::okCard(Player &player) {
 		//if (viewConsole.skipOrBuy()) player.buyCard(cards[player.getPosition()]); // Если тру купить
 	}
 	else
-		if (cards[player.getPosition()]->getOwner() > -1) player.payRent(players[cards[player.getPosition()]->getOwner()]);
+		if (cards[player.getPosition()]->getOwner() > -1) {
+			player.payRent(players[cards[player.getPosition()]->getOwner()]);
+			view.rentView(player.getNumber(), players[cards[player.getPosition()]->getOwner()].getNumber(), cards[player.getPosition()]->getPriceRent());
+		}
 	//Плоти нологи
 }
 void Controler::step(Player &player) {
@@ -234,7 +237,7 @@ void Controler::step(Player &player) {
 	if (cards[player.getPosition()]->getType() == 11) reide(player);
 	if (cards[player.getPosition()]->getType() == 12) love(player);
 	if (cards[player.getPosition()]->getType() == 13) nalogi(player);
-	view.createMap(players[0].getMoney(), players[1].getMoney(), a, b);
+	view.createMap(players[0].getMoney(), players[1].getMoney(), a, b,players);
 	if (player.getCountjail()==0) if (a == b) step(player);
 }
 
@@ -269,6 +272,7 @@ void Controler::change(Player &player1) {
 	}
 	else std::cout << "Change impossible\n";
 }
+
 std::vector<Card*> Controler::createCards() {
 	std::vector<Card*> cards;
 	int k = 1000;
