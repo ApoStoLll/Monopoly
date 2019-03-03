@@ -38,7 +38,7 @@ public:
 	void birga(Player &player);
 	void inverse(Player &player,int a, int b);
 	void present(Player &player1, Player &player2);
-	void avos(Player &player);
+	void avos(Player &player1, Player &player2);
 	void kanikulu(Player &player);
 	void svazi(Player &player);
 	void rusbiznes(Player &player);

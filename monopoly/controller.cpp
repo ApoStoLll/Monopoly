@@ -68,35 +68,35 @@ void Controler::present(Player &player1, Player &player2) {
 		view.avosView(y, o);
 	}
 }
-void Controler::avos(Player &player) {
-	int i = player.random(5);
+void Controler::avos(Player &player1, Player &player2) {
+	int i = player1.random(5);
 	if (i == 1) {
-		present(player, player);
+		present(player1, player2);
 	}
 	if (i == 2) {
-		int a = player.random();
-		int b = player.random();
+		int a = player1.random();
+		int b = player1.random();
 		bool o = true;
-		inverse(player,a,b);
 		int k = a + b;
 		view.avosView(k, o);
+		inverse(player1,a,b);
 	}
 	if (i == 3) {
 		bool o = true;
-		int k = (25 + player.random(175) * 1000);
-		player.setMoney(player.getMoney() + k);
+		int k = (25 + player1.random(175) * 1000);
+		player1.setMoney(player1.getMoney() + k);
 		view.kaznaView(k, o);
 	}
 	if (i == 4) {
 		bool o = false;
-		int k = (25 + player.random(175) * 1000);
-		player.setMoney(player.getMoney() - k);
+		int k = (25 + player1.random(175) * 1000);
+		player1.setMoney(player1.getMoney() - k);
 		view.kaznaView(k, o);
 	}
-	if (i == 5) caraganda(player);
+	if (i == 5) caraganda(player1);
 }
 void Controler::kanikulu(Player &player) {
-	int k = (200 + player.random(200)) * 10000;
+	int k = (200 + player.random(200)) * 1000;
 	bool o = true;
 	player.setMoney(player.getMoney() + k);
 	view.kaznaView(k,o);
@@ -110,14 +110,19 @@ void Controler::svazi(Player &player) {
 		player.setCountchin(0);
 		int i = player.random(2);
 		int k = player.random(40);
-		if (i = 1) {
-			player.setMoney(player.getMoney() + (50 + player.random(125) * 10000));
+		if (i == 1) {
+			int l = (50 + player.random(125) * 10000);
+			bool o = true;
+			player.setMoney(player.getMoney() + l);
+			view.kaznaView(l, o);
 		}
-		if (i = 2) {
+		if (i == 2) {
+			bool b = true;
 			player.setPosition(k);
 			player.buyCard(cards[player.getPosition()]);
 			player.setMoney(player.getMoney() + cards[player.getPosition()]->getPrice());
 			player.setPosition(23);
+			view.zemlyaView(k, b);
 		}
 	}
 }
@@ -250,8 +255,8 @@ void Controler::okCard(Player &player) {
 	//Плоти нологи
 }
 void Controler::step(Player &player) {
-	int a = 5;// player.random();
-	int b = 3;// player.random();
+	int a = 17;// player.random();
+	int b = 0;// player.random();
 	if (cards[player.getPosition()]->getType() == 10) jail(player);
 	if (player.getCountjail() == 0) {
 		if ((player.getPosition() + a + b) / 40 > 0) player.setMoney(player.getMoney() + 200000);
@@ -265,7 +270,7 @@ void Controler::step(Player &player) {
 	if (cards[player.getPosition()]->getType() == 3) kazna(player);
 	if (cards[player.getPosition()]->getType() == 4) naezd(player);
 	if (cards[player.getPosition()]->getType() == 5) birga(player);
-	if (cards[player.getPosition()]->getType() == 6) avos(player);
+	if (cards[player.getPosition()]->getType() == 6) avos(player1,player2);
 	if (cards[player.getPosition()]->getType() == 7) kanikulu(player);
 	if (cards[player.getPosition()]->getType() == 8) svazi(player);
 	if (cards[player.getPosition()]->getType() == 9) rusbiznes(player);
@@ -286,8 +291,8 @@ void Controler::gameCycle() {
 		if (players[i].getMoney() < 0) {
 			if (lose(players[i])) players.erase(players.begin() + i);
 		}
-		//if (players[i].getCountjail()==0)view.menu();
-		menu(players[i]);	//Вызвать меню
+		if (players[i].getCountjail()==0)view.menu();
+		//menu(players[i]);	//Вызвать меню
 		i++;	//следующий игрок	
 	}
 }
@@ -352,7 +357,7 @@ std::vector<Card*> Controler::createCards() {
 	cards.push_back(radio);
 	UsefullCard *televishka = new UsefullCard(19, 200 * k, 22 * k, 3); // телевышка
 	cards.push_back(televishka);
-	RoflanCard *kanikulu = new RoflanCard(20, 7); // плати налох
+	RoflanCard *kanikulu = new RoflanCard(20, 7); // получи деньги
 	cards.push_back(kanikulu);
 	UsefullCard *strah = new UsefullCard(21, 220 * k, 24 * k, 5); // страх ком
 	cards.push_back(strah);

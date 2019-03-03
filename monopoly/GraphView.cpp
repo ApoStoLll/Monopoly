@@ -128,11 +128,13 @@ void GraphView::loadMap() {
 	text8.setFont(font);
 	text9.setFont(font);
 	text10.setFont(font);
+	zemlya.setFont(font);
 	text6.setFillColor(Color::Black);
 	text7.setFillColor(Color::Black);
 	text8.setFillColor(Color::Black);
 	text9.setFillColor(Color::Black);
 	text10.setFillColor(Color::Black);
+	zemlya.setFillColor(Color::Black);
 	text1.setPosition(175, 540);
 	text1.setFillColor(Color::Black);
 	text2.setPosition(175, 580);
@@ -226,5 +228,22 @@ void GraphView::avosView(int l, bool k) {
 		}
 	}
 }
-
+void GraphView::zemlyaView(int k, bool b) {
+	zemlya.setCharacterSize(22);
+	zemlya.setPosition(180, 230);
+	if (b) {
+		zemlya.setString("You now own card number  " + std::to_string(k));
+		drawMap();
+		window->draw(zemlya);
+		window->display();
+		Sleep(3000);
+	}
+	if (!b) {
+		zemlya.setString("You lost card number  " + std::to_string(k));
+		drawMap();
+		window->draw(zemlya);
+		window->display();
+		Sleep(3000);
+	}
+}
 
