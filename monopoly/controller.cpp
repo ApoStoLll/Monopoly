@@ -212,8 +212,8 @@ void Controler::okCard(Player &player) {
 	//Плоти нологи
 }
 void Controler::step(Player &player) {
-	int a = 2;// player.random();
-	int b = 3;// player.random();
+	int a = player.random();
+	int b = player.random();
 	if (cards[player.getPosition()]->getType() == 10) jail(player);
 	if (player.getCountjail() == 0) {
 		if ((player.getPosition() + a + b) / 40 > 0) player.setMoney(player.getMoney() + 200000);
@@ -235,7 +235,7 @@ void Controler::step(Player &player) {
 	if (cards[player.getPosition()]->getType() == 11) reide(player);
 	if (cards[player.getPosition()]->getType() == 12) love(player);
 	if (cards[player.getPosition()]->getType() == 13) nalogi(player);
-	view.createMap(players[0].getMoney(), players[1].getMoney(), a, b);
+	view.createMap(players[0].getMoney(), players[1].getMoney(), a, b,players);
 	if (player.getCountjail()==0) if (a == b) step(player);
 }
 
