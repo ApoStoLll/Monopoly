@@ -163,6 +163,8 @@ void GraphView::drawBought(std::vector<Player> &players) { //BE CAREFUL STRASHNO
 		cop1[players[1].getCards()[i]->getPosition()].setPosition(pos1(players[1].getCards()[i]->getPosition()), pos2(players[1].getCards()[i]->getPosition()) - 10);
 }
 void GraphView::rentView(int a,int b,int rentPrice){
+	text7.setCharacterSize(22);
+	text8.setCharacterSize(22);
 	text7.setPosition(160, 230);
 	text8.setPosition(160, 260);
 	text7.setString("Player number " + std::to_string(a) + " pays rent to ");
@@ -173,5 +175,7 @@ void GraphView::rentView(int a,int b,int rentPrice){
 	window->display();
 	Sleep(3500);
 	//text7.setString(std::to_string(rentPrice));
-
 }
+//void GraphView::fasView()
+
+
