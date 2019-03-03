@@ -172,8 +172,7 @@ void Controler::menu(Player &player) {
 		if (n == 101) repledgeCard(player);
 		if (n == 102)  change(player);
 	}
-	}
-
+}
 void Controler::pledgeCard(Player &player) {
 	int i = viewConsole.zal();
 	int j = player.getPosition();
@@ -259,8 +258,8 @@ void Controler::gameCycle() {
 		if (players[i].getMoney() < 0) {
 			if (lose(players[i])) players.erase(players.begin() + i);
 		}
-		if (players[i].getCountjail()==0)view.menu();
-		//menu(players[i]);	//Вызвать меню
+		//if (players[i].getCountjail()==0)view.menu();
+		menu(players[i]);	//Вызвать меню
 		i++;	//следующий игрок	
 	}
 }
