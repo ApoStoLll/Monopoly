@@ -22,7 +22,6 @@ void Player::buyCard(Card *card) {
 	money = money - card->getPrice();
 	cards.push_back(card);
 }
-
 void Player::createShop(int number) {
 	Card &card = findCard(number);
 	money -= card.getPriceShop();
@@ -44,24 +43,20 @@ void Player::sellShop(int number) {
 	Card &card = findCard(number);
 	money += card.getPriceShop();
 }
-
 void Player::changeCard(Player &player, int num){
 	player.findCard(num).buy(number);
 	cards.push_back(&player.findCard(num));
 }
-
 void Player::pay(int sum, Player &player){
 	money -= sum;// sum < 0, якщо цей player отримує гроші
 	player.setMoney(player.getMoney() + sum);
 }
-
 bool Player::checkCard(int num)
 {
 	for (int i = 0; i < cards.size(); i++)
 		if (cards[i]->getPosition() == num) return true;
 	return false;
 }
-
 bool Player::checkMoney(int sum)
 {
 	if (money < sum) return 1;

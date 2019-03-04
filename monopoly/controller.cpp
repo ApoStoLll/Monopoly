@@ -46,6 +46,7 @@ void Controler::naezd(Player &player) {
 void Controler::birga(Player &player) {
 	int k = viewConsole.birgaStavka();
 	if (k >= 100000) k = 100000;
+	if (k < 0) k = 1;
 	int n = view.birga();
 	int a = player.random();
 	int b = player.random();
@@ -94,7 +95,6 @@ void Controler::present(Player &player1, Player &player2) {
 		view.avosView(y, o);
 	}
 }
-
 void Controler::avos(Player &player) {
 	int i = player.random(1);
 	if (i == 1) {
@@ -211,15 +211,12 @@ void Controler::reide(Player &player) {
 	player.setMoney(player.getMoney() - cards[player.getPosition()]->getPrice());
 	player.setPosition(32);
 }
-
 void Controler::love(Player &player) {
 	kazna(player);
 }
 void Controler::nalogi(Player &player) {
 	player.setMoney(player.getMoney()*0.8);//20 percent 
 }
-
-
 bool Controler::choose(Player &player) {
 	if ((cards[player.getPosition()]->getOwner() == -1) //Если не куплена
 		&& (player.getMoney() > cards[player.getPosition()]->getPrice())) return true;
@@ -250,7 +247,6 @@ void Controler::repledgeCard(Player &player) {
 	player.setMoney(player.getMoney() - (cards[player.getPosition()]->getPrice()));
 	player.setPosition(j);
 }
-
 bool Controler::lose(Player &player) {
 	while (true) {
 		int i = viewConsole.help();
@@ -314,7 +310,6 @@ void Controler::step(Player &player) {
 	view.createMap(players[0].getMoney(), players[1].getMoney(), a, b, players);
 	if (player.getCountjail()==0) if (a == b) step(player);
 }
-
 void Controler::gameCycle() {
 	int i = 0;
 	view.loadMap();
@@ -346,7 +341,6 @@ void Controler::change(Player &player1) {
 	//}
 	//else std::cout << "Change impossible\n";
 }
-
 std::vector<Card*> Controler::createCards() {
 	std::vector<Card*> cards;
 	int k = 1000;
@@ -432,7 +426,6 @@ std::vector<Card*> Controler::createCards() {
 	cards.push_back(almazi);
 	return cards;
 }
-
 std::vector<Player> Controler::createPlayers() {
 	std::vector<Player> players;
 	Player player1(1500000, 0);

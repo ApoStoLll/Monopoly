@@ -18,7 +18,7 @@ private:
 	sf::Sprite cop0[40];
 	sf::Sprite cop1[40];
 	sf::Font font;//רנטפע 
-	sf::Text text1, text2, text3, text4, text5,text6,text7,text8,text9,text10,text11,zemlya;//סמחהאול מבתוךע 
+	sf::Text text1, text2, text3, text4, text5,text6,text7,text8,text9,text10,text11,zemlya,birgatext;//סמחהאול מבתוךע 
 
 public:
 	GraphView(){}
@@ -45,6 +45,7 @@ public:
 	void birgaWin(int money);
 	void birgaLose(int money);
 	void zemlyaView(int k, bool b);
+	//void buznisVoid(int l);
 
 };
 

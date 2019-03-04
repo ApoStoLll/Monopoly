@@ -259,7 +259,6 @@ void View::printMap( int a, int b, int num)
 	std::cout << a << " + " << b << "\n";
 	std::cout << "Go player: "<< num << "\n";
 }
-
 int View::change()//consol change
 {
 	int num;

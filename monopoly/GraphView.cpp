@@ -140,6 +140,7 @@ void GraphView::loadMap() {
 	text10.setFont(font);
 	text11.setFont(font);
 	zemlya.setFont(font);
+	birgatext.setFont(font);
 	text6.setFillColor(Color::Black);
 	text7.setFillColor(Color::Black);
 	text8.setFillColor(Color::Black);
@@ -147,6 +148,7 @@ void GraphView::loadMap() {
 	text10.setFillColor(Color::Black);
 	text11.setFillColor(Color::Black);
 	zemlya.setFillColor(Color::Black);
+	birgatext.setFillColor(Color::Black);
 	text1.setPosition(175, 540);
 	text1.setFillColor(Color::Black);
 	text2.setPosition(175, 580);
@@ -257,11 +259,14 @@ void GraphView::zemlyaView(int k, bool b) {
 		Sleep(3000);
 	}
 }
-
 void GraphView::birgaLose(int money) {
 	birgaLL.setPosition(200, 200);
+	birgatext.setCharacterSize(22);
+	birgatext.setPosition(230, 410);
 	drawMap();
+	birgatext.setString("You lost  " + std::to_string(money));
 	window->draw(birgaLL);
+	window->draw(birgatext);
 	window->display();
 	std::cout << "lose";
 	Sleep(3000);
@@ -269,9 +274,13 @@ void GraphView::birgaLose(int money) {
 }
 void GraphView::birgaWin(int money) {
 	birgaWW.setPosition(200, 200);
+	birgatext.setCharacterSize(22);
+	birgatext.setPosition(230, 410);
 	drawMap();
+	birgatext.setString("You won  " + std::to_string(money));
 	//window->draw(birgaWW);
 	window->draw(birgaWW);
+	window->draw(birgatext);
 	window->display();
 	std::cout << "win";
 	Sleep(3000);
@@ -285,8 +294,6 @@ void GraphView::naezdPlata(int money) {
 }
 void GraphView::naezdWin() {
 	naezdWW.setPosition(200, 200);
-
-
 	drawMap();
 	window->draw(naezdWW);
 	window->display();
@@ -313,3 +320,6 @@ int GraphView::birga() {
 	}
 
 }
+//void GraphView::biznesView(int k) {
+
+//}
