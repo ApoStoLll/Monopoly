@@ -41,7 +41,6 @@ void GraphView::drawMap() {
 		window->draw(cop0[i]);
 		window->draw(cop1[i]);
 	}
-	
 	window->display();
 }
 bool GraphView::skipOrBuy() {
@@ -260,7 +259,7 @@ void GraphView::zemlyaView(int k, bool b) {
 }
 
 void GraphView::birgaLose(int money) {
-	birgaLL.setPosition(0, 0);
+	birgaLL.setPosition(200, 200);
 	drawMap();
 	window->draw(birgaLL);
 	window->display();
@@ -269,8 +268,9 @@ void GraphView::birgaLose(int money) {
 
 }
 void GraphView::birgaWin(int money) {
-	birgaWW.setPosition(0, 0);
+	birgaWW.setPosition(200, 200);
 	drawMap();
+	//window->draw(birgaWW);
 	window->draw(birgaWW);
 	window->display();
 	std::cout << "win";
@@ -308,8 +308,8 @@ int GraphView::birga() {
 	while (true)
 	{
 		if (IntRect(217, 451, 40, 30).contains(Mouse::getPosition(*window))) if (Mouse::isButtonPressed(Mouse::Left)) return 3;
-		if (IntRect(315, 420, 40, 30).contains(Mouse::getPosition(*window))) if (Mouse::isButtonPressed(Mouse::Left)) return 7;
-		if (IntRect(368, 420, 40, 30).contains(Mouse::getPosition(*window))) if (Mouse::isButtonPressed(Mouse::Left)) return 7;
+		if (IntRect(315, 451, 40, 30).contains(Mouse::getPosition(*window))) if (Mouse::isButtonPressed(Mouse::Left)) return 7;
+		if (IntRect(368, 451, 40, 30).contains(Mouse::getPosition(*window))) if (Mouse::isButtonPressed(Mouse::Left)) return 9;
 	}
 
 }
