@@ -300,7 +300,7 @@ void Controler::action(Player &player) {
 	if (cards[player.getPosition()]->getType() == 13) nalogi(player);
 }
 void Controler::step(Player &player) {
-	int a = 7;//player.random();
+	int a = 0;//player.random();
 	int b = 10;//player.random();
 	if (cards[player.getPosition()]->getType() == 10) jail(player);
 	if (player.getCountjail() == 0) {

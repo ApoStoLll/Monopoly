@@ -275,3 +275,37 @@ void GraphView::birgaWin(int money) {
 	std::cout << "win";
 	Sleep(3000);
 }
+void GraphView::naezdPlata(int money) {
+	naezdPP.setPosition(200, 200);
+	drawMap();
+	window->draw(naezdPP);
+	window->display();
+	Sleep(3000);
+}
+void GraphView::naezdWin() {
+	naezdWW.setPosition(200, 200);
+	drawMap();
+	window->draw(naezdWW);
+	window->display();
+	Sleep(3000);
+}
+void GraphView::naezdLose(int money) {
+	naezdLL.setPosition(200, 200);
+	drawMap();
+	window->draw(naezdLL);
+	window->display();
+	Sleep(3000);
+}
+int GraphView::birga() {
+	birgaT.setPosition(200, 207);
+	drawMap();
+	window->draw(birgaT);
+	window->display();
+	while (true)
+	{
+		if (IntRect(217, 451, 40, 30).contains(Mouse::getPosition(*window))) if (Mouse::isButtonPressed(Mouse::Left)) return 3;
+		if (IntRect(315, 420, 40, 30).contains(Mouse::getPosition(*window))) if (Mouse::isButtonPressed(Mouse::Left)) return 7;
+		if (IntRect(368, 420, 40, 30).contains(Mouse::getPosition(*window))) if (Mouse::isButtonPressed(Mouse::Left)) return 7;
+	}
+
+}
