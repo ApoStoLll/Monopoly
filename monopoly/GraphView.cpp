@@ -124,6 +124,7 @@ void GraphView::loadMap() {
 	naezdLL.setTexture(naezdL);
 	birgaT.setTexture(birgaP);
 	birgaWW.setTexture(birgaW);
+	naezdWW.setTexture(naezdW);
 	birgaLL.setTexture(birgaL);
 	mapa.setTexture(map);
 	mapa.setPosition(0, 0);
@@ -284,9 +285,12 @@ void GraphView::naezdPlata(int money) {
 }
 void GraphView::naezdWin() {
 	naezdWW.setPosition(200, 200);
+
+
 	drawMap();
 	window->draw(naezdWW);
 	window->display();
+	std::cout << "win";
 	Sleep(3000);
 }
 void GraphView::naezdLose(int money) {

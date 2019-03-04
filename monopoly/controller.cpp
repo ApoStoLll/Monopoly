@@ -38,8 +38,9 @@ void Controler::naezd(Player &player) {
 		view.naezdPlata(j);
 	}
 	if (i == 1){ 
-			if (k == 1 || k == 2 || k == 3) { player.setMoney(player.getMoney() - j * 2); view.naezdLose(j * 2); }
-			else view.naezdWin();
+			//if (k == 1 || k == 2 || k == 3) { player.setMoney(player.getMoney() - j * 2); view.naezdLose(j * 2); }
+			//else 
+		view.naezdWin();
 	}
 }
 void Controler::birga(Player &player) {
