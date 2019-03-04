@@ -38,15 +38,15 @@ void Controler::naezd(Player &player) {
 		view.naezdPlata(j);
 	}
 	if (i == 1){ 
-			//if (k == 1 || k == 2 || k == 3) { player.setMoney(player.getMoney() - j * 2); view.naezdLose(j * 2); }
-			//else 
+			if (k == 1 || k == 2 || k == 3) { player.setMoney(player.getMoney() - j * 2); view.naezdLose(j * 2); }
+			else 
 		view.naezdWin();
 	}
 }
 void Controler::birga(Player &player) {
 	int k = viewConsole.birgaStavka();
 	if (k >= 100000) k = 100000;
-	int n = viewConsole.birgaRisk();
+	int n = view.birga();
 	int a = player.random();
 	int b = player.random();
 	if (n == 3 && n < (a + b)) {
@@ -301,7 +301,7 @@ void Controler::action(Player &player) {
 	if (cards[player.getPosition()]->getType() == 13) nalogi(player);
 }
 void Controler::step(Player &player) {
-	int a = 0;//player.random();
+	int a = 2;//player.random();
 	int b = 10;//player.random();
 	if (cards[player.getPosition()]->getType() == 10) jail(player);
 	if (player.getCountjail() == 0) {
